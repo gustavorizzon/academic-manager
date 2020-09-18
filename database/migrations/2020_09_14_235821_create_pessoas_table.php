@@ -30,7 +30,7 @@ class CreatePessoasTable extends Migration
             $table->string('email');
 
             $table->string('rua');
-            $table->smallInteger('numero_rua');
+            $table->integer('numero_rua');
             $table->string('complemento')->nullable();
             $table->string('referencia')->nullable();
             $table->string('bairro');
