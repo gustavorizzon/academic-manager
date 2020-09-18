@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * Tabela associada ao Model
-     *
-     * @var string
-     */
-    protected $table = 'professores';
+  /**
+   * Tabela associada ao Model
+   *
+   * @var string
+   */
+  protected $table = 'professores';
+
+  /**
+   * The primary key associated with the table.
+   *
+   * @var string
+   */
+  protected $primaryKey = 'matricula';
 }
