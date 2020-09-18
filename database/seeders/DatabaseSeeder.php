@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
     $this->call(CoordenadoresTableSeeder::class);
     $this->call(ProfessoresTableSeeder::class);
     $this->call(AlunosTableSeeder::class);
+    $this->call(BancaTableSeeder::class);
   }
 }
