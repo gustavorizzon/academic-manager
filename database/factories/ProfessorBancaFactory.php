@@ -29,7 +29,7 @@ class ProfessorBancaFactory extends Factory
         Professor::all()->pluck('matricula')->all()
       ),
 
-      'banca_id' => $this->faker->unique()->randomElement(
+      'banca_id' => $this->faker->randomElement(
         Banca::all()->pluck('id')->all()
       )
     ];
