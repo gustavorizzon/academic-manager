@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Aluno;
+use App\Models\MembroInstituicao;
 use Illuminate\Database\Seeder;
 
-class AlunosTableSeeder extends Seeder
+class MembrosInstituicaoTableSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,6 +14,6 @@ class AlunosTableSeeder extends Seeder
    */
   public function run()
   {
-    Aluno::factory(70)->create();
+    MembroInstituicao::factory(100)->create();
   }
 }

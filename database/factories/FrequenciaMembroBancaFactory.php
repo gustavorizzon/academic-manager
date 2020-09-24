@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
-use App\Models\Aluno;
-use App\Models\AlunoBanca;
+use App\Models\MembroInstituicao;
+use App\Models\MembroBanca;
 use App\Models\Banca;
 use App\Models\Frequencia;
-use App\Models\FrequenciaAlunoBanca;
+use App\Models\FrequenciaMembroBanca;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class FrequenciaAlunoBancaFactory extends Factory
+class FrequenciaMembroBancaFactory extends Factory
 {
   /**
    * The name of the factory's corresponding model.
    *
    * @var string
    */
-  protected $model = FrequenciaAlunoBanca::class;
+  protected $model = FrequenciaMembroBanca::class;
 
   /**
    * Define the model's default state.
@@ -31,7 +31,7 @@ class FrequenciaAlunoBancaFactory extends Factory
     );
 
     $classStudentId = $this->faker->randomElement(
-      AlunoBanca::where('banca_id', $classId)->pluck('id')->toArray()
+      MembroBanca::where('banca_id', $classId)->pluck('id')->toArray()
     );
 
     $frequencyId = $this->faker->randomElement(
@@ -40,7 +40,7 @@ class FrequenciaAlunoBancaFactory extends Factory
 
     return [
       'presente' => $this->faker->boolean,
-      'aluno_banca_id' => $classStudentId,
+      'membro_banca_id' => $classStudentId,
       'frequencia_id' => $frequencyId
     ];
   }

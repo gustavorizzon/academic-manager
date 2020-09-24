@@ -19,8 +19,8 @@ class CreateGraduacoesTable extends Migration
             $table->string('titulo');
             $table->bigInteger('numero_titulo');
 
-            $table->integer('pessoa_matricula')->unsigned();
-            $table->foreign('pessoa_matricula')->references('matricula')->on('pessoas');
+            $table->integer('membro_instituicao_id')->unsigned();
+            $table->foreign('membro_instituicao_id')->references('id')->on('membros_instituicao');
 
             $table->timestamps();
         });

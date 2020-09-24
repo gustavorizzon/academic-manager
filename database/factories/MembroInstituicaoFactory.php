@@ -3,18 +3,18 @@
 namespace Database\Factories;
 
 use App\Models\Cidade;
-use App\Models\Pessoa;
+use App\Models\MembroInstituicao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class PessoaFactory extends Factory
+class MembroInstituicaoFactory extends Factory
 {
   /**
    * The name of the factory's corresponding model.
    *
    * @var string
    */
-  protected $model = Pessoa::class;
+  protected $model = MembroInstituicao::class;
 
   /**
    * Define the model's default state.
@@ -44,6 +44,7 @@ class PessoaFactory extends Factory
       'cidade_id' => Cidade::all()->random()->id,
       'login' => $this->faker->userName,
       'senha' => bcrypt('senha'),
+      'tipo_membro' => $this->faker->randomElement(['A', 'C', 'D'])
     ];
   }
 }

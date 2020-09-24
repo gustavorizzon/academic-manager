@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FrequenciaAlunoBanca extends Model
+class AvaliacaoMembroBanca extends Model
 {
     use HasFactory;
 
@@ -14,5 +14,5 @@ class FrequenciaAlunoBanca extends Model
      *
      * @var string
      */
-    protected $table = 'frequencias_aluno_banca';
+    protected $table = 'avaliacoes_membro_banca';
 }

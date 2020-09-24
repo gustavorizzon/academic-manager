@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Coordenador;
+use App\Models\FrequenciaMembroBanca;
 use Illuminate\Database\Seeder;
 
-class CoordenadoresTableSeeder extends Seeder
+class FrequenciasMembroBancaTableSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,6 +14,6 @@ class CoordenadoresTableSeeder extends Seeder
    */
   public function run()
   {
-    Coordenador::factory(10)->create();
+    FrequenciaMembroBanca::factory(100)->create();
   }
 }

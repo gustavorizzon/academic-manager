@@ -18,17 +18,13 @@ class DatabaseSeeder extends Seeder
     $this->call(CursosTableSeeder::class);
     $this->call(DisciplinasTableSeeder::class);
     $this->call(DisciplinasCursoTableSeeder::class);
-    $this->call(PessoasTableSeeder::class);
-    $this->call(CoordenadoresTableSeeder::class);
-    $this->call(ProfessoresTableSeeder::class);
-    $this->call(AlunosTableSeeder::class);
+    $this->call(MembrosInstituicaoTableSeeder::class);
     $this->call(BancasTableSeeder::class);
-    $this->call(ProfessoresBancaTableSeeder::class);
-    $this->call(AlunosBancaTableSeeder::class);
+    $this->call(MembrosBancaTableSeeder::class);
     $this->call(FrequenciasTableSeeder::class);
-    $this->call(FrequenciasAlunoBancaTableSeeder::class);
+    $this->call(FrequenciasMembroBancaTableSeeder::class);
     $this->call(AvaliacoesTableSeeder::class);
-    $this->call(AvaliacoesAlunoBancaTableSeeder::class);
+    $this->call(AvaliacoesMembroBancaTableSeeder::class);
     $this->call(GraduacoesTableSeeder::class);
   }
 }

@@ -2,20 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\Aluno;
-use App\Models\AlunoBanca;
+use App\Models\MembroInstituicao;
+use App\Models\MembroBanca;
 use App\Models\Banca;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class AlunoBancaFactory extends Factory
+class MembroBancaFactory extends Factory
 {
   /**
    * The name of the factory's corresponding model.
    *
    * @var string
    */
-  protected $model = AlunoBanca::class;
+  protected $model = MembroBanca::class;
 
   /**
   * Define the model's default state.
@@ -25,8 +25,8 @@ class AlunoBancaFactory extends Factory
   public function definition()
   {
     return [
-      'aluno_matricula' => $this->faker->randomElement(
-        Aluno::all()->pluck('matricula')->toArray()
+      'membro_instituicao_id' => $this->faker->randomElement(
+        MembroInstituicao::all()->pluck('id')->toArray()
       ),
 
       'banca_id' => $this->faker->randomElement(

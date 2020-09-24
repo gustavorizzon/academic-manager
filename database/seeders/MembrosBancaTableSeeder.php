@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\AvaliacaoAlunoBanca;
+use App\Models\MembroBanca;
 use Illuminate\Database\Seeder;
 
-class AvaliacoesAlunoBancaTableSeeder extends Seeder
+class MembrosBancaTableSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,6 +14,6 @@ class AvaliacoesAlunoBancaTableSeeder extends Seeder
    */
   public function run()
   {
-    AvaliacaoAlunoBanca::factory(50)->create();
+    MembroBanca::factory(500)->create();
   }
 }
