@@ -41,7 +41,7 @@ class CreateMembrosInstituicaoTable extends Migration
             $table->string('login');
             $table->string('senha');
 
-            $table->char('tipo_membro')->default('A');
+            $table->char('tipo_membro', 1)->default('A');
 
             $table->rememberToken();
             $table->timestamps();
