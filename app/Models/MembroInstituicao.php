@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class MembroInstituicao extends Model
+class MembroInstituicao extends Authenticatable
 {
-  use HasFactory;
+  use HasFactory, Notifiable;
 
   /**
    * Tabela associada ao Model
@@ -15,4 +16,23 @@ class MembroInstituicao extends Model
    * @var string
    */
   protected $table = 'membros_instituicao';
+
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [
+    'senha', 'remember_token',
+  ];
+
+  /**
+   * Get the password for the user.
+   *
+   * @return string
+   */
+  public function getAuthPassword()
+  {
+    return $this->senha;
+  }
 }

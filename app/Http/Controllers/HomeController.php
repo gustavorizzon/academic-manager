@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
+  /**
+   * Show the application dashboard.
+   *
+   * @return \Illuminate\Contracts\Support\Renderable
+   */
+  public function index()
+  {
+    if (Auth::guest()) {
+      return view('welcome');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+    switch (Auth::user()->tipo_membro) {
+      case '*': return redirect()->route('admin.home');
+      case 'C': return redirect()->route('coordinator.home');
+      case 'D': return redirect()->route('professor.home');
+      case 'A': return redirect()->route('student.home');
     }
+
+    return redirect()->route('undefined');
+  }
 }
