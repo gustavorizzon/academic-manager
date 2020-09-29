@@ -10,6 +10,11 @@ class MembroInstituicao extends Authenticatable
 {
   use HasFactory, Notifiable;
 
+  const ADMIN = '*';
+  const COORDINATOR = 'C';
+  const PROFESSOR = 'D';
+  const STUDENT = 'A';
+
   /**
    * Tabela associada ao Model
    *
