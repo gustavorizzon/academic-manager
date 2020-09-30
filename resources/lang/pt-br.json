@@ -1,0 +1,30 @@
+{
+  "Registration": "Cadastro",
+  "Maintenance": "Manutenção",
+
+  "States": "Estados",
+  "States List": "Listagem de Estados",
+  "States Registration": "Cadastro de Estados",
+  "Editing state": "Editando estado",
+
+  "Id": "Código",
+  "Name": "Nome",
+  "Initials": "Iniciais",
+
+  "Actions": "Ações",
+  "Delete": "Excluir",
+  "Edit": "Editar",
+  "New": "Novo",
+  "Cancel": "Cancelar",
+  "Create!": "Criar!",
+  "Save!": "Salvar!",
+
+  "Do you want to proceed?": "Você deseja prosseguir?",
+  "This action cannot be reversed!": "Esta ação não pode ser revertida!",
+  "Yes, proceed!": "Sim, prossiga!",
+  "Not now.": "Agora não.",
+  "Deleted!": "Deletado!",
+  "Deletion performed successfully.": "Exclusão realizada com sucesso.",
+  "Error!": "Erro!",
+  "There was a problem deleting the requested item. Please contact support!": "Ocorreu um problema ao excluir o item solicitado. Entre em contato com o suporte!"
+}
