@@ -18,7 +18,7 @@ class Student
    */
   public function handle(Request $request, Closure $next)
   {
-    if (Auth::user()->tipo_membro == 'A') {
+    if (Auth::user()->tipo_membro == MembroInstituicao::STUDENT) {
       return $next($request);
     }
 
