@@ -24,7 +24,7 @@ class StatesRequest extends FormRequest
   public function rules()
   {
     $rules = [
-      'nome' => 'required|max:30|unique:membros_instituicao,nome',
+      'nome' => 'required|max:30|unique:estados,nome',
       'uf' => 'required|size:2'
     ];
 
