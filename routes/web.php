@@ -39,3 +39,17 @@ Route::prefix('professor')->as('professor.')->group(function () {
 Route::prefix('student')->as('student.')->group(function () {
   Route::get('/', [App\Http\Controllers\Student\HomeController::class, 'home'])->name('home');
 });
+
+// Registration Routes
+Route::prefix('registration')->as('registration.')->group(function () {
+
+  // States
+  Route::prefix('states')->as('states.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::any('/',             [App\Http\Controllers\Registration\StatesController::class, 'index'])->name('index');
+    Route::get('/create',       [App\Http\Controllers\Registration\StatesController::class, 'create'])->name('create');
+    Route::post('/store',       [App\Http\Controllers\Registration\StatesController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Registration\StatesController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit',    [App\Http\Controllers\Registration\StatesController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Registration\StatesController::class, 'update'])->name('update');
+  });
+});
