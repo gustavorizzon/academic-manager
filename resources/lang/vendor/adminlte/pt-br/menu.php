@@ -17,5 +17,6 @@ return [
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',
     'Registration'                  => 'Cadastro',
-    'States'                        => 'Estados'
+    'States'                        => 'Estados',
+    'Cities'                        => 'Cidades'
 ];

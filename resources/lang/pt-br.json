@@ -2,10 +2,17 @@
   "Registration": "Cadastro",
   "Maintenance": "Manutenção",
 
+  "State": "Estado",
   "States": "Estados",
   "States List": "Listagem de Estados",
   "States Registration": "Cadastro de Estados",
   "Editing state": "Editando estado",
+
+  "City": "Cidade",
+  "Cities": "Cidades",
+  "Cities List": "Listagem de Cidades",
+  "Cities Registration": "Cadastro de Cidades",
+  "Editing city": "Editando cidade",
 
   "Id": "Código",
   "Name": "Nome",

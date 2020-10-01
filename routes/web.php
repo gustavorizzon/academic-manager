@@ -52,4 +52,14 @@ Route::prefix('registration')->as('registration.')->group(function () {
     Route::get('/{id}/edit',    [App\Http\Controllers\Registration\StatesController::class, 'edit'])->name('edit');
     Route::put('/{id}/update',  [App\Http\Controllers\Registration\StatesController::class, 'update'])->name('update');
   });
+
+  // Cities
+  Route::prefix('cities')->as('cities.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::any('/',             [App\Http\Controllers\Registration\CitiesController::class, 'index'])->name('index');
+    Route::get('/create',       [App\Http\Controllers\Registration\CitiesController::class, 'create'])->name('create');
+    Route::post('/store',       [App\Http\Controllers\Registration\CitiesController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Registration\CitiesController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit',    [App\Http\Controllers\Registration\CitiesController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Registration\CitiesController::class, 'update'])->name('update');
+  });
 });

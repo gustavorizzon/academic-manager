@@ -234,13 +234,19 @@ return [
       [
         'text' => 'Registration',
         'icon' => 'fas fa-fw fa-clipboard-list',
-        'can' => ['manage-states'],
+        'can' => ['manage-states', 'manage-cities'],
         'submenu' => [
           [
             'text' => 'States',
             'icon' => 'fas fa-fw fa-flag-usa',
             'route' => 'registration.states.index',
             'can' => 'manage-states'
+          ],
+          [
+            'text' => 'Cities',
+            'icon' => 'fas fa-fw fa-home',
+            'route' => 'registration.cities.index',
+            'can' => 'manage-cities'
           ]
         ]
       ]
