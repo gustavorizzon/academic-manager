@@ -16,4 +16,7 @@ return [
     'important'                     => 'Important',
     'warning'                       => 'Warning',
     'information'                   => 'Information',
+    'States'                        => 'States',
+    'Cities'                        => 'Cities',
+    'Institution_Members'           => 'Institution Members',
 ];

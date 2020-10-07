@@ -18,5 +18,6 @@ return [
     'Information'                   => 'Informação',
     'Registration'                  => 'Cadastro',
     'States'                        => 'Estados',
-    'Cities'                        => 'Cidades'
+    'Cities'                        => 'Cidades',
+    'Institution_Members'           => 'Membros Instituição',
 ];

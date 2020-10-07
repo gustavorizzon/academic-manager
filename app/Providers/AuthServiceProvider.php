@@ -34,5 +34,12 @@ class AuthServiceProvider extends ServiceProvider
     Gate::define('manage-cities', function ($user) {
       return $user->tipo_membro == MembroInstituicao::ADMIN;
     });
+
+    Gate::define('manage-institution-members', function ($user) {
+      return (
+        $user->tipo_membro == MembroInstituicao::ADMIN
+        || $user->tipo_membro == MembroInstituicao::COORDINATOR
+      );
+    });
   }
 }

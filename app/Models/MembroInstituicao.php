@@ -32,6 +32,21 @@ class MembroInstituicao extends Authenticatable
   ];
 
   /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'nome', 'data_nascimento', 'orientacao_sexual', 'estado_civil',
+    'cpf', 'rg', 'nome_mae', 'nome_pai',
+    'telefone', 'email',
+    'rua', 'numero_rua', 'complemento',
+    'referencia', 'bairro', 'cidade_id',
+    'login', 'senha',
+    'tipo_membro',
+  ];
+
+  /**
    * Get the password for the user.
    *
    * @return string

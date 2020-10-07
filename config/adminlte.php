@@ -234,7 +234,11 @@ return [
       [
         'text' => 'Registration',
         'icon' => 'fas fa-fw fa-clipboard-list',
-        'can' => ['manage-states', 'manage-cities'],
+        'can' => [
+          'manage-states',
+          'manage-cities',
+          'manage-institution-members'
+        ],
         'submenu' => [
           [
             'text' => 'States',
@@ -247,6 +251,12 @@ return [
             'icon' => 'fas fa-fw fa-home',
             'route' => 'registration.cities.index',
             'can' => 'manage-cities'
+          ],
+          [
+            'text' => 'Institution_Members',
+            'icon' => 'fas fa-fw fa-users',
+            'route' => 'registration.institution_members.index',
+            'can' => 'manage-institution-members'
           ]
         ]
       ]
