@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', __('Cities') . ' | ')
+@section('title_prefix', __('Cities') . ' | ')
 
 @section('content_header')
     <h1>{{ __('Registration') }}</h1>
