@@ -17,7 +17,7 @@ class InstitutionMembersController extends Controller
   public function __construct() {
     $this->middleware([
       'auth',
-      \App\Http\Middleware\ManageInstitutionMembers::class
+      \App\Http\Middleware\AdminCoordinator::class
     ]);
   }
 

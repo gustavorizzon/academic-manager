@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ManageInstitutionMembers
+class AdminCoordinator
 {
   /**
    * Handle an incoming request.
