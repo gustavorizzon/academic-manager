@@ -262,7 +262,7 @@ return [
           ],
           [
             'text' => 'Graduations',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-graduation-cap',
             'route' => 'registration.graduations.index',
             'can' => 'manage-graduations'
           ],
