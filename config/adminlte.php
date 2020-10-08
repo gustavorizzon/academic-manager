@@ -238,7 +238,8 @@ return [
           'manage-states',
           'manage-cities',
           'manage-institution-members',
-          'manage-graduations'
+          'manage-graduations',
+          'manage-courses'
         ],
         'submenu' => [
           [
@@ -264,6 +265,12 @@ return [
             'icon' => 'fas fa-fw fa-users',
             'route' => 'registration.graduations.index',
             'can' => 'manage-graduations'
+          ],
+          [
+            'text' => 'Courses',
+            'icon' => 'fab fa-fw fa-discourse',
+            'route' => 'registration.courses.index',
+            'can' => 'manage-courses'
           ]
         ]
       ]

@@ -7,5 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  const SHIFT_MORNING = 'A';
+  const SHIFT_AFTERNOON = 'B';
+  const SHIFT_NIGHT = 'C';
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'nome', 'descricao',
+    'quantidade_semestres', 'valor',
+    'turno', 'horas_turno'
+  ];
 }

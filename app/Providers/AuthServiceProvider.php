@@ -48,5 +48,9 @@ class AuthServiceProvider extends ServiceProvider
         || $user->tipo_membro == MembroInstituicao::COORDINATOR
       );
     });
+
+    Gate::define('manage-courses', function ($user) {
+      return $user->tipo_membro == MembroInstituicao::COORDINATOR;
+    });
   }
 }

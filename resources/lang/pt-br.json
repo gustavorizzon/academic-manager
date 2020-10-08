@@ -30,6 +30,12 @@
   "Graduations Registration": "Cadastro de Graduações",
   "Editing Graduation": "Editando Graduação",
 
+  "Course": "Curso",
+  "Courses": "Cursos",
+  "Courses List": "Listagem de Cursos",
+  "Courses Registration": "Cadastro de Cursos",
+  "Editing Course": "Editando Curso",
+
   "Id": "Código",
   "Name": "Nome",
   "Initials": "Iniciais",
@@ -62,6 +68,14 @@
   "Only numbers": "Somente números",
   "Title": "Título",
   "Title number": "Número do título",
+  "Description": "Descrição",
+  "Semesters": "Semestres",
+  "Price": "Preço",
+  "Shift": "Turno",
+  "Hours": "Horas",
+  "Morning": "Manhã",
+  "Afternoon": "Tarde",
+  "Night": "Noite",
 
   "Actions": "Ações",
   "Delete": "Excluir",

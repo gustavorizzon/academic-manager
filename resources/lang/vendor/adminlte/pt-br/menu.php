@@ -21,4 +21,5 @@ return [
     'Cities'                        => 'Cidades',
     'Institution_Members'           => 'Membros Instituição',
     'Graduations'                   => 'Graduações',
+    'Courses'                       => 'Cursos',
 ];
