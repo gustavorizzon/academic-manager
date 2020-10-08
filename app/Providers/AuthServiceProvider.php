@@ -41,5 +41,12 @@ class AuthServiceProvider extends ServiceProvider
         || $user->tipo_membro == MembroInstituicao::COORDINATOR
       );
     });
+
+    Gate::define('manage-graduations', function ($user) {
+      return (
+        $user->tipo_membro == MembroInstituicao::ADMIN
+        || $user->tipo_membro == MembroInstituicao::COORDINATOR
+      );
+    });
   }
 }

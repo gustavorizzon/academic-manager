@@ -24,6 +24,12 @@
   "Institution Members Registration": "Cadastro de Membros da Instituição",
   "Editing institution member": "Editando membro da instituição",
 
+  "Graduation": "Graduação",
+  "Graduations": "Graduações",
+  "Graduations List": "Listagem de Graduações",
+  "Graduations Registration": "Cadastro de Graduações",
+  "Editing Graduation": "Editando Graduação",
+
   "Id": "Código",
   "Name": "Nome",
   "Initials": "Iniciais",
@@ -54,6 +60,8 @@
   "Other": "Outro",
   "Member type": "Tipo do membro",
   "Only numbers": "Somente números",
+  "Title": "Título",
+  "Title number": "Número do título",
 
   "Actions": "Ações",
   "Delete": "Excluir",

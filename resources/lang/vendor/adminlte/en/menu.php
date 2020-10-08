@@ -19,4 +19,5 @@ return [
     'States'                        => 'States',
     'Cities'                        => 'Cities',
     'Institution_Members'           => 'Institution Members',
+    'Graduations'                   => 'Graduations',
 ];

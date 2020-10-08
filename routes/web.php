@@ -72,4 +72,14 @@ Route::prefix('registration')->as('registration.')->group(function () {
     Route::get('/{id}/edit',    [App\Http\Controllers\Registration\InstitutionMembersController::class, 'edit'])->name('edit');
     Route::put('/{id}/update',  [App\Http\Controllers\Registration\InstitutionMembersController::class, 'update'])->name('update');
   });
+
+  // Institution Members
+  Route::prefix('graduations')->as('graduations.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::any('/',             [App\Http\Controllers\Registration\GraduationsController::class, 'index'])->name('index');
+    Route::get('/create',       [App\Http\Controllers\Registration\GraduationsController::class, 'create'])->name('create');
+    Route::post('/store',       [App\Http\Controllers\Registration\GraduationsController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Registration\GraduationsController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit',    [App\Http\Controllers\Registration\GraduationsController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Registration\GraduationsController::class, 'update'])->name('update');
+  });
 });
