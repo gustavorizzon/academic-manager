@@ -271,6 +271,12 @@ return [
             'icon' => 'fab fa-fw fa-discourse',
             'route' => 'registration.courses.index',
             'can' => 'manage-courses'
+          ],
+          [
+            'text' => 'Disciplines',
+            'icon' => 'fas fa-fw fa-book',
+            'route' => 'registration.disciplines.index',
+            'can' => 'manage-disciplines'
           ]
         ]
       ]

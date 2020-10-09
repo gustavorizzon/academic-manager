@@ -36,6 +36,12 @@
   "Courses Registration": "Cadastro de Cursos",
   "Editing Course": "Editando Curso",
 
+  "Discipline": "Disciplina",
+  "Disciplines": "Disciplinas",
+  "Disciplines List": "Listagem de Disciplinas",
+  "Disciplines Registration": "Cadastro de Disciplinas",
+  "Editing Discipline": "Editando Disciplina",
+
   "Id": "Código",
   "Name": "Nome",
   "Initials": "Iniciais",
@@ -76,6 +82,8 @@
   "Morning": "Manhã",
   "Afternoon": "Tarde",
   "Night": "Noite",
+  "Total credits": "Total de créditos",
+  "Required": "Requerido(s)",
 
   "Actions": "Ações",
   "Delete": "Excluir",

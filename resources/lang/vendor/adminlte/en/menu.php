@@ -21,4 +21,5 @@ return [
     'Institution_Members'           => 'Institution Members',
     'Graduations'                   => 'Graduations',
     'Courses'                       => 'Courses',
+    'Disciplines'                   => 'Disciplines',
 ];

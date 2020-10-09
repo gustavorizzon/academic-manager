@@ -22,4 +22,5 @@ return [
     'Institution_Members'           => 'Membros Instituição',
     'Graduations'                   => 'Graduações',
     'Courses'                       => 'Cursos',
+    'Disciplines'                   => 'Disciplinas',
 ];
