@@ -42,6 +42,12 @@
   "Disciplines Registration": "Cadastro de Disciplinas",
   "Editing Discipline": "Editando Disciplina",
 
+  "Course Discipline": "Disciplina do Curso",
+  "Course Disciplines": "Disciplinas do Curso",
+  "Listing disciplines of the course": "Listando disciplinas do curso",
+  "Adding disciplines to the course": "Adicionando disciplinas ao curso",
+  "Editing course discipline": "Editando disciplina do curso",
+
   "Id": "Código",
   "Name": "Nome",
   "Initials": "Iniciais",
@@ -84,6 +90,9 @@
   "Night": "Noite",
   "Total credits": "Total de créditos",
   "Required": "Requerido(s)",
+  "Mandatory": "Obrigatório(a)",
+  "Yes": "Sim",
+  "No": "Não",
 
   "Actions": "Ações",
   "Delete": "Excluir",
@@ -92,6 +101,9 @@
   "Cancel": "Cancelar",
   "Create!": "Criar!",
   "Save!": "Salvar!",
+  "Add!": "Adicionar!",
+  "Add": "Adicionar",
+  "Back": "Voltar",
 
   "Do you want to proceed?": "Você deseja prosseguir?",
   "This action cannot be reversed!": "Esta ação não pode ser revertida!",

@@ -91,6 +91,16 @@ Route::prefix('registration')->as('registration.')->group(function () {
     Route::get('/{id}/destroy', [App\Http\Controllers\Registration\CoursesController::class, 'destroy'])->name('destroy');
     Route::get('/{id}/edit',    [App\Http\Controllers\Registration\CoursesController::class, 'edit'])->name('edit');
     Route::put('/{id}/update',  [App\Http\Controllers\Registration\CoursesController::class, 'update'])->name('update');
+
+    // Course Disciplines
+    Route::prefix('{id}/disciplines')->as('disciplines.')->where(['idcd' => '[0-9]+'])->group(function () {
+      Route::any('/',               [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'index'])->name('index');
+      Route::get('/create',         [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'create'])->name('create');
+      Route::post('/store',         [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'store'])->name('store');
+      Route::get('/{idcd}/destroy', [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'destroy'])->name('destroy');
+      Route::get('/{idcd}/edit',    [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'edit'])->name('edit');
+      Route::put('/{idcd}/update',  [App\Http\Controllers\Registration\CourseDisciplinesController::class, 'update'])->name('update');
+    });
   });
 
   // Disciplines
