@@ -34,7 +34,12 @@ class MembroBancaFactory extends Factory
       ),
 
       'creditos' => $this->faker->numberBetween(0, 30),
-      'status' => $this->faker->boolean
+      'status' => $this->faker->randomElement([
+        MembroBanca::STATUS_ENROLLED,
+        MembroBanca::STATUS_APPROVED,
+        MembroBanca::STATUS_DISAPPROVED,
+        MembroBanca::STATUS_EXAM,
+      ])
     ];
   }
 }

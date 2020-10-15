@@ -23,7 +23,7 @@ class CreateMembrosBancaTable extends Migration
             $table->foreign('banca_id')->references('id')->on('bancas');
 
             $table->smallInteger('creditos');
-            $table->boolean('status');
+            $table->char('status', 1)->default('M');
 
             $table->timestamps();
         });
