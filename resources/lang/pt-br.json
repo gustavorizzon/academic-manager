@@ -112,5 +112,13 @@
   "Deleted!": "Deletado!",
   "Deletion performed successfully.": "Exclusão realizada com sucesso.",
   "Error!": "Erro!",
-  "There was a problem deleting the requested item. Please contact support!": "Ocorreu um problema ao excluir o item solicitado. Entre em contato com o suporte!"
+  "There was a problem deleting the requested item. Please contact support!": "Ocorreu um problema ao excluir o item solicitado. Entre em contato com o suporte!",
+
+  "Boards": "Bancas",
+  "Remaining Boards": "Bancas Restantes",
+  "Documents": "Documentos",
+  "Tasks": "Tarefas",
+  "Tests & Jobs": "Provas & Trabalhos",
+  "Fouls": "Faltas",
+  "More info": "Mais infos"
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +37,29 @@ Route::prefix('professor')->as('professor.')->group(function () {
 });
 
 // Student Routes
-Route::prefix('student')->as('student.')->group(function () {
+Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student')->as('student.')->group(function () {
+  // Home
   Route::get('/', [App\Http\Controllers\Student\HomeController::class, 'home'])->name('home');
+
+  // Boards Routes
+  Route::prefix('boards')->as('boards.')->group(function() {
+    Route::any('/', [App\Http\Controllers\Student\BoardsController::class, 'index'])->name('index');
+  });
+
+  // Documents Routes
+  Route::prefix('documents')->as('documents.')->group(function() {
+    Route::any('/', [App\Http\Controllers\Student\DocumentsController::class, 'index'])->name('index');
+  });
+
+  // Tasks Routes
+  Route::prefix('tasks')->as('tasks.')->group(function() {
+    Route::any('/pending', [App\Http\Controllers\Student\TasksController::class, 'pending'])->name('pending');
+  });
+
+  // Frequency Routes
+  Route::prefix('frequency')->as('frequency.')->group(function() {
+    Route::any('/fouls', [App\Http\Controllers\Student\FrequencyController::class, 'fouls'])->name('fouls');
+  });
 });
 
 // Registration Routes
