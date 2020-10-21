@@ -42,8 +42,9 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
   Route::get('/', [App\Http\Controllers\Student\HomeController::class, 'home'])->name('home');
 
   // Boards Routes
-  Route::prefix('boards')->as('boards.')->group(function() {
+  Route::prefix('boards')->as('boards.')->where(['id' => '[0-9]+'])->group(function() {
     Route::any('/', [App\Http\Controllers\Student\BoardsController::class, 'index'])->name('index');
+    Route::get('/show/{id}', [App\Http\Controllers\Student\BoardsController::class, 'show'])->name('show');
   });
 
   // Documents Routes

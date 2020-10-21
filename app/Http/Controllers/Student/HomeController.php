@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\AvaliacaoMembroBanca;
-use App\Models\Documento;
+use App\Models\Banca;
 use App\Models\MembroBanca;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use League\CommonMark\Block\Element\Document;
 
 class HomeController extends Controller
 {
@@ -20,7 +17,8 @@ class HomeController extends Controller
       'remainingBoardsCount' => $this->getRemainingBoardsCount(),
       'documentsCount' => $this->getDocumentsCount(),
       'pendingTasksCount' => $this->getPendingTasksCount(),
-      'foulsCount' => $this->getFoulsCount()
+      'foulsCount' => $this->getFoulsCount(),
+      'boards' => $this->getBoardsList()
     ]);
   }
 
@@ -69,6 +67,11 @@ class HomeController extends Controller
             ->count();
   }
 
+  /**
+   * Returns the authenticated user fouls count
+   *
+   * @return int
+   */
   private function getFoulsCount() {
     return  DB::table('frequencias', 'f')
               ->join('frequencias_membro_banca as fmb', 'f.id', '=', 'fmb.frequencia_id')
@@ -77,5 +80,18 @@ class HomeController extends Controller
             ->where('fmb.presente', '=', false)
             ->where('mb.membro_instituicao_id', '=', Auth::id())
           ->count();
+  }
+
+  /**
+   * Returns the list of the boards for the authenticated user
+   *
+   * @return mixed
+   */
+  private function getBoardsList() {
+    return Banca::join('membros_banca as mb', 'bancas.id', '=', 'mb.banca_id')
+      ->where('mb.membro_instituicao_id', '=', Auth::id())
+      ->orderBy('bancas.periodo_letivo')
+      ->orderByDesc('bancas.status')
+    ->get();
   }
 }

@@ -61,4 +61,58 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card card-outline card-success">
+      <div class="card-header border-transparent">
+        <h3 class="card-title">{{ __('Your boards') }}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive" style="max-height: 500px;">
+          <table class="table table-hover table-head-fixed text-nowrap m-0">
+            <thead>
+              <tr>
+                <th class="text-center">{{ __('Id') }}</th>
+                <th>{{ __('Short Description') }}</th>
+                <th class="text-center">{{ __('Status') }}</th>
+                <th>{{ __('Discipline') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if($boards->isEmpty())
+                <tr>
+                  <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
+                </tr>
+              @else
+                @foreach ($boards as $board)
+                  <tr>
+                    <td class="text-center">{{ $board->id }}</td>
+                    <td><a href="{{ route('student.boards.show', $board->id) }}">{{ Str::limit($board->descricao, 30) }}</a></td>
+                    <td class="text-center">{!!
+                      $board->status
+                        ? ('<span class="badge badge-success">' . __('Finished') . '</span>')
+                        : ('<span class="badge badge-warning">' . __('Pending') . '</span>')
+                    !!}</td>
+                    <td>{{ $board->courseDiscipline->discipline->nome }}</td>
+                  </tr>
+                @endforeach
+              @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer clearfix">
+        <a href="{{ route('student.boards.index') }}" class="btn btn-sm btn-outline-primary float-right">
+          <i class="fas fa-fw fa-external-link-alt"></i>
+          {{ __('List all boards') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

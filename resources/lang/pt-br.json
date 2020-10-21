@@ -1,4 +1,6 @@
 {
+  "Student Dashboard": "Painel do Aluno",
+
   "Registration": "Cadastro",
   "Maintenance": "Manutenção",
   "Administrator": "Administrador",
@@ -93,6 +95,10 @@
   "Mandatory": "Obrigatório(a)",
   "Yes": "Sim",
   "No": "Não",
+  "Pending": "Pendente",
+  "Finished": "Finalizado(a)",
+  "Status": "Estado",
+  "Short Description": "Breve Descrição",
 
   "Actions": "Ações",
   "Delete": "Excluir",
@@ -116,6 +122,8 @@
 
   "Boards": "Bancas",
   "Remaining Boards": "Bancas Restantes",
+  "Your boards": "Suas bancas",
+  "List all boards": "Listar todas as bancas",
   "Documents": "Documentos",
   "Tasks": "Tarefas",
   "Tests & Jobs": "Provas & Trabalhos",
