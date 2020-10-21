@@ -30,7 +30,7 @@ class BancaFactory extends Factory
       'total_vagas' => $this->faker->numberBetween(10, 60),
       'sala' => $this->faker->numberBetween(1, 256),
 
-      'disciplinas_curso_id' => $this->faker->randomElement(
+      'disciplina_curso_id' => $this->faker->randomElement(
         DisciplinaCurso::all()->pluck('id')->all()
       )
     ];

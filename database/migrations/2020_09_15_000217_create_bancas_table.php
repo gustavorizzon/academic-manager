@@ -22,8 +22,8 @@ class CreateBancasTable extends Migration
             $table->smallInteger('total_vagas');
             $table->string('sala');
 
-            $table->integer('disciplinas_curso_id')->unsigned();
-            $table->foreign('disciplinas_curso_id')->references('id')->on('disciplinas_curso');
+            $table->integer('disciplina_curso_id')->unsigned();
+            $table->foreign('disciplina_curso_id')->references('id')->on('disciplinas_curso');
 
             $table->timestamps();
         });
