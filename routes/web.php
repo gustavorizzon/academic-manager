@@ -54,6 +54,7 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
 
   // Tasks Routes
   Route::prefix('tasks')->as('tasks.')->group(function() {
+    Route::any('/', [App\Http\Controllers\Student\TasksController::class, 'index'])->name('index');
     Route::any('/pending', [App\Http\Controllers\Student\TasksController::class, 'pending'])->name('pending');
   });
 

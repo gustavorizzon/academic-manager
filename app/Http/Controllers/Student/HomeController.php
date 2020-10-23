@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Avaliacao;
 use App\Models\Banca;
 use App\Models\MembroBanca;
 use Carbon\Carbon;
@@ -18,7 +19,8 @@ class HomeController extends Controller
       'documentsCount' => $this->getDocumentsCount(),
       'pendingTasksCount' => $this->getPendingTasksCount(),
       'foulsCount' => $this->getFoulsCount(),
-      'boards' => $this->getBoardsList()
+      'boards' => $this->getBoardsList(),
+      'tasks' => $this->getTasksList(),
     ]);
   }
 
@@ -93,5 +95,20 @@ class HomeController extends Controller
       ->orderBy('bancas.periodo_letivo')
       ->orderByDesc('bancas.status')
     ->get();
+  }
+
+  private function getTasksList() {
+    $studentId = Auth::id();
+
+    return Avaliacao::join('bancas as b', 'avaliacoes.banca_id', '=', 'b.id')
+        ->join('membros_banca as mb', 'b.id', '=', 'mb.banca_id')
+      ->where('mb.membro_instituicao_id', '=', $studentId)
+      ->whereNotIn('avaliacoes.id', function ($query) use ($studentId) {
+        return  $query->select('amb.avaliacao_id')
+                    ->from('avaliacoes_membro_banca', 'amb')
+                      ->join('membros_banca as mb2', 'amb.membro_banca_id', '=', 'mb2.id')
+                    ->where('mb2.membro_instituicao_id', '=', $studentId);
+      })
+      ->get();
   }
 }

@@ -123,10 +123,14 @@
   "Boards": "Bancas",
   "Remaining Boards": "Bancas Restantes",
   "Your boards": "Suas bancas",
+  "Next Tests/Works": "Próximos Testes/Trabalhos",
   "List all boards": "Listar todas as bancas",
+  "List all tasks": "Listar todas as tarefas",
   "Documents": "Documentos",
   "Tasks": "Tarefas",
   "Tests & Jobs": "Provas & Trabalhos",
   "Fouls": "Faltas",
-  "More info": "Mais infos"
+  "More info": "Mais infos",
+  "Test": "Teste",
+  "Work": "Trabalho"
 }

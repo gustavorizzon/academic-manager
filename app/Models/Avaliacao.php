@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Avaliacao extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * Tabela associada ao Model
-     *
-     * @var string
-     */
-    protected $table = 'avaliacoes';
+  const TYPE_TEST = 'P';
+  const TYPE_WORK = 'T';
+
+  /**
+   * The table associated with the model.
+   *
+   * @var string
+   */
+  protected $table = 'avaliacoes';
+
+  public function board() {
+    return $this->belongsTo('App\Models\Banca', 'banca_id');
+  }
 }
