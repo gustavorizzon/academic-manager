@@ -18,7 +18,7 @@ class CreateAvaliacoesTable extends Migration
 
             $table->decimal('peso', 3, 1, true);
             $table->date('data');
-            $table->char('tipo');
+            $table->char('tipo', 1);
 
             $table->integer('banca_id')->unsigned();
             $table->foreign('banca_id')->references('id')->on('bancas');
