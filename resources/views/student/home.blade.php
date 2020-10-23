@@ -165,6 +165,48 @@
         </a>
       </div>
     </div>
+    <div class="card card-outline card-danger">
+      <div class="card-header border-transparent">
+        <h3 class="card-title">{{ __('Next Classes') }}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive" style="max-height: 500px;">
+          <table class="table table-hover table-head-fixed text-nowrap m-0">
+            <thead>
+              <tr>
+                <th>{{ __('Board') }}</th>
+                <th class="text-center">{{ __('Date') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if($nextClasses->isEmpty())
+                <tr>
+                  <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
+                </tr>
+              @else
+                @foreach ($nextClasses as $class)
+                  <tr>
+                    <td><a href="{{ route('student.boards.show', $class->board->id) }}">{{ Str::limit($class->board->descricao, 20) }}</a></td>
+                    <td class="text-center">{{ DateTime::createFromFormat('Y-m-d', $class->data)->format('d/m/Y') }}</td>
+                  </tr>
+                @endforeach
+              @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer clearfix">
+        <a href="{{ route('student.frequency.index') }}" class="btn btn-sm btn-outline-danger float-right">
+          <i class="fas fa-fw fa-external-link-alt"></i>
+          {{ __('List all schedule') }}
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

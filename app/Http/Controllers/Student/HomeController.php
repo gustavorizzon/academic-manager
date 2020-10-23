@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Avaliacao;
 use App\Models\Banca;
+use App\Models\Frequencia;
 use App\Models\MembroBanca;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class HomeController extends Controller
       'foulsCount' => $this->getFoulsCount(),
       'boards' => $this->getBoardsList(),
       'tasks' => $this->getTasksList(),
+      'nextClasses' => $this->getNextClassesList(),
     ]);
   }
 
@@ -97,6 +99,11 @@ class HomeController extends Controller
     ->get();
   }
 
+  /**
+   * Returns a list of the pending tasks
+   *
+   * @return mixed
+   */
   private function getTasksList() {
     $studentId = Auth::id();
 
@@ -109,6 +116,20 @@ class HomeController extends Controller
                       ->join('membros_banca as mb2', 'amb.membro_banca_id', '=', 'mb2.id')
                     ->where('mb2.membro_instituicao_id', '=', $studentId);
       })
-      ->get();
+    ->get();
+  }
+
+  /**
+   * Returns the list of the next classes
+   *
+   * @return mixed
+   */
+  public function getNextClassesList() {
+    return Frequencia::join('bancas as b', 'frequencias.banca_id', '=', 'b.id')
+        ->join('membros_banca as mb', 'b.id', '=', 'mb.banca_id')
+      ->where('mb.membro_instituicao_id', '=', Auth::id())
+      ->where('frequencias.data', '>=', Carbon::now()->toDateTimeString())
+      ->orderBy('frequencias.data')
+    ->get();
   }
 }

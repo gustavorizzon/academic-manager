@@ -60,6 +60,7 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
 
   // Frequency Routes
   Route::prefix('frequency')->as('frequency.')->group(function() {
+    Route::any('/', [App\Http\Controllers\Student\FrequencyController::class, 'index'])->name('index');
     Route::any('/fouls', [App\Http\Controllers\Student\FrequencyController::class, 'fouls'])->name('fouls');
   });
 });

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Frequencia extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function board() {
+    return $this->belongsTo('App\Models\Banca', 'banca_id');
+  }
 }

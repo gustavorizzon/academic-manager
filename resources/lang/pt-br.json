@@ -50,6 +50,8 @@
   "Adding disciplines to the course": "Adicionando disciplinas ao curso",
   "Editing course discipline": "Editando disciplina do curso",
 
+  "Board": "Banca",
+
   "Id": "Código",
   "Name": "Nome",
   "Initials": "Iniciais",
@@ -124,13 +126,18 @@
   "Remaining Boards": "Bancas Restantes",
   "Your boards": "Suas bancas",
   "Next Tests/Works": "Próximos Testes/Trabalhos",
+  "Next Classes": "Próximas Aulas",
   "List all boards": "Listar todas as bancas",
   "List all tasks": "Listar todas as tarefas",
+  "List all schedule": "Listar toda a programação",
   "Documents": "Documentos",
   "Tasks": "Tarefas",
   "Tests & Jobs": "Provas & Trabalhos",
   "Fouls": "Faltas",
   "More info": "Mais infos",
   "Test": "Teste",
-  "Work": "Trabalho"
+  "Work": "Trabalho",
+  "Date": "Data",
+  "Type": "Tipo",
+  "Weight": "Peso"
 }
