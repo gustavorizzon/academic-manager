@@ -55,4 +55,8 @@ class MembroInstituicao extends Authenticatable
   {
     return $this->senha;
   }
+
+  public function graduation() {
+    return $this->hasOne('App\Models\Graduacao', 'membro_instituicao_id');
+  }
 }

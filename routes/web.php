@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,13 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
   Route::prefix('frequency')->as('frequency.')->group(function() {
     Route::any('/', [App\Http\Controllers\Student\FrequencyController::class, 'index'])->name('index');
     Route::any('/fouls', [App\Http\Controllers\Student\FrequencyController::class, 'fouls'])->name('fouls');
+  });
+});
+
+// Standalone routes
+Route::middleware(['auth'])->group(function () {
+  Route::prefix('faculty')->as('faculty.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Reports\FacultyReportController::class, 'view'])->name('view');
   });
 });
 

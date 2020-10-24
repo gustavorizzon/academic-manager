@@ -7,6 +7,7 @@ use App\Models\Avaliacao;
 use App\Models\Banca;
 use App\Models\Frequencia;
 use App\Models\MembroBanca;
+use App\Models\MembroInstituicao;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,7 @@ class HomeController extends Controller
       'boards' => $this->getBoardsList(),
       'tasks' => $this->getTasksList(),
       'nextClasses' => $this->getNextClassesList(),
+      'faculty' => $this->getFaculty(),
     ]);
   }
 
@@ -130,6 +132,17 @@ class HomeController extends Controller
       ->where('mb.membro_instituicao_id', '=', Auth::id())
       ->where('frequencias.data', '>=', Carbon::now()->toDateTimeString())
       ->orderBy('frequencias.data')
+    ->get();
+  }
+
+  /**
+   * Return a list of available documents for the authenticated student
+   *
+   * @return mixed
+   */
+  public function getFaculty() {
+    return MembroInstituicao::whereIn('tipo_membro', [MembroInstituicao::PROFESSOR, MembroInstituicao::COORDINATOR])
+      ->orderBy('nome')
     ->get();
   }
 }

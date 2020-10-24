@@ -113,6 +113,54 @@
         </a>
       </div>
     </div>
+    <div class="card card-outline card-info">
+      <div class="card-header border-transparent">
+        <h3 class="card-title">{{ __('Faculty') }}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive" style="max-height: 500px;">
+          <table class="table table-hover table-head-fixed text-nowrap m-0">
+            <thead>
+              <tr>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Member type') }}</th>
+                <th>{{ __('Graduation title') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if($faculty->isEmpty())
+                <tr>
+                  <td colspan="3" class="text-center">@lang('messages.table.empty')</td>
+                </tr>
+              @else
+                @foreach ($faculty as $f)
+                  <tr>
+                    <td>{{ $f->nome }}</td>
+                    <td>{!!
+                      $f->tipo_membro == \App\Models\MembroInstituicao::PROFESSOR
+                        ? ('<span class="badge badge-primary">' . __('Professor') . '</span>')
+                        : ('<span class="badge badge-secondary">' . __('Coordinator') . '</span>')
+                    !!}</td>
+                    <td>{{ $f->graduation->titulo ?? '' }}</td>
+                  </tr>
+                @endforeach
+              @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer clearfix">
+        <a href="{{ route('faculty.view') }}" class="btn btn-sm btn-outline-info float-right">
+          <i class="fas fa-fw fa-external-link-alt"></i>
+          {{ __('List the entire faculty') }}
+        </a>
+      </div>
+    </div>
   </div>
   <div class="col-md-5">
     <div class="card card-outline card-warning">

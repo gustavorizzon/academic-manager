@@ -130,6 +130,7 @@
   "List all boards": "Listar todas as bancas",
   "List all tasks": "Listar todas as tarefas",
   "List all schedule": "Listar toda a programação",
+  "List the entire faculty": "Listar todo o corpo docente",
   "Documents": "Documentos",
   "Tasks": "Tarefas",
   "Tests & Jobs": "Provas & Trabalhos",
@@ -139,5 +140,7 @@
   "Work": "Trabalho",
   "Date": "Data",
   "Type": "Tipo",
-  "Weight": "Peso"
+  "Weight": "Peso",
+  "Graduation title": "Título da graduação",
+  "Faculty": "Corpo docente"
 }
