@@ -49,7 +49,7 @@
                 <td>{{ $discipline->minimo_creditos_necessarios }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.disciplines.edit', ['id' => $discipline->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $discipline->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $discipline->id }}, '{{ $discipline->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

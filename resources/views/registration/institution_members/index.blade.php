@@ -55,7 +55,7 @@
                 <td>{{ $institution_member->tipo_membro }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.institution_members.edit', ['id' => $institution_member->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $institution_member->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $institution_member->id }}, '{{ $institution_member->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

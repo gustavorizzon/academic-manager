@@ -56,7 +56,7 @@
                 <td class="text-center">
                   <a href="{{ route('registration.courses.disciplines.index', ['id' => $course->id]) }}" class="btn-sm btn-secondary fas fa-book" title="{{ __('Course Disciplines') }}"></a>
                   <a href="{{ route('registration.courses.edit', ['id' => $course->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $course->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $course->id }}, '{{ $course->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

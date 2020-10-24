@@ -53,7 +53,7 @@
                 <td>{{ $course_discipline->obrigatoria ? __('Yes') : __('No') }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.courses.disciplines.edit', ['id' => $course_id, 'idcd' => $course_discipline->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $course_discipline->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $course_discipline->id }}, '{{ $course_discipline->course->nome . ' / ' . $course_discipline->discipline->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

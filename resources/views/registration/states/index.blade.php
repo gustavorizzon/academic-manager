@@ -47,7 +47,7 @@
                 <td>{{ $state->uf }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.states.edit', ['id' => $state->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $state->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $state->id }}, '{{ $state->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

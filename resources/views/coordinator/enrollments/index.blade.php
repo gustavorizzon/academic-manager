@@ -66,7 +66,7 @@
                 </td>
                 <td class="text-center">
                   <a href="{{ route('coordinator.enrollments.edit', ['id' => $enrollment->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $enrollment->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $enrollment->id }}, '{{ $enrollment->institutionMember->nome . ' / ' . $enrollment->course->nome }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

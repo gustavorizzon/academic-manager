@@ -1,8 +1,10 @@
 <script>
-	function confirmDeletion(id) {
+	function confirmDeletion(id, description) {
 		Swal.fire({
 			title: '{{ __('Do you want to proceed?') }}',
-			text: '{{ __('This action cannot be reversed!') }}',
+      html: '{{ __('You are trying to remove: ') }}<strong>'
+          + description
+          + '</strong><br><span class="text-danger">{{ __('This action cannot be reversed!') }}</span>',
 			icon: 'question',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',

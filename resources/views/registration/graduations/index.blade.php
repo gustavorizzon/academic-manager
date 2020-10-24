@@ -49,7 +49,7 @@
                 <td>{{ $graduation->institution_member->nome }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.graduations.edit', ['id' => $graduation->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $graduation->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $graduation->id }}, '{{ __('Title number') . ': ' . $graduation->numero_titulo }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach

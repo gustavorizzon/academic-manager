@@ -47,7 +47,7 @@
                 <td>{{ $city->state->nome }} / {{ $city->state->uf }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.cities.edit', ['id' => $city->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
-                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $city->id }});" title="{{ __('Delete') }}"></a>
+                  <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $city->id }}, '{{ $city->state->nome }} / {{ $city->state->uf }}');" title="{{ __('Delete') }}"></a>
                 </td>
               </tr>
             @endforeach
