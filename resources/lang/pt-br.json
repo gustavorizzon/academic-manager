@@ -52,6 +52,12 @@
   "Adding disciplines to the course": "Adicionando disciplinas ao curso",
   "Editing course discipline": "Editando disciplina do curso",
 
+  "Enrollment": "Matrícula",
+  "Enrollments": "Matrículas",
+  "Enrollments List": "Listando matrículas",
+  "Enrolling a student": "Matriculando um aluno",
+  "Editing enrollment": "Editando matrícula",
+
   "Board": "Banca",
 
   "Id": "Código",
@@ -101,8 +107,13 @@
   "No": "Não",
   "Pending": "Pendente",
   "Finished": "Finalizado(a)",
-  "Status": "Estado",
+  "Status": "Status",
   "Short Description": "Breve Descrição",
+  "Enrolled": "Matriculado(a)",
+  "Locked": "Trancado(a)",
+  "Concluded": "Concluído(a)",
+  "Institution Member Name": "Nome do Membro da Instituição",
+  "Course Name": "Nome do Curso",
 
   "Actions": "Ações",
   "Delete": "Excluir",

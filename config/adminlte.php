@@ -232,53 +232,46 @@ return [
 
     'menu' => [
       [
-        'text' => 'Registration',
-        'icon' => 'fas fa-fw fa-clipboard-list',
-        'can' => [
-          'manage-states',
-          'manage-cities',
-          'manage-institution-members',
-          'manage-graduations',
-          'manage-courses'
-        ],
-        'submenu' => [
-          [
-            'text' => 'States',
-            'icon' => 'fas fa-fw fa-flag-usa',
-            'route' => 'registration.states.index',
-            'can' => 'manage-states'
-          ],
-          [
-            'text' => 'Cities',
-            'icon' => 'fas fa-fw fa-home',
-            'route' => 'registration.cities.index',
-            'can' => 'manage-cities'
-          ],
-          [
-            'text' => 'Institution_Members',
-            'icon' => 'fas fa-fw fa-users',
-            'route' => 'registration.institution_members.index',
-            'can' => 'manage-institution-members'
-          ],
-          [
-            'text' => 'Graduations',
-            'icon' => 'fas fa-fw fa-graduation-cap',
-            'route' => 'registration.graduations.index',
-            'can' => 'manage-graduations'
-          ],
-          [
-            'text' => 'Courses',
-            'icon' => 'fab fa-fw fa-discourse',
-            'route' => 'registration.courses.index',
-            'can' => 'manage-courses'
-          ],
-          [
-            'text' => 'Disciplines',
-            'icon' => 'fas fa-fw fa-book',
-            'route' => 'registration.disciplines.index',
-            'can' => 'manage-disciplines'
-          ]
-        ]
+        'text' => 'States',
+        'icon' => 'fas fa-fw fa-flag-usa',
+        'route' => 'registration.states.index',
+        'can' => 'manage-states'
+      ],
+      [
+        'text' => 'Cities',
+        'icon' => 'fas fa-fw fa-home',
+        'route' => 'registration.cities.index',
+        'can' => 'manage-cities'
+      ],
+      [
+        'text' => 'Institution_Members',
+        'icon' => 'fas fa-fw fa-users',
+        'route' => 'registration.institution_members.index',
+        'can' => 'manage-institution-members'
+      ],
+      [
+        'text' => 'Graduations',
+        'icon' => 'fas fa-fw fa-graduation-cap',
+        'route' => 'registration.graduations.index',
+        'can' => 'manage-graduations'
+      ],
+      [
+        'text' => 'Courses',
+        'icon' => 'fab fa-fw fa-discourse',
+        'route' => 'registration.courses.index',
+        'can' => 'manage-courses'
+      ],
+      [
+        'text' => 'Disciplines',
+        'icon' => 'fas fa-fw fa-book',
+        'route' => 'registration.disciplines.index',
+        'can' => 'manage-disciplines'
+      ],
+      [
+        'text' => 'Enrollments',
+        'icon' => 'fas fa-fw fa-user-tag',
+        'route' => 'coordinator.enrollments.index',
+        'can' => 'manage-enrollments'
       ]
     ],
 

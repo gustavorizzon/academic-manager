@@ -23,4 +23,5 @@ return [
     'Graduations'                   => 'Graduações',
     'Courses'                       => 'Cursos',
     'Disciplines'                   => 'Disciplinas',
+    'Enrollments'                    => 'Matrículas',
 ];

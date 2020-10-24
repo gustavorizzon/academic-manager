@@ -28,8 +28,18 @@ Route::prefix('admin')->as('admin.')->group(function () {
 });
 
 // Coordinator Routes
-Route::prefix('coordinator')->as('coordinator.')->group(function () {
+Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coordinator')->as('coordinator.')->group(function () {
   Route::get('/', [App\Http\Controllers\Coordinator\HomeController::class, 'home'])->name('home');
+
+  // Enrollments
+  Route::prefix('enrollments')->as('enrollments.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::any('/',             [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'index'])->name('index');
+    Route::get('/create',       [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'create'])->name('create');
+    Route::post('/store',       [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit',    [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'update'])->name('update');
+  });
 });
 
 // Professor Routes

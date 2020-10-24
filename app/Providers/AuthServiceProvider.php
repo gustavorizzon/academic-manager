@@ -56,5 +56,9 @@ class AuthServiceProvider extends ServiceProvider
     Gate::define('manage-disciplines', function ($user) {
       return $user->tipo_membro == MembroInstituicao::COORDINATOR;
     });
+
+    Gate::define('manage-enrollments', function ($user) {
+      return $user->tipo_membro == MembroInstituicao::COORDINATOR;
+    });
   }
 }

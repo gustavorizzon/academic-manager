@@ -22,4 +22,5 @@ return [
     'Graduations'                   => 'Graduations',
     'Courses'                       => 'Courses',
     'Disciplines'                   => 'Disciplines',
+    'Enrollments'                   => 'Enrollments',
 ];
