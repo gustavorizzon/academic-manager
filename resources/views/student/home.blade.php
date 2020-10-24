@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('student.layout')
 
 @section('title_prefix', __('Student Dashboard') . ' | ')
 

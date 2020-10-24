@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layout.dynamic')
 
 @section('title_prefix', __('Graduations') . ' | ')
 
