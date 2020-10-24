@@ -9,6 +9,14 @@
 
     {{-- Sidebar menu --}}
     <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('img/user.png') }}" class="img-circle elevation-1" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ Auth::user()->nome }}</a>
+            </div>
+        </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
                 data-widget="treeview" role="menu"
