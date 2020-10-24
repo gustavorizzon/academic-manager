@@ -1,4 +1,6 @@
 {
+  "Academic Manager": "Gerenciador Acadêmico",
+
   "Student Dashboard": "Painel do Aluno",
 
   "Registration": "Cadastro",
@@ -112,6 +114,7 @@
   "Add!": "Adicionar!",
   "Add": "Adicionar",
   "Back": "Voltar",
+  "Sign-in": "Realizar Login",
 
   "Do you want to proceed?": "Você deseja prosseguir?",
   "This action cannot be reversed!": "Esta ação não pode ser revertida!",
