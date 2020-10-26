@@ -51,6 +51,8 @@ class InstitutionMembersController extends Controller
   public function store(InstitutionMembersRequest $request) {
     $data = $request->all();
     $data['senha'] = bcrypt($data['senha']);
+    $data['cpf'] = preg_replace( '/[^0-9]/', '', $data['cpf']);
+
     MembroInstituicao::create($data);
 
     return redirect()->route('registration.institution_members.index');
@@ -97,6 +99,7 @@ class InstitutionMembersController extends Controller
 	 */
   public function update(InstitutionMembersRequest $request, $id) {
     $data = $request->all();
+    $data['cpf'] = preg_replace( '/[^0-9]/', '', $data['cpf']);
 
 		// Dont update password if left blank on editing
 		if (empty($data['senha'])) {

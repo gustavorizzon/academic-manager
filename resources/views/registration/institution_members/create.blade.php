@@ -38,9 +38,10 @@
         </div>
         <div class="col-sm">
           <div class="form-group">
-            {!! Form::label('cpf', 'CPF (' . __('Only numbers') . ')') !!}
+            {!! Form::label('cpf', 'CPF') !!}
             {!! Form::text('cpf', null, [
-              'class' => 'form-control' . ($errors->has('cpf') ? ' is-invalid' : '')
+              'class' => 'form-control' . ($errors->has('cpf') ? ' is-invalid' : ''),
+              'data-inputmask-mask' => '999.999.999-99'
             ]) !!}
             {!! $errors->first('cpf', '<span class="error invalid-feedback">* :message</span>') !!}
           </div>
@@ -264,3 +265,5 @@
   {!! Form::close() !!}
 </div>
 @endsection
+
+@include('scripts.inputmask')

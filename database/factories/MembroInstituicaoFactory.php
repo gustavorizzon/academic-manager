@@ -30,7 +30,7 @@ class MembroInstituicaoFactory extends Factory
       'data_nascimento' => $this->faker->dateTimeBetween('-40 years', '-18 years'),
       'orientacao_sexual' => $this->faker->randomElement(['M', 'F', 'O']),
       'estado_civil' => $this->faker->randomElement(['S', 'C', 'D']),
-      'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
+      'cpf' => $this->faker->unique()->numerify('###########'),
       'rg' => $this->faker->unique()->numerify('##########'),
       'nome_mae' => $this->faker->unique()->firstNameFemale . ' ' . $lastName,
       'nome_pai' => $this->faker->unique()->firstNameMale . ' ' . $lastName,

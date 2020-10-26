@@ -26,7 +26,7 @@ class InstitutionMembersRequest extends FormRequest
       'data_nascimento' => 'required|date|before:now',
       'orientacao_sexual' => 'required|in:M,F,O',
       'estado_civil' => 'required|in:S,C,D',
-      'cpf' => 'required|digits:11|unique:membros_instituicao,cpf',
+      'cpf' => 'required|formato_cpf|cpf|unique:membros_instituicao,cpf',
       'rg' => 'required|digits:10|unique:membros_instituicao,rg',
       'nome_mae' => 'required|min:10',
       'nome_pai' => 'required|min:10',
