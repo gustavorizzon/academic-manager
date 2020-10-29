@@ -6,5 +6,19 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+  use CreatesApplication;
+
+  protected function setUp(): void
+  {
+    parent::setUp();
+  }
+
+  protected function tearDown(): void
+  {
+    $config = app('config');
+
+    parent::tearDown();
+
+    app()->instance('config', $config);
+  }
 }
