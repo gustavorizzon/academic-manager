@@ -272,6 +272,14 @@ return [
         'icon' => 'fas fa-fw fa-user-tag',
         'route' => 'coordinator.enrollments.index',
         'can' => 'manage-enrollments'
+      ],
+
+      // Professors
+      [
+        'text' => 'Boards',
+        'icon' => 'fas fa-fw fa-clipboard-list',
+        'route' => 'professor.boards.index',
+        'can' => 'list-professor-boards'
       ]
     ],
 

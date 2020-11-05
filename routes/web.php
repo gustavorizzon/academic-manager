@@ -43,8 +43,15 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
 });
 
 // Professor Routes
-Route::prefix('professor')->as('professor.')->group(function () {
+Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('professor')->as('professor.')->group(function () {
+  // Home (Dashboard)
   Route::get('/', [App\Http\Controllers\Professor\HomeController::class, 'home'])->name('home');
+
+  // Boards Routes
+  Route::prefix('boards')->as('boards.')->where(['id' => '[0-9]+'])->group(function() {
+    Route::any('/', [App\Http\Controllers\Professor\BoardsController::class, 'index'])->name('index');
+    Route::any('/{id}', [App\Http\Controllers\Professor\BoardsController::class, 'show'])->name('show');
+  });
 });
 
 // Student Routes

@@ -59,6 +59,8 @@
   "Editing enrollment": "Editando matrícula",
 
   "Board": "Banca",
+  "Active Boards": "Bancas Ativas",
+  "Active Boards List": "Lista de Bancas Ativas",
 
   "Id": "Código",
   "Name": "Nome",
@@ -114,6 +116,13 @@
   "Concluded": "Concluído(a)",
   "Institution Member Name": "Nome do Membro da Instituição",
   "Course Name": "Nome do Curso",
+  "Board Description": "Descrição da Banca",
+  "Members": "Membros",
+  "Tests": "Testes",
+  "Works": "Trabalhos",
+  "Total Tasks": "Total de Tarefas",
+  "Next Class": "Próxima Aula",
+  "Not defined": "Não definido(a)",
 
   "Actions": "Ações",
   "Delete": "Excluir",
