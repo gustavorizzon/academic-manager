@@ -41,6 +41,10 @@ class Banca extends Model
     ->get();
   }
 
+  public function documents() {
+    return $this->hasMany('App\Models\Documento', 'banca_id');
+  }
+
   public function getNextClass() {
     if (empty($this->nextClass)) {
       $this->nextClass = $this->frequencies()
@@ -54,5 +58,26 @@ class Banca extends Model
 
   public function hasNextClass() {
     return !is_null($this->getNextClass());
+  }
+
+  public function getProfessors() {
+    if (empty($this->professors)) {
+      $this->professors = $this->members()
+          ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
+        ->where('mi.tipo_membro', MembroInstituicao::PROFESSOR)
+      ->get('mi.*');
+    }
+
+    return $this->professors;
+  }
+
+  public function hasProfessor(MembroInstituicao $professor) {
+    foreach ($this->getProfessors() as $p) {
+      if ($p->id === $professor->id) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

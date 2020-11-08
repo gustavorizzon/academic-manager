@@ -2,6 +2,7 @@
   "Academic Manager": "Gerenciador Acadêmico",
 
   "Student Dashboard": "Painel do Aluno",
+  "Professor Dashboard": "Painel do Professor",
 
   "Registration": "Cadastro",
   "Maintenance": "Manutenção",
@@ -59,8 +60,11 @@
   "Editing enrollment": "Editando matrícula",
 
   "Board": "Banca",
+  "Board Visualization": "Visualização da Banca",
   "Active Boards": "Bancas Ativas",
   "Active Boards List": "Lista de Bancas Ativas",
+
+  "Frequency": "Frequência",
 
   "Id": "Código",
   "Name": "Nome",
@@ -114,6 +118,7 @@
   "Enrolled": "Matriculado(a)",
   "Locked": "Trancado(a)",
   "Concluded": "Concluído(a)",
+  "In progress": "Em progresso",
   "Institution Member Name": "Nome do Membro da Instituição",
   "Course Name": "Nome do Curso",
   "Board Description": "Descrição da Banca",
@@ -123,6 +128,9 @@
   "Total Tasks": "Total de Tarefas",
   "Next Class": "Próxima Aula",
   "Not defined": "Não definido(a)",
+  "Classroom": "Sala de aula",
+  "Room": "Sala",
+  "School year": "Período letivo",
 
   "Actions": "Ações",
   "Delete": "Excluir",

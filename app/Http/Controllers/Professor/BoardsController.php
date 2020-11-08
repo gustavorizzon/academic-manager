@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banca;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BoardsController extends Controller
 {
@@ -21,5 +22,20 @@ class BoardsController extends Controller
     ->get('bancas.*');
 
     return view('professor.boards.index', ['boards' => $boards]);
+  }
+
+  /**
+   * Returns the professor visualization of the board
+   *
+   * @param mixed $id
+   */
+  public function show($id) {
+    $board = Banca::find($id);
+
+    if (Gate::denies('view-board-as-professor', $board)) {
+      return redirect()->back();
+    }
+
+    return view('professor.boards.show', ['board' => $board]);
   }
 }

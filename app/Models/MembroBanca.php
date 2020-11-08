@@ -20,4 +20,8 @@ class MembroBanca extends Model
   * @var string
   */
   protected $table = 'membros_banca';
+
+  public function institutionMember() {
+    return $this->belongsTo('App\Models\MembroInstituicao', 'membro_instituicao_id');
+  }
 }

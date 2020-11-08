@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Banca;
+use App\Models\MembroBanca;
 use App\Models\MembroInstituicao;
 use App\Policies\MembroInstituicaoPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -61,8 +63,13 @@ class AuthServiceProvider extends ServiceProvider
       return $user->tipo_membro == MembroInstituicao::COORDINATOR;
     });
 
+    // Professors gates
     Gate::define('list-professor-boards', function ($user) {
       return $user->tipo_membro == MembroInstituicao::PROFESSOR;
+    });
+
+    Gate::define('view-board-as-professor', function ($user, $board) {
+      return $board->hasProfessor($user);
     });
   }
 }
