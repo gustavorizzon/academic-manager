@@ -131,6 +131,13 @@
   "Classroom": "Sala de aula",
   "Room": "Sala",
   "School year": "Período letivo",
+  "N/D": "N/A",
+  "School Year": "Ano Letivo",
+  "Exam": "Exame",
+  "Disapproved": "Reprovado",
+  "Approved": "Aprovado",
+  "Class Summary": "Resumo da Aula",
+  "Present": "Presente",
 
   "Actions": "Ações",
   "Delete": "Excluir",
@@ -152,10 +159,12 @@
   "Deleted!": "Deletado!",
   "Deletion performed successfully.": "Exclusão realizada com sucesso.",
   "Error!": "Erro!",
+  "Success!": "Sucesso!",
   "There was a problem deleting the requested item. Please contact support!": "Ocorreu um problema ao excluir o item solicitado. Entre em contato com o suporte!",
 
   "Boards": "Bancas",
   "Remaining Boards": "Bancas Restantes",
+  "Go to the board": "Ir para a banca",
   "Your boards": "Suas bancas",
   "Next Tests/Works": "Próximos Testes/Trabalhos",
   "Next Classes": "Próximas Aulas",
@@ -174,5 +183,6 @@
   "Type": "Tipo",
   "Weight": "Peso",
   "Graduation title": "Título da graduação",
-  "Faculty": "Corpo docente"
+  "Faculty": "Corpo docente",
+  "Today": "Hoje"
 }

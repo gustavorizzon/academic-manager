@@ -151,7 +151,36 @@
                 </div>
               </div>
               <div class="tab-pane fade pt-3" id="frequency-data" role="tabpanel" aria-labelledby="frequency-tab">
-
+                <div class="table-responsive" style="max-height: 58vh;">
+                  <table class="table table-hover table-head-fixed text-nowrap m-0">
+                    <thead>
+                      <tr>
+                        <th class="text-center">{{ __('Date') }}</th>
+                        <th>{{ __('Class Summary') }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @if($board->frequencies->isEmpty())
+                        <tr>
+                          <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
+                        </tr>
+                      @else
+                        @foreach ($board->frequencies as $frequency)
+                          <tr data-frequency-id="{{ $frequency->id }}">
+                            <td class="text-center">
+                              @if ($frequency->data === \Carbon\Carbon::now()->toDateString())
+                                <span class="badge bg-success">{{ __('Today') }}</span>
+                              @else
+                                <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}</span>
+                              @endif
+                            </td>
+                            <td>{{ Str::limit($frequency->resumo_aula, 70) }}</td>
+                          </tr>
+                        @endforeach
+                      @endif
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="tab-pane fade pt-3" id="tasks-data" role="tabpanel" aria-labelledby="tasks-tab">
 
@@ -166,6 +195,12 @@
     </div>
   </div>
 </div>
+
+@parent
 @endsection
 
 @include('scripts.clickable-row')
+@include('scripts.axios')
+@include('scripts.sweetalert2')
+
+@include('partials.frequency')

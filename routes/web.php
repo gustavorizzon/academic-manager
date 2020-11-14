@@ -49,9 +49,19 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
 
   // Boards Routes
   Route::prefix('boards')->as('boards.')->where(['id' => '[0-9]+'])->group(function() {
-    Route::any('/', [App\Http\Controllers\Professor\BoardsController::class, 'index'])->name('index');
-    Route::any('/{id}', [App\Http\Controllers\Professor\BoardsController::class, 'show'])->name('show');
+    Route::get('/', [App\Http\Controllers\Professor\BoardsController::class, 'index'])->name('index');
+    Route::get('/{id}', [App\Http\Controllers\Professor\BoardsController::class, 'show'])->name('show');
+
+    // Frequency Routes
+    Route::prefix('{id}/frequencies')->as('frequencies.')->where([
+      'date' => '[0-9]{4}-[0-9]{2}-[0-9]{2}',
+      'frequencyId' => '[0-9]+'
+    ])->group(function() {
+      Route::get('/{frequencyId}', [\App\Http\Controllers\Professor\FrequenciesController::class, 'show'])->name('show');
+      Route::put('/{frequencyId}', [\App\Http\Controllers\Professor\FrequenciesController::class, 'update'])->name('update');
+    });
   });
+
 });
 
 // Student Routes

@@ -32,7 +32,7 @@ class BoardsController extends Controller
   public function show($id) {
     $board = Banca::find($id);
 
-    if (Gate::denies('view-board-as-professor', $board)) {
+    if (Gate::denies('manage-board-as-professor', $board)) {
       return redirect()->back();
     }
 

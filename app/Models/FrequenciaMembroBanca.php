@@ -15,4 +15,13 @@ class FrequenciaMembroBanca extends Model
      * @var string
      */
     protected $table = 'frequencias_membro_banca';
+
+    /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'presente'
+  ];
 }

@@ -27,7 +27,8 @@ class FrequenciaFactory extends Factory
       'data' => $this->faker->date(),
       'banca_id' => $this->faker->randomElement(
         Banca::all()->pluck('id')->toArray()
-      )
+      ),
+      'resumo_aula' => $this->faker->text()
     ];
   }
 }

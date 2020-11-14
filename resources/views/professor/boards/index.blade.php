@@ -48,9 +48,11 @@
                   <td class="text-center">{{ $board->tasks->count() }}</td>
                   <td class="text-center">
                     @if ($board->hasNextClass())
-                      <span class="badge bg-{{ ($board->getNextClass()->data === \Carbon\Carbon::now()->toDateString()) ? 'success' : 'primary' }}">
-                        {{ DateTime::createFromFormat('Y-m-d', $board->getNextClass()->data)->format('d/m/Y') }}
-                      </span>
+                      @if ($board->getNextClass()->data === \Carbon\Carbon::now()->toDateString())
+                        <span class="badge bg-success">{{ __('Today') }}</span>
+                      @else
+                        <span class="badge bg-primary">{{ DateTime::createFromFormat('Y-m-d', $board->getNextClass()->data)->format('d/m/Y') }}</span>
+                      @endif
                     @else
                       <span class="badge bg-secondary">{{ __('Not defined') }}</span>
                     @endif

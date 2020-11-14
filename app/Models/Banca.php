@@ -45,12 +45,20 @@ class Banca extends Model
     return $this->hasMany('App\Models\Documento', 'banca_id');
   }
 
-  public function getNextClass() {
-    if (empty($this->nextClass)) {
-      $this->nextClass = $this->frequencies()
+  public function getNextClasses() {
+    if (empty($this->nextClasses)) {
+      $this->nextClasses =  $this->frequencies()
         ->whereDate('data', '>=', Carbon::now()->toDateString())
         ->orderBy('data')
-      ->first();
+      ->get();
+    }
+
+    return $this->nextClasses;
+  }
+
+  public function getNextClass() {
+    if (empty($this->nextClass)) {
+      $this->nextClass = $this->getNextClasses()->first();
     }
 
     return $this->nextClass;
@@ -58,6 +66,14 @@ class Banca extends Model
 
   public function hasNextClass() {
     return !is_null($this->getNextClass());
+  }
+
+  public function getClassByDate(string $date) {
+    return $this->frequencies()->where('data', $date)->first();
+  }
+
+  public function getClassById(int $id) {
+    return $this->frequencies()->where('id', $id)->first();
   }
 
   public function getProfessors() {

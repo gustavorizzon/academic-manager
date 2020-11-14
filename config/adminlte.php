@@ -232,6 +232,12 @@ return [
 
     'menu' => [
       [
+        'text' => 'Dashboard',
+        'icon' => 'fas fa-fw fa-columns',
+        'url' => '/'
+      ],
+      [ 'header' => 'main_navigation' ],
+      [
         'text' => 'States',
         'icon' => 'fas fa-fw fa-flag-usa',
         'route' => 'registration.states.index',

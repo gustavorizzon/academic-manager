@@ -25,4 +25,5 @@ return [
     'Disciplines'                   => 'Disciplinas',
     'Enrollments'                   => 'Matrículas',
     'Boards'                        => 'Bancas',
+    'Dashboard'                     => 'Dashboard',
 ];
