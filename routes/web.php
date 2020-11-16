@@ -60,6 +60,22 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
       Route::get('/{frequencyId}', [\App\Http\Controllers\Professor\FrequenciesController::class, 'show'])->name('show');
       Route::put('/{frequencyId}', [\App\Http\Controllers\Professor\FrequenciesController::class, 'update'])->name('update');
     });
+
+    // Tasks Routes
+    Route::prefix('{id}/tasks')->as('tasks.')->where([
+      'date' => '[0-9]{4}-[0-9]{2}-[0-9]{2}',
+      'taskId' => '[0-9]+'
+    ])->group(function() {
+      Route::post('/', [\App\Http\Controllers\Professor\TasksController::class, 'create'])->name('create');
+      Route::get('/{taskId}', [\App\Http\Controllers\Professor\TasksController::class, 'show'])->name('show');
+      Route::put('/{taskId}', [\App\Http\Controllers\Professor\TasksController::class, 'update'])->name('update');
+      Route::delete('/{taskId}', [\App\Http\Controllers\Professor\TasksController::class, 'destroy'])->name('destroy');
+    });
+
+    // Members Routes
+    Route::prefix('{id}/members')->as('members.')->group(function() {
+      Route::get('/', [\App\Http\Controllers\Professor\BoardMembersController::class, 'index'])->name('index');
+    });
   });
 
 });

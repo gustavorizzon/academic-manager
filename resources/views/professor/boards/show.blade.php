@@ -162,7 +162,7 @@
                     <tbody>
                       @if($board->frequencies->isEmpty())
                         <tr>
-                          <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
+                          <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
                         </tr>
                       @else
                         @foreach ($board->frequencies as $frequency)
@@ -183,7 +183,65 @@
                 </div>
               </div>
               <div class="tab-pane fade pt-3" id="tasks-data" role="tabpanel" aria-labelledby="tasks-tab">
-
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card card-outline card-primary">
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="max-height: 58vh;">
+                          <table class="table table-hover table-head-fixed text-nowrap m-0">
+                            <thead >
+                              <tr>
+                                <th class="text-center" style="width:40px;">
+                                  <button data-task-id="#" type="button" class="btn btn-sm btn-outline-primary" title="{{ __('New') }}">
+                                    <i class="fas fa-plus fa-fw"></i>
+                                  </button>
+                                </th>
+                                <th>{{ __('Content') }}</th>
+                                <th class="text-center">{{ __('Date') }}</th>
+                                <th class="text-center">{{ __('Type') }}</th>
+                                <th class="text-right">{{ __('Weight') }}</th>
+                              </tr>
+                            </thead>
+                            <tbody id="board-tasks-list">
+                              @if($board->tasks->isEmpty())
+                                <tr>
+                                  <td colspan="5" class="text-center">@lang('messages.table.empty')</td>
+                                </tr>
+                              @else
+                                @foreach ($board->tasks as $task)
+                                  <tr data-task-id="{{ $task->id }}">
+                                    <td class="text-center"></td>
+                                    <td>{{ Str::limit($task->conteudo, 40) }}</td>
+                                    <td class="text-center">
+                                      @if ($task->data === \Carbon\Carbon::now()->toDateString())
+                                        <span class="badge bg-success">{{ __('Today') }}</span>
+                                      @else
+                                        <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $task->data)->format('d/m/Y') }}</span>
+                                      @endif
+                                    </td>
+                                    <td class="text-center">
+                                      @switch($task->tipo)
+                                        @case(\App\Models\Avaliacao::TYPE_TEST)
+                                          <span class="badge badge-primary">{{ __('Test') }}</span>
+                                          @break
+                                        @case(\App\Models\Avaliacao::TYPE_WORK)
+                                          <span class="badge badge-success">{{ __('Work') }}</span>
+                                          @break
+                                        @default
+                                          -
+                                      @endswitch
+                                    </td>
+                                    <td class="text-right">{{ $task->peso }}</td>
+                                  </tr>
+                                @endforeach
+                              @endif
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="tab-pane fade pt-3" id="documents-data" role="tabpanel" aria-labelledby="documents-tab">
 
@@ -204,3 +262,4 @@
 @include('scripts.sweetalert2')
 
 @include('partials.frequency')
+@include('partials.tasks')

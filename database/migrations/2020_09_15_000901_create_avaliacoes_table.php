@@ -16,6 +16,7 @@ class CreateAvaliacoesTable extends Migration
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->id();
 
+            $table->string('conteudo');
             $table->decimal('peso', 3, 1, true);
             $table->date('data');
             $table->char('tipo', 1);

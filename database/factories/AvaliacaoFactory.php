@@ -24,6 +24,7 @@ class AvaliacaoFactory extends Factory
   public function definition()
   {
     return [
+      'conteudo' => $this->faker->sentence(),
       'peso' => $this->faker->randomFloat(2, 3, 5),
       'data' => $this->faker->date(),
       'tipo' => $this->faker->randomElement(['T', 'P']),

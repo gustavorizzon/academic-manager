@@ -76,6 +76,14 @@ class Banca extends Model
     return $this->frequencies()->where('id', $id)->first();
   }
 
+  public function getTaskByDate(string $date) {
+    return $this->tasks()->where('data', $date)->first();
+  }
+
+  public function getTaskById(int $id) {
+    return $this->tasks()->where('id', $id)->first();
+  }
+
   public function getProfessors() {
     if (empty($this->professors)) {
       $this->professors = $this->members()
