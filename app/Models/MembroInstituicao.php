@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -58,5 +59,24 @@ class MembroInstituicao extends Authenticatable
 
   public function graduation() {
     return $this->hasOne('App\Models\Graduacao', 'membro_instituicao_id');
+  }
+
+  public function enrollments() {
+    return $this->hasMany('App\Models\Matricula', 'membro_instituicao_id');
+  }
+
+  public function getEnrolledCourse() {
+    return $this->enrollments()
+      ->where('status', Matricula::ENROLLED)
+    ->first();
+  }
+
+  public function getLastGrade() {
+    return AvaliacaoMembroBanca::join('avaliacoes as a', 'avaliacoes_membro_banca.avaliacao_id', '=', 'a.id')
+        ->join('membros_banca as mb', 'avaliacoes_membro_banca.membro_banca_id', '=', 'mb.id')
+      ->where('mb.membro_instituicao_id', $this->id)
+      ->whereDate('a.data', '<=', Carbon::now()->toDateString())
+      ->where('avaliacoes_membro_banca.nota', '<>', 0)
+    ->first();
   }
 }

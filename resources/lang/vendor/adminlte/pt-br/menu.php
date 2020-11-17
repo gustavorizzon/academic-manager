@@ -26,4 +26,5 @@ return [
     'Enrollments'                   => 'Matrículas',
     'Boards'                        => 'Bancas',
     'Dashboard'                     => 'Dashboard',
+    'Documents'                     => 'Documentos',
 ];

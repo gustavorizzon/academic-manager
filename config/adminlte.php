@@ -286,6 +286,12 @@ return [
         'icon' => 'fas fa-fw fa-clipboard-list',
         'route' => 'professor.boards.index',
         'can' => 'list-professor-boards'
+      ],
+      [
+        'text' => 'Documents',
+        'icon' => 'fas fa-fw fa-file-alt',
+        'route' => 'professor.documents.index',
+        'can' => 'list-professor-documents'
       ]
     ],
 

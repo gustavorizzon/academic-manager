@@ -78,6 +78,20 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
     });
   });
 
+  // Documents route
+  Route::prefix('documents')->as('documents.')->group(function() {
+    Route::get('/', [App\Http\Controllers\Professor\DocumentsController::class, 'index'])->name('index');
+    Route::get('/create', [App\Http\Controllers\Professor\DocumentsController::class, 'create'])->name('create');
+    Route::post('/store', [App\Http\Controllers\Professor\DocumentsController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Professor\DocumentsController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit', [App\Http\Controllers\Professor\DocumentsController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Professor\DocumentsController::class, 'update'])->name('update');
+  });
+
+  // Students route
+  Route::prefix('students')->as('students.')->group(function() {
+    Route::get('/', [App\Http\Controllers\Professor\StudentsController::class, 'index'])->name('index');
+  });
 });
 
 // Student Routes
