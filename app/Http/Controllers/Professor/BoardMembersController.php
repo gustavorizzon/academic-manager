@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banca;
+use App\Models\MembroInstituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -29,6 +30,7 @@ class BoardMembersController extends Controller
 
     $members = $board->members()
       ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
+      ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
     ->get(['membros_banca.*', 'mi.nome']);
 
     return response()->json([
