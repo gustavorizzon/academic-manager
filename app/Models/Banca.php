@@ -84,6 +84,10 @@ class Banca extends Model
     return $this->tasks()->where('id', $id)->first();
   }
 
+  public function getDocumentById(int $id) {
+    return $this->documents()->where('id', $id)->first();
+  }
+
   public function getProfessors() {
     if (empty($this->professors)) {
       $this->professors = $this->members()

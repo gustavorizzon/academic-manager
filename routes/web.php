@@ -72,6 +72,18 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
       Route::delete('/{taskId}', [\App\Http\Controllers\Professor\TasksController::class, 'destroy'])->name('destroy');
     });
 
+    // Board documents routes group
+    Route::prefix('{id}/documents')
+      ->as('documents.')
+      ->where([
+        'documentId' => '[0-9]+'
+      ])->group(function() {
+
+        // Board documents routes
+        Route::post('/', [\App\Http\Controllers\Professor\DocumentsController::class, 'create'])->name('create');
+        Route::get('/{documentId}', [\App\Http\Controllers\Professor\DocumentsController::class, 'show'])->name('show');
+    });
+
     // Members Routes
     Route::prefix('{id}/members')->as('members.')->group(function() {
       Route::get('/', [\App\Http\Controllers\Professor\BoardMembersController::class, 'index'])->name('index');
@@ -81,8 +93,6 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
   // Documents route
   Route::prefix('documents')->as('documents.')->group(function() {
     Route::get('/', [App\Http\Controllers\Professor\DocumentsController::class, 'index'])->name('index');
-    Route::get('/create', [App\Http\Controllers\Professor\DocumentsController::class, 'create'])->name('create');
-    Route::post('/store', [App\Http\Controllers\Professor\DocumentsController::class, 'store'])->name('store');
     Route::get('/{id}/destroy', [App\Http\Controllers\Professor\DocumentsController::class, 'destroy'])->name('destroy');
     Route::get('/{id}/edit', [App\Http\Controllers\Professor\DocumentsController::class, 'edit'])->name('edit');
     Route::put('/{id}/update',  [App\Http\Controllers\Professor\DocumentsController::class, 'update'])->name('update');
@@ -127,6 +137,11 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
 Route::middleware(['auth'])->group(function () {
   Route::prefix('faculty')->as('faculty.')->group(function () {
     Route::get('/', [App\Http\Controllers\Reports\FacultyReportController::class, 'view'])->name('view');
+  });
+
+  // Documents Download route
+  Route::prefix('documents')->as('documents.')->where(['docId' => '[0-9]+'])->group(function() {
+    Route::get('/{docId}/download', [App\Http\Controllers\AllMembers\DocumentsController::class, 'download'])->name('download');
   });
 });
 

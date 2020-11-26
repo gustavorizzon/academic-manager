@@ -19,8 +19,8 @@ class CreateDocumentosTable extends Migration
             $table->string('nome');
             $table->date('data');
             $table->string('nome_arquivo');
-            $table->string('extensao_arquivo');
-            $table->string('tipo_mime');
+            $table->string('nome_arquivo_salvo');
+            $table->string('tamanho_arquivo');
 
             $table->integer('banca_id')->unsigned();
             $table->foreign('banca_id')->references('id')->on('bancas');

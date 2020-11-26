@@ -151,35 +151,43 @@
                 </div>
               </div>
               <div class="tab-pane fade pt-3" id="frequency-data" role="tabpanel" aria-labelledby="frequency-tab">
-                <div class="table-responsive" style="max-height: 58vh;">
-                  <table class="table table-hover table-head-fixed text-nowrap m-0">
-                    <thead>
-                      <tr>
-                        <th class="text-center">{{ __('Date') }}</th>
-                        <th>{{ __('Class Summary') }}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @if($board->frequencies->isEmpty())
-                        <tr>
-                          <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
-                        </tr>
-                      @else
-                        @foreach ($board->frequencies as $frequency)
-                          <tr data-frequency-id="{{ $frequency->id }}">
-                            <td class="text-center">
-                              @if ($frequency->data === \Carbon\Carbon::now()->toDateString())
-                                <span class="badge bg-success">{{ __('Today') }}</span>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card card-outline card-danger">
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="max-height: 58vh;">
+                          <table class="table table-hover table-head-fixed text-nowrap m-0">
+                            <thead>
+                              <tr>
+                                <th class="text-center">{{ __('Date') }}</th>
+                                <th>{{ __('Class Summary') }}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @if($board->frequencies->isEmpty())
+                                <tr>
+                                  <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
+                                </tr>
                               @else
-                                <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}</span>
+                                @foreach ($board->frequencies as $frequency)
+                                  <tr data-frequency-id="{{ $frequency->id }}">
+                                    <td class="text-center">
+                                      @if ($frequency->data === \Carbon\Carbon::now()->toDateString())
+                                        <span class="badge bg-success">{{ __('Today') }}</span>
+                                      @else
+                                        <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}</span>
+                                      @endif
+                                    </td>
+                                    <td>{{ Str::limit($frequency->resumo_aula, 70) }}</td>
+                                  </tr>
+                                @endforeach
                               @endif
-                            </td>
-                            <td>{{ Str::limit($frequency->resumo_aula, 70) }}</td>
-                          </tr>
-                        @endforeach
-                      @endif
-                    </tbody>
-                  </table>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="tab-pane fade pt-3" id="tasks-data" role="tabpanel" aria-labelledby="tasks-tab">
@@ -189,7 +197,7 @@
                       <div class="card-body p-0">
                         <div class="table-responsive" style="max-height: 58vh;">
                           <table class="table table-hover table-head-fixed text-nowrap m-0">
-                            <thead >
+                            <thead>
                               <tr>
                                 <th class="text-center" style="width:40px;">
                                   <button data-task-id="#" type="button" class="btn btn-sm btn-outline-primary" title="{{ __('New') }}">
@@ -244,7 +252,50 @@
                 </div>
               </div>
               <div class="tab-pane fade pt-3" id="documents-data" role="tabpanel" aria-labelledby="documents-tab">
-
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card card-outline card-success">
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="max-height: 58vh;">
+                          <table class="table table-hover table-head-fixed text-nowrap m-0">
+                            <thead>
+                              <tr>
+                                <th class="text-center" style="width:40px;">
+                                  <button data-document-id="#" type="button" class="btn btn-sm btn-outline-primary" title="{{ __('New') }}">
+                                    <i class="fas fa-plus fa-fw"></i>
+                                  </button>
+                                </th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Date') }}</th>
+                                <th>{{ __('Filename') }}</th>
+                                <th class="text-right">{{ __('Size') }}</th>
+                              </tr>
+                            </thead>
+                            <tbody id="board-documents-list">
+                              @if($board->documents->isEmpty())
+                                <tr>
+                                  <td colspan="5" class="text-center">@lang('messages.table.empty')</td>
+                                </tr>
+                              @else
+                                @foreach ($board->documents as $document)
+                                  <tr data-document-id="{{ $document->id }}">
+                                    <td class="text-center">
+                                      <i class="far fa-hand-pointer text-primary"></i>
+                                    </td>
+                                    <td>{{ $document->nome }}</td>
+                                    <td>{{ DateTime::createFromFormat('Y-m-d', $document->data)->format('d/m/Y') }}</td>
+                                    <td>{{ $document->nome_arquivo }}</td>
+                                    <td class="text-right">{{ $document->tamanho_arquivo }} B</td>
+                                  </tr>
+                                @endforeach
+                              @endif
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -260,6 +311,9 @@
 @include('scripts.clickable-row')
 @include('scripts.axios')
 @include('scripts.sweetalert2')
+@include('scripts.moment')
+@include('scripts.bs-custom-file-input')
 
 @include('partials.frequency')
 @include('partials.tasks')
+@include('partials.documents')

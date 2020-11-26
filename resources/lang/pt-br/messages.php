@@ -18,6 +18,9 @@ return [
     'tasks' => [
       'not-a-professor' => 'Você deve ser um professor da banca para poder gerenciar as tarefas dos alunos.',
     ],
+    'documents' => [
+      'not-a-professor' => 'Você deve ser um professor da banca para poder gerenciar os documentos da mesma.',
+    ],
   ],
   'data' => [
     'frequencies' => [
@@ -31,6 +34,13 @@ return [
       'not-found-on-date' => 'Não foi possível encontrar registros de tarefas nesta data.',
       'not-found' => 'Não foi possível encontrar o registro de tarefas.',
       'updated-successfully' => 'Os registros de tarefas foram atualizados com sucesso.',
+    ],
+    'documents' => [
+      'not-available' => 'Não há nenhum dado de documentos disponível para esta banca.',
+      'not-found-on-date' => 'Não foi possível encontrar registros de documentos nesta data.',
+      'not-found' => 'Não foi possível encontrar o registro de documentos.',
+      'updated-successfully' => 'Os registros de documentos foram atualizados com sucesso.',
+      'saved-successfully' => 'O documento foi salvo com sucesso.',
     ],
   ],
   'errors' => [

@@ -79,4 +79,8 @@ class MembroInstituicao extends Authenticatable
       ->where('avaliacoes_membro_banca.nota', '<>', 0)
     ->first();
   }
+
+  public function getUserBoards() {
+    return $this->hasMany('App\Models\MembroBanca', 'membro_instituicao_id');
+  }
 }

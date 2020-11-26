@@ -6,7 +6,7 @@ return [
   ],
   'request' => [
     'parameters-violation' => 'We have detected a parameters violation attempt for this request. Please, reload the page and try again.'
-  ],,
+  ],
   'validation' => [
     'enrollment-unique' => 'An institution member can only be enrolled in one course at a time.',
     'task-grade-invalid' => 'A task grade must be a value between 0 and 10',
@@ -18,6 +18,9 @@ return [
     'tasks' => [
       'not-a-professor' => 'You must be a board professor to be able to manage student tasks.'
     ],
+    'documents' => [
+      'not-a-professor' => 'You must be a board professor to be able to manage its documents.'
+    ],
   ],
   'data' => [
     'frequencies' => [
@@ -26,13 +29,18 @@ return [
       'not-found' => 'We were unable to find the frequency record.',
       'updated-successfully' => 'Frequency records were updated successfully.',
     ],
-  ],
-  'data' => [
     'tasks' => [
       'not-available' => 'There are no tasks data available for this board.',
       'not-found-on-date' => 'We were unable to find task records on this date.',
       'not-found' => 'We were unable to find the task record.',
       'updated-successfully' => 'Task records were updated successfully.',
+    ],
+    'documents' => [
+      'not-available' => 'There are no documents data available for this board.',
+      'not-found-on-date' => 'We were unable to find document records on this date.',
+      'not-found' => 'We were unable to find the document record.',
+      'updated-successfully' => 'Document records were updated successfully.',
+      'saved-successfully' => 'The document was saved successfully.',
     ],
   ],
   'errors' => [

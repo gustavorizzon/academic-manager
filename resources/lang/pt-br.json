@@ -41,6 +41,12 @@
   "Courses Registration": "Cadastro de Cursos",
   "Editing Course": "Editando Curso",
 
+  "Document": "Documento",
+  "Documents": "Documentos",
+  "Documents List": "Listagem de Documentos",
+  "Documents Registration": "Cadastro de Documentos",
+  "Editing document": "Editando documento",
+
   "Discipline": "Disciplina",
   "Disciplines": "Disciplinas",
   "Disciplines List": "Listagem de Disciplinas",
@@ -176,7 +182,6 @@
   "List all tasks": "Listar todas as tarefas",
   "List all schedule": "Listar toda a programação",
   "List the entire faculty": "Listar todo o corpo docente",
-  "Documents": "Documentos",
   "Tasks": "Tarefas",
   "Tests & Jobs": "Provas & Trabalhos",
   "Fouls": "Faltas",
@@ -194,5 +199,9 @@
   "Next Task": "Próxima Tarefa",
   "Last grade": "Última nota",
   "Recent documents": "Documentos recentes",
-  "Filename": "Nome do arquivo"
+  "Filename": "Nome do arquivo",
+  "Size": "Tamanho",
+  "Download": "Baixar",
+  "File": "Arquivo",
+  "Choose file": "Escolher arquivo"
 }
