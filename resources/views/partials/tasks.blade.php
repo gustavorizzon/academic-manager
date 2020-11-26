@@ -1,5 +1,3 @@
-@include('scripts.moment')
-
 @section('css')
   <style>
     [data-task-id] { cursor: pointer; }
@@ -155,7 +153,7 @@
       });
 
       $('button#save-task').on('click', function () {
-        let gradeInputs = $('[data-task-grade]');
+        let gradeInputs = $('[data-member-grade]');
         let taskDate = $('input#task-date').val();
         let taskWeight = $('input#task-weight').val();
         let taskType = $('select#task-type').val();
@@ -233,6 +231,7 @@
           $('input#task-date').val('');
           $('input#task-weight').val('');
           $('input#task-content').val('');
+          $('button#delete-task').hide();
 
           axios.get('/professor/boards/{{ $boardId ?? $board->id ?? '' }}/members')
             .then(function (response) {
@@ -249,7 +248,7 @@
                       + '<label for="bm' + member.id + '">' + member.nome + '</label>'
                     + '</td>'
                     + '<td class="text-center">'
-                      + '<input class="form-control" type="number" data-task-grade="true" data-member-id="' + member.id + '" id="bm' + member.id + '" value="0">'
+                      + '<input class="form-control" type="number" data-member-grade="true" data-member-id="' + member.id + '" id="bm' + member.id + '" value="0">'
                     + '</td>'
                   + '</tr>'
                 );
@@ -269,6 +268,7 @@
               $('input#task-weight').val(response.data.weight);
               $('select#task-type').val(response.data.type);
               $('input#task-content').val(response.data.content);
+              $('button#delete-task').show();
 
               for (let i = 0; i < response.data.members.length; i++) {
                 let boardMemberTask = response.data.members[i];
