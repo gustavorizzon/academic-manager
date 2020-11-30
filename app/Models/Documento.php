@@ -17,7 +17,7 @@ class Documento extends Model
   protected $fillable = [
     'nome', 'data', 'nome_arquivo',
     'nome_arquivo_salvo', 'tamanho_arquivo',
-    'banca_id', 'membro_banca_id'
+    'banca_id', 'membro_instituicao_id'
   ];
 
   public function board() {

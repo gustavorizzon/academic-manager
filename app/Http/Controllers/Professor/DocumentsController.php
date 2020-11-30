@@ -174,7 +174,7 @@ class DocumentsController extends Controller
       'nome_arquivo_salvo' => $file->hashName(),
       'tamanho_arquivo' => $file->getSize(),
       'banca_id' => $board->id,
-      'membro_banca_id' => Auth::id()
+      'membro_instituicao_id' => Auth::id()
     ];
 
     try {

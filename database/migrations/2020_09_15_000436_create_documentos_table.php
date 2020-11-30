@@ -25,8 +25,8 @@ class CreateDocumentosTable extends Migration
             $table->integer('banca_id')->unsigned();
             $table->foreign('banca_id')->references('id')->on('bancas');
 
-            $table->integer('membro_banca_id')->unsigned();
-            $table->foreign('membro_banca_id')->references('id')->on('membros_banca');
+            $table->integer('membro_instituicao_id')->unsigned();
+            $table->foreign('membro_instituicao_id')->references('id')->on('membros_instituicao');
 
             $table->timestamps();
         });

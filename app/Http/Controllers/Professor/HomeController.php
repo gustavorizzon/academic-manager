@@ -63,9 +63,7 @@ class HomeController extends Controller
    * @return int
    */
   private function getDocumentsCount() {
-    return Documento::join('membros_banca as mb', 'documentos.membro_banca_id', '=', 'mb.id')
-      ->where('mb.membro_instituicao_id', '=', Auth::id())
-    ->count();
+    return Documento::where('membro_instituicao_id', '=', Auth::id())->count();
   }
 
   /**
@@ -147,8 +145,7 @@ class HomeController extends Controller
    * @return mixed
    */
   public function getRecentDocuments() {
-    return Documento::join('membros_banca as mb', 'documentos.membro_banca_id', '=', 'mb.id')
-      ->where('mb.membro_instituicao_id', Auth::id())
+    return Documento::where('membro_instituicao_id', Auth::id())
       ->orderByDesc('documentos.updated_at')
       ->limit(5)
     ->get('documentos.*');

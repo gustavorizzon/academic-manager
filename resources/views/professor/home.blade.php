@@ -259,20 +259,30 @@
           <table class="table table-hover table-head-fixed text-nowrap m-0">
             <thead>
               <tr>
+                <th></th>
                 <th>{{ __('Name') }}</th>
+                <th>{{ __('Date') }}</th>
                 <th>{{ __('Filename') }}</th>
+                <th class="text-right">{{ __('Size') }}</th>
               </tr>
             </thead>
             <tbody>
               @if($recentDocuments->isEmpty())
                 <tr>
-                  <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
+                  <td colspan="5" class="text-center">@lang('messages.table.empty')</td>
                 </tr>
               @else
                 @foreach ($recentDocuments as $document)
                   <tr>
+                    <td class="text-center">
+                      <a href="{{ route('documents.download', $document->id) }}" class="text-primary" target="_blank" title="{{ __('Download') }}">
+                        <i class="fas fa-download"></i>
+                      </a>
+                    </td>
                     <td>{{ $document->nome }}</td>
+                    <td>{{ DateTime::createFromFormat('Y-m-d', $document->data)->format('d/m/Y') }}</td>
                     <td>{{ $document->nome_arquivo }}</td>
+                    <td class="text-right">{{ $document->tamanho_arquivo . ' B'}}</td>
                   </tr>
                 @endforeach
               @endif
