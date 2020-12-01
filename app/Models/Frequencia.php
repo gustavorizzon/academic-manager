@@ -15,7 +15,7 @@ class Frequencia extends Model
    * @var array
    */
   protected $fillable = [
-    'resumo_aula', 'data'
+    'resumo_aula', 'banca_id', 'data'
   ];
 
   public function board() {
