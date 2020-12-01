@@ -24,7 +24,7 @@ class CoursesTest extends TestCase
   }
 
   /**
-   * A basic feature test example.
+   * Creaate a course with valida data
    *
    * @return void
    */
@@ -44,5 +44,25 @@ class CoursesTest extends TestCase
 
     $curso = Curso::create($data);
     $this->assertDatabaseHas('cursos', ['id' => $curso->id]);
+  }
+
+  /**
+   * Trying to create a course with invalid data
+   *
+   * @return void
+   */
+  public function testCreateACourseWithInvalidData()
+  {
+    $data = [
+      'nome' => 'Pt',
+      'descricao' => '',
+      'quantidade_semestres' => 6,
+      'valor' => 47326,
+      'turno' => 'H',
+      'horas_turno' => 4
+    ];
+
+    $validator = Validator::make($data, (new CoursesRequest)->rules());
+    $this->assertTrue($validator->fails());
   }
 }
