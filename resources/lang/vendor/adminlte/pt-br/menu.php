@@ -27,4 +27,6 @@ return [
     'Boards'                        => 'Bancas',
     'Dashboard'                     => 'Dashboard',
     'Documents'                     => 'Documentos',
+    'Boards_Generation'             => 'Geração de Bancas',
+    'Boards_Listing'                => 'Listagem de Bancas',
 ];

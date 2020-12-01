@@ -257,13 +257,13 @@ return [
       ],
       [
         'text' => 'Graduations',
-        'icon' => 'fas fa-fw fa-graduation-cap',
+        'icon' => 'fas fa-fw fa-user-graduate',
         'route' => 'registration.graduations.index',
         'can' => 'manage-graduations'
       ],
       [
         'text' => 'Courses',
-        'icon' => 'fab fa-fw fa-discourse',
+        'icon' => 'fas fa-fw fa-graduation-cap',
         'route' => 'registration.courses.index',
         'can' => 'manage-courses'
       ],
@@ -278,6 +278,24 @@ return [
         'icon' => 'fas fa-fw fa-user-tag',
         'route' => 'coordinator.enrollments.index',
         'can' => 'manage-enrollments'
+      ],
+
+      // Coordinators
+      [
+        'header' => 'Boards',
+        'can' => ['generate-boards', 'list-all-boards']
+      ],
+      [
+        'text' => 'Boards_Generation',
+        'icon' => 'fas fa-fw fa-clipboard-check',
+        'route' => 'coordinator.boards.generation.index',
+        'can' => 'generate-boards',
+      ],
+      [
+        'text' => 'Boards_Listing',
+        'icon' => 'fas fa-fw fa-clipboard-list',
+        'route' => 'coordinator.boards.index',
+        'can' => 'list-all-boards',
       ],
 
       // Professors

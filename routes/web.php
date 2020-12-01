@@ -40,6 +40,17 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
     Route::get('/{id}/edit',    [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'edit'])->name('edit');
     Route::put('/{id}/update',  [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'update'])->name('update');
   });
+
+  // Boards
+  Route::prefix('boards')->as('boards.')->where(['boardId' => '[0-9]+'])->group(function () {
+    Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'index'])->name('index');
+    Route::get('/{boardId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'show'])->name('show');
+
+    // Boards Generation Routes
+    Route::prefix('generation')->as('generation.')->group(function () {
+      Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'generationIndex'])->name('index');
+    });
+  });
 });
 
 // Professor Routes

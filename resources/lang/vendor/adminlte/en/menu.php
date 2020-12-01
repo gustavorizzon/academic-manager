@@ -26,4 +26,6 @@ return [
     'Boards'                        => 'Boards',
     'Dashboard'                     => 'Dashboard',
     'Documents'                     => 'Documents',
+    'Boards_Generation'             => 'Boards_Generation',
+    'Boards_Listing'                => 'Boards_Listing',
 ];

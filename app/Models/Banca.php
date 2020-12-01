@@ -88,6 +88,17 @@ class Banca extends Model
     return $this->documents()->where('id', $id)->first();
   }
 
+  public function getStudents() {
+    if (empty($this->students)) {
+      $this->students = $this->members()
+          ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
+        ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
+      ->get('mi.*');
+    }
+
+    return $this->students;
+  }
+
   public function getProfessors() {
     if (empty($this->professors)) {
       $this->professors = $this->members()

@@ -1,15 +1,19 @@
 {
   "Academic Manager": "Gerenciador Acadêmico",
 
+  "Admin Dashboard": "Painel do Admin",
   "Student Dashboard": "Painel do Aluno",
   "Professor Dashboard": "Painel do Professor",
+  "Coordinator Dashboard": "Painel do Coordenador",
 
   "Registration": "Cadastro",
   "Maintenance": "Manutenção",
   "Administrator": "Administrador",
   "Coordinator": "Coordenador",
   "Professor": "Professor",
+  "Professors": "Professores",
   "Student": "Estudante",
+  "Students": "Estudantes",
 
   "State": "Estado",
   "States": "Estados",
@@ -69,6 +73,8 @@
   "Board Visualization": "Visualização da Banca",
   "Active Boards": "Bancas Ativas",
   "Active Boards List": "Lista de Bancas Ativas",
+  "Not finished boards": "Bancas não finalizadas",
+  "Not finished boards list": "Lista de não finalizadas",
 
   "Frequency": "Frequência",
 
@@ -132,6 +138,7 @@
   "Tests": "Testes",
   "Works": "Trabalhos",
   "Total Tasks": "Total de Tarefas",
+  "Total Classes": "Total de Aulas",
   "Next Class": "Próxima Aula",
   "Not defined": "Não definido(a)",
   "Classroom": "Sala de aula",
@@ -152,6 +159,7 @@
   "Delete": "Excluir",
   "Edit": "Editar",
   "New": "Novo",
+  "Generate new boards": "Gerar novas bancas",
   "Enroll": "Matricular",
   "Cancel": "Cancelar",
   "Create!": "Criar!",
@@ -203,5 +211,6 @@
   "Size": "Tamanho",
   "Download": "Baixar",
   "File": "Arquivo",
-  "Choose file": "Escolher arquivo"
+  "Choose file": "Escolher arquivo",
+  "Graduated Students": "Estudantes Graduados"
 }
