@@ -63,6 +63,10 @@ class AuthServiceProvider extends ServiceProvider
       return $user->tipo_membro == MembroInstituicao::COORDINATOR;
     });
 
+    Gate::define('manage-holidays', function ($user) {
+      return $user->tipo_membro == MembroInstituicao::COORDINATOR;
+    });
+
     // Professors gates
     Gate::define('list-professor-boards', function ($user) {
       return $user->tipo_membro == MembroInstituicao::PROFESSOR;

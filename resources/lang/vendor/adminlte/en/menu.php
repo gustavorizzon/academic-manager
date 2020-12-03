@@ -28,4 +28,5 @@ return [
     'Documents'                     => 'Documents',
     'Boards_Generation'             => 'Boards_Generation',
     'Boards_Listing'                => 'Boards_Listing',
+    'Holidays'                      => 'Holidays',
 ];

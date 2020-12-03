@@ -279,6 +279,12 @@ return [
         'route' => 'coordinator.enrollments.index',
         'can' => 'manage-enrollments'
       ],
+      [
+        'text' => 'Holidays',
+        'icon' => 'far fa-fw fa-calendar',
+        'route' => 'coordinator.holidays.index',
+        'can' => 'manage-holidays'
+      ],
 
       // Coordinators
       [

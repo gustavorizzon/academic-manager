@@ -41,6 +41,16 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
     Route::put('/{id}/update',  [App\Http\Controllers\Coordinator\EnrollmentsController::class, 'update'])->name('update');
   });
 
+  // Holidays
+  Route::prefix('holidays')->as('holidays.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::any('/',             [App\Http\Controllers\Coordinator\HolidaysController::class, 'index'])->name('index');
+    Route::get('/create',       [App\Http\Controllers\Coordinator\HolidaysController::class, 'create'])->name('create');
+    Route::post('/store',       [App\Http\Controllers\Coordinator\HolidaysController::class, 'store'])->name('store');
+    Route::get('/{id}/destroy', [App\Http\Controllers\Coordinator\HolidaysController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/edit',    [App\Http\Controllers\Coordinator\HolidaysController::class, 'edit'])->name('edit');
+    Route::put('/{id}/update',  [App\Http\Controllers\Coordinator\HolidaysController::class, 'update'])->name('update');
+  });
+
   // Boards
   Route::prefix('boards')->as('boards.')->where(['boardId' => '[0-9]+'])->group(function () {
     Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'index'])->name('index');
