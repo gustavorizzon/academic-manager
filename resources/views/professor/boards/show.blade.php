@@ -317,6 +317,6 @@
 @include('scripts.moment')
 @include('scripts.bs-custom-file-input')
 
-@include('partials.frequency')
-@include('partials.tasks')
-@include('partials.documents')
+@include('partials.professor.frequency')
+@include('partials.professor.tasks')
+@include('partials.professor.documents')
