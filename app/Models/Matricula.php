@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Matricula extends Model
 {
@@ -28,5 +29,33 @@ class Matricula extends Model
 
   public function course() {
     return $this->belongsTo('App\Models\Curso', 'curso_id');
+  }
+
+  public static function withoutABoard(bool $get = true) {
+    $eloquentBuilder = self::where('status', self::ENROLLED)
+      ->whereNotIn('id', function ($query) {
+        return $query->select('m.id')
+          ->from('matriculas as m')
+            ->join('membros_banca as mb', 'mb.membro_instituicao_id', '=', 'm.membro_instituicao_id')
+            ->join('bancas as b', 'b.id', '=', 'mb.banca_id')
+            ->join('disciplinas_curso as dc', 'dc.id', '=', 'b.disciplina_curso_id')
+          ->where('m.status', self::ENROLLED)
+          ->whereColumn('m.curso_id', 'dc.curso_id');
+      });
+
+    return $get ? $eloquentBuilder->get() : $eloquentBuilder;
+  }
+
+  public static function withoutABoardGroupedByCourse() {
+    return self::withoutABoard(false)
+      ->groupBy('curso_id')
+      ->selectRaw('curso_id, count(*) as total')
+    ->get();
+  }
+
+  public static function withoutABoardWhereCourseId(int $id) {
+    return self::withoutABoard(false)
+      ->where('curso_id', $id)
+    ->get();
   }
 }

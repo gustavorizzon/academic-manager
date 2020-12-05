@@ -46,4 +46,17 @@ return [
   'errors' => [
     'unexpected' => 'Houve um erro inesperado. Por favor, tente novamente em alguns instantes.',
   ],
+  'info' => [
+    'boards' => [
+      'generation' => [
+        'not-in-best-dates' => 'Você não está entre as melhores datas para iniciar um processo de geração de placa.',
+        'consider' => 'Por favor, considere gerar as bancas entre datas que caracterizam o inicio de um semestre.',
+        'in-best-dates' => 'Você está entre as melhores datas para iniciar processos de geração de bancas.'
+      ],
+      'pendencies' => [
+        'doesnt-have-professors' => 'Esta banca não tem nenhum professor.',
+        'classroom-not-defined' => 'Esta banca não tem uma sala de aula definida.'
+      ]
+    ]
+  ]
 ];

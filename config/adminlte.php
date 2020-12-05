@@ -289,19 +289,29 @@ return [
       // Coordinators
       [
         'header' => 'Boards',
-        'can' => ['generate-boards', 'list-all-boards']
-      ],
-      [
-        'text' => 'Boards_Generation',
-        'icon' => 'fas fa-fw fa-clipboard-check',
-        'route' => 'coordinator.boards.generation.index',
-        'can' => 'generate-boards',
+        'can' => ['generate-boards', 'list-all-boards', 'list-boards-with-pendencies']
       ],
       [
         'text' => 'Boards_Listing',
         'icon' => 'fas fa-fw fa-clipboard-list',
         'route' => 'coordinator.boards.index',
         'can' => 'list-all-boards',
+      ],
+      [
+        'text' => 'Boards_With_Pendencies',
+        'icon' => 'fas fa-fw fa-exclamation-circle',
+        'route' => 'coordinator.boards.pendencies',
+        'can' => 'list-boards-with-pendencies',
+        // 'label' => 1,
+        // 'label_color' => 'warning'
+      ],
+      [
+        'text' => 'Boards_Generation',
+        'icon' => 'fas fa-fw fa-clipboard-check',
+        'route' => 'coordinator.boards.generation.index',
+        'can' => 'generate-boards',
+        // 'label' => \App\Models\Matricula::withoutABoard(false)->count(),
+        // 'label_color' => 'warning'
       ],
 
       // Professors

@@ -13,6 +13,17 @@ class Banca extends Model
   const STATUS_PENDING = false;
   const STATUS_FINISHED = true;
 
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'descricao', 'periodo_letivo',
+    'status', 'sala',
+    'disciplina_curso_id'
+  ];
+
   public function courseDiscipline() {
     return $this->belongsTo('App\Models\DisciplinaCurso', 'disciplina_curso_id');
   }

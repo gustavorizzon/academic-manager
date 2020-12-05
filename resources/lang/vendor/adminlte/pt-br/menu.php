@@ -29,5 +29,6 @@ return [
     'Documents'                     => 'Documentos',
     'Boards_Generation'             => 'Geração de Bancas',
     'Boards_Listing'                => 'Listagem de Bancas',
+    'Boards_With_Pendencies'        => 'Bancas com Pendências',
     'Holidays'                      => 'Feriados',
 ];

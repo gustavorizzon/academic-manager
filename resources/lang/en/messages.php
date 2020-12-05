@@ -46,4 +46,17 @@ return [
   'errors' => [
     'unexpected' => 'There was an unexpected error. Please try again in a few moments.',
   ],
+  'info' => [
+    'boards' => [
+      'generation' => [
+        'not-in-best-dates' => 'You are not between the best dates to start a board generation process.',
+        'consider' => 'Please consider generating boards between dates that characterize the beginning of a semester.',
+        'in-best-dates' => 'You are between the best dates to start boards generation processes.'
+      ],
+      'pendencies' => [
+        'doesnt-have-professors' => 'This board doesn\'t have any professors.',
+        'classroom-not-defined' => 'This board doesn\'t have a classroom defined.'
+      ]
+    ]
+  ]
 ];

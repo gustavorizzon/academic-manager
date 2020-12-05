@@ -19,7 +19,6 @@ class CreateBancasTable extends Migration
             $table->text('descricao');
             $table->string('periodo_letivo');
             $table->boolean('status');
-            $table->smallInteger('total_vagas');
             $table->string('sala');
 
             $table->integer('disciplina_curso_id')->unsigned();

@@ -26,7 +26,8 @@ return [
     'Boards'                        => 'Boards',
     'Dashboard'                     => 'Dashboard',
     'Documents'                     => 'Documents',
-    'Boards_Generation'             => 'Boards_Generation',
-    'Boards_Listing'                => 'Boards_Listing',
+    'Boards_Generation'             => 'Boards Generation',
+    'Boards_Listing'                => 'Boards Listing',
+    'Boards_With_Pendencies'        => 'Boards with Pendencies',
     'Holidays'                      => 'Holidays',
 ];

@@ -23,4 +23,8 @@ class Curso extends Model
     'quantidade_semestres', 'valor',
     'turno', 'horas_turno'
   ];
+
+  public function courseDisciplines() {
+    return $this->hasMany('App\Models\DisciplinaCurso', 'curso_id');
+  }
 }

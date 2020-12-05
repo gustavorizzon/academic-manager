@@ -55,10 +55,12 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
   Route::prefix('boards')->as('boards.')->where(['boardId' => '[0-9]+'])->group(function () {
     Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'index'])->name('index');
     Route::get('/{boardId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'show'])->name('show');
+    Route::get('/pendencies', [App\Http\Controllers\Coordinator\BoardsController::class, 'pendencies'])->name('pendencies');
 
     // Boards Generation Routes
-    Route::prefix('generation')->as('generation.')->group(function () {
+    Route::prefix('generation')->as('generation.')->where(['courseId' => '[0-9]+'])->group(function () {
       Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'generationIndex'])->name('index');
+      Route::get('/generate/{courseId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'generate'])->name('generate');
     });
   });
 });

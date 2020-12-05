@@ -135,6 +135,9 @@
                                         @case(\App\Models\MembroBanca::STATUS_EXAM)
                                           <span class="badge badge-warning">{{ __('Exam') }}</span>
                                           @break
+                                        @case(\App\Models\MembroBanca::STATUS_WAIVER)
+                                          <span class="badge badge-warning">{{ __('Waiver') }}</span>
+                                          @break
                                         @default
                                           -
                                       @endswitch

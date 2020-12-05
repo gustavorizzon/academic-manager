@@ -27,7 +27,6 @@ class BancaFactory extends Factory
       'descricao' => $this->faker->text,
       'periodo_letivo' => $this->faker->year . '/' . $this->faker->numberBetween(1, 2),
       'status' => $this->faker->boolean,
-      'total_vagas' => $this->faker->numberBetween(10, 60),
       'sala' => $this->faker->numberBetween(1, 256),
 
       'disciplina_curso_id' => $this->faker->randomElement(

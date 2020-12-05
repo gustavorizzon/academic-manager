@@ -22,6 +22,8 @@ class FrequenciaMembroBanca extends Model
    * @var array
    */
   protected $fillable = [
-    'presente'
+    'presente',
+    'membro_banca_id',
+    'frequencia_id'
   ];
 }
