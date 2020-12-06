@@ -63,6 +63,11 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
       Route::put('/{memberId}/waiver', [App\Http\Controllers\Coordinator\BoardsController::class, 'studentWaiver'])->name('studentWaiver');
     });
 
+    // Board frequency routes
+    Route::prefix('/{boardId}/frequencies')->as('frequencies')->where(['frequencyId' => '[0-9]+'])->group(function () {
+      Route::put('/{frequencyId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'updateFrequencyDate'])->name('updateFrequencyDate');
+    });
+
     // Board professors routes
     Route::prefix('/{boardId}/professors')->as('professors')->where(['memberId' => '[0-9]+'])->group(function () {
       Route::post('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'addProfessor'])->name('addProfessor');

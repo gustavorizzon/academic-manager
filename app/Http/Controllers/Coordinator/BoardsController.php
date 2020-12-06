@@ -240,6 +240,14 @@ class BoardsController extends Controller
     return response()->json();
   }
 
+  /**
+   * Set the student status to WAIVER
+   *
+   * @param int $boardId
+   * @param int $memberId
+   *
+   * @return mixed
+   */
   public function studentWaiver($boardId, $memberId) {
     $board = Banca::find($boardId);
     $member = MembroBanca::find($memberId);
@@ -254,6 +262,61 @@ class BoardsController extends Controller
     }
 
     $member->update([ 'status' => MembroBanca::STATUS_WAIVER ]);
+
+    return response()->json();
+  }
+
+  /**
+   * Update the a frequency date
+   *
+   * @param int $boardId
+   * @param int $frequencyId
+   * @param Request $request
+   *
+   * @return mixed
+   */
+  public function updateFrequencyDate($boardId, $frequencyId, Request $request) {
+    $board = Banca::find($boardId);
+    $frequency = Frequencia::find($frequencyId);
+    $newDate = $request->json()->get('date');
+    $futureFrequencyDates = $board->frequencies()
+                                  ->whereDate('data', '>', Carbon::now()->toDateString())
+                                  ->pluck('data')
+                                  ->toArray();
+
+    if ($frequency->banca_id !== $board->id) {
+      return response()->json([
+        'errors' => [
+          'notABoardFrequency' => __('messages.data.frequencies.not-found')
+        ]
+      ], 400);
+    }
+
+    if (DateTime::createFromFormat('Y-m-d', $frequency->data) < (new DateTime)) {
+      return response()->json([
+        'errors' => [
+          'classAlreadyTaught' => __('messages.data.frequencies.already-taught')
+        ]
+      ], 400);
+    }
+
+    if (DateTime::createFromFormat('Y-m-d', $newDate) < (new DateTime)) {
+      return response()->json([
+        'errors' => [
+          'onlyDatesInTheFuture' => __('messages.data.frequencies.only-dates-in-the-future')
+        ]
+      ], 400);
+    }
+
+    if (in_array($newDate, $futureFrequencyDates)) {
+      return response()->json([
+        'errors' => [
+          'dateAlreadyTaken' => __('messages.data.frequencies.date-already-taken')
+        ]
+      ], 400);
+    }
+
+    $frequency->update([ 'data' =>  $newDate]);
 
     return response()->json();
   }

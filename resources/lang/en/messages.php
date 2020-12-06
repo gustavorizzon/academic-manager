@@ -28,6 +28,10 @@ return [
       'not-found-on-date' => 'We were unable to find frequency records on this date.',
       'not-found' => 'We were unable to find the frequency record.',
       'updated-successfully' => 'Frequency records were updated successfully.',
+      'date-updated-successfully' => 'Frequency date was updated successfully.',
+      'already-taught' => 'This class has already been taught, so it is not possible to make changes.',
+      'only-dates-in-the-future' => 'You can only set dates in the future for the class.',
+      'date-already-taken' => 'There is already a class defined with this date.',
     ],
     'tasks' => [
       'not-available' => 'There are no tasks data available for this board.',

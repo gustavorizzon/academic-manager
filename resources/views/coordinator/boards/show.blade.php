@@ -167,26 +167,50 @@
                           <table class="table table-hover table-head-fixed text-nowrap m-0">
                             <thead>
                               <tr>
-                                <th class="text-center">{{ __('Date') }}</th>
+                                <th class="text-center" style="width:40px;"></th>
+                                <th class="text-center" style="width:120px;">{{ __('Date') }}</th>
                                 <th>{{ __('Class Summary') }}</th>
                               </tr>
                             </thead>
                             <tbody>
                               @if($board->frequencies->isEmpty())
                                 <tr>
-                                  <td colspan="2" class="text-center">@lang('messages.table.empty')</td>
+                                  <td colspan="3" class="text-center">@lang('messages.table.empty')</td>
                                 </tr>
                               @else
                                 @foreach ($board->frequencies as $frequency)
-                                  <tr data-frequency-id="{{ $frequency->id }}">
-                                    <td class="text-center">
-                                      @if ($frequency->data === \Carbon\Carbon::now()->toDateString())
-                                        <span class="badge bg-success">{{ __('Today') }}</span>
+                                  <tr data-frequency-id="{{ $frequency->id }}" data-frequency-date="{{ $frequency->data }}">
+                                    @if (DateTime::createFromFormat('Y-m-d', $frequency->data) > (new DateTime))
+                                      <td class="text-center">
+                                        <i class="far fa-circle text-secondary" title="{{ __('Pending') }}"></i>
+                                      </td>
+                                      <td class="text-center">
+                                        <span class="badge bg-secondary">
+                                          {{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}
+                                        </span>
+                                      </td>
+                                    @else
+                                      @if ($frequency->data === (new DateTime)->format('Y-m-d'))
+                                        <td class="text-center">
+                                          <i class="far fa-play-circle text-warning" title="{{ __('In progress') }}"></i>
+                                        </td>
+                                        <td class="text-center">
+                                          <span class="badge bg-success">
+                                            {{ __('Today') }}
+                                          </span>
+                                        </td>
                                       @else
-                                        <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}</span>
+                                        <td class="text-center">
+                                          <i class="far fa-check-circle text-success" title="{{ __('Concluded') }}"></i>
+                                        </td>
+                                        <td class="text-center">
+                                          <span class="badge bg-success">
+                                            {{ DateTime::createFromFormat('Y-m-d', $frequency->data)->format('d/m/Y') }}
+                                          </span>
+                                        </td>
                                       @endif
-                                    </td>
-                                    <td>{{ Str::limit($frequency->resumo_aula, 70) }}</td>
+                                    @endif
+                                    <td>{{ empty($frequency->resumo_aula) ? (__('To be defined.') ) : Str::limit($frequency->resumo_aula, 70) }}</td>
                                   </tr>
                                 @endforeach
                               @endif
@@ -310,6 +334,7 @@
 @include('scripts.axios')
 @include('scripts.sweetalert2')
 @include('scripts.select2')
+@include('scripts.moment')
 
 @include('partials.coordinator.classroom')
 @include('partials.coordinator.members')

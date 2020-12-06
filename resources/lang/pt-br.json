@@ -234,5 +234,9 @@
   "Remove Professor": "Remover Professor",
   "Search for a professor": "Procure por um professor",
   "Confirm removal of professor": "Confirma a remoção do professor",
-  "Set waiver status to the student": "Definir o status de desistência para o aluno"
+  "Set waiver status to the student": "Definir o status de desistência para o aluno",
+  "To be defined.": "A ser definido(a).",
+  "Class Date": "Data da Aula",
+  "Change class date": "Mudar data da aula",
+  "Please, pick a date": "Por favor, escolha uma data"
 }

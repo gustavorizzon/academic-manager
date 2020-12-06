@@ -28,6 +28,10 @@ return [
       'not-found-on-date' => 'Não foi possível encontrar registros de frequência nesta data.',
       'not-found' => 'Não foi possível encontrar o registro de frequência.',
       'updated-successfully' => 'Os registros de frequência foram atualizados com sucesso.',
+      'date-updated-successfully' => 'A data da frequência foi atualizada com sucesso.',
+      'already-taught' => 'Esta aula já foi ministrada, portanto não é possível fazer alterações.',
+      'only-dates-in-the-future' => 'Você só pode definir datas futuras para a aula.',
+      'date-already-taken' => 'Já existe uma aula definida com esta data.',
     ],
     'tasks' => [
       'not-available' => 'Não há nenhum dado de tarefas disponível para esta banca.',

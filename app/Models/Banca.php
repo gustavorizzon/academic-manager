@@ -33,11 +33,11 @@ class Banca extends Model
   }
 
   public function frequencies() {
-    return $this->hasMany('App\Models\Frequencia', 'banca_id');
+    return $this->hasMany('App\Models\Frequencia', 'banca_id')->orderBy('data');
   }
 
   public function tasks() {
-    return $this->hasMany('App\Models\Avaliacao', 'banca_id');
+    return $this->hasMany('App\Models\Avaliacao', 'banca_id')->orderBy('data');
   }
 
   public function tests() {
