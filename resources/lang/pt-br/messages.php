@@ -21,6 +21,9 @@ return [
     'documents' => [
       'not-a-professor' => 'Você deve ser um professor da banca para poder gerenciar os documentos da mesma.',
     ],
+    'boards' => [
+      'not-a-professor' => 'Você deve ser um professor da banca para poder gerenciá-la.',
+    ],
   ],
   'data' => [
     'frequencies' => [
@@ -48,6 +51,7 @@ return [
     ],
     'boards' => [
       'classroom-updated' => 'A sala de aula para esta banca foi atualizada com sucesso.',
+      'description-updated' => 'A descrição desta banca foi atualizada com sucesso.',
       'professors' => [
         'added-successfully' => 'O professor foi adicionado com sucesso.',
         'professor-twice' => 'Você não pode adicionar o mesmo professor duas vezes.',

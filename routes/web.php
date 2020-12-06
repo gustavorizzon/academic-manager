@@ -91,6 +91,7 @@ Route::middleware(['auth', App\Http\Middleware\Professor::class])->prefix('profe
   Route::prefix('boards')->as('boards.')->where(['id' => '[0-9]+'])->group(function() {
     Route::get('/', [App\Http\Controllers\Professor\BoardsController::class, 'index'])->name('index');
     Route::get('/{id}', [App\Http\Controllers\Professor\BoardsController::class, 'show'])->name('show');
+    Route::put('/', [App\Http\Controllers\Professor\BoardsController::class, 'updateDescription'])->name('updateDescription');
 
     // Frequency Routes
     Route::prefix('{id}/frequencies')->as('frequencies.')->where([

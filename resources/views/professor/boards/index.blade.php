@@ -38,7 +38,7 @@
               @foreach ($boards as $board)
                 <tr class="clickable-row" data-href="{{ route('professor.boards.show', $board->id) }}">
                   <td>
-                    <strong>{{ $board->courseDiscipline->discipline->nome }}</strong>
+                    <strong class="text-primary">{{ $board->courseDiscipline->discipline->nome }}</strong>
                     <br>
                     <span class="text-muted">{{ $board->courseDiscipline->course->nome }}</span>
                   </td>

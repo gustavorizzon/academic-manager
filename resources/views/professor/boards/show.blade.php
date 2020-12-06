@@ -37,9 +37,9 @@
               @endif
             </p>
             <p class="text-muted">
-              <strong>{{ __('Description') }}:</strong>
+              <strong>{{ __('Description') }}: <a href="#" id="save-board-description" class="btn-link">( {{ __('Save!') }} )</a></strong>
               <br>
-              {{ $board->descricao }}
+              <textarea id="board-description" data-board-id="{{ $board->id }}" rows="10" class="form-control">{{ $board->descricao }}</textarea>
             </p>
             <p class="text-muted">
               <strong>{{ __('School Year') }}:</strong> {{ $board->periodo_letivo }}
@@ -103,45 +103,54 @@
                             <thead>
                               <tr>
                                 <th>{{ __('Name') }}</th>
-                                <th>{{ __('Member type') }}</th>
-                                <th>{{ __('Status') }}</th>
+                                <th class="text-center">{{ __('Member type') }}</th>
+                                <th class="text-center">{{ __('Status') }}</th>
+                                <th class="text-center">{{ __('Credits') }}</th>
                               </tr>
                             </thead>
                             <tbody>
                               @if($board->members->isEmpty())
                                 <tr>
-                                  <td colspan="3" class="text-center">@lang('messages.table.empty')</td>
+                                  <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
                                 </tr>
                               @else
                                 @foreach ($board->members as $member)
                                   <tr>
-                                    <td>{{ $member->institutionMember->nome }}</td>
-                                    <td>{!!
-                                      $member->institutionMember->tipo_membro == \App\Models\MembroInstituicao::PROFESSOR
-                                        ? ('<span class="badge badge-secondary">' . __('Professor') . '</span>')
-                                        : ('<span class="badge badge-primary">' . __('Student') . '</span>')
-                                    !!}</td>
-                                    <td>
-                                      @switch($member->status)
-                                        @case(\App\Models\MembroBanca::STATUS_ENROLLED)
-                                          <span class="badge badge-secondary">{{ __('Enrolled') }}</span>
-                                          @break
-                                        @case(\App\Models\MembroBanca::STATUS_APPROVED)
-                                          <span class="badge badge-success">{{ __('Approved') }}</span>
-                                          @break
-                                        @case(\App\Models\MembroBanca::STATUS_DISAPPROVED)
-                                          <span class="badge badge-danger">{{ __('Disapproved') }}</span>
-                                          @break
-                                        @case(\App\Models\MembroBanca::STATUS_EXAM)
-                                          <span class="badge badge-warning">{{ __('Exam') }}</span>
-                                          @break
-                                        @case(\App\Models\MembroBanca::STATUS_WAIVER)
-                                          <span class="badge badge-warning">{{ __('Waiver') }}</span>
-                                          @break
-                                        @default
-                                          -
-                                      @endswitch
-                                    </td>
+                                    @if($member->institutionMember->tipo_membro == \App\Models\MembroInstituicao::PROFESSOR)
+                                      <td>{{ $member->institutionMember->nome }}</td>
+                                      <td class="text-center">
+                                        <span class="badge badge-info">{{ __('Professor') }}</span>
+                                      </td>
+                                      <td class="text-center">-</td>
+                                      <td class="text-center">-</td>
+                                    @else
+                                      <td>{{ $member->institutionMember->nome }}</td>
+                                      <td class="text-center">
+                                        <span class="badge badge-primary">{{ __('Student') }}</span>
+                                      </td>
+                                      <td class="text-center">
+                                        @switch($member->status)
+                                          @case(\App\Models\MembroBanca::STATUS_ENROLLED)
+                                            <span class="badge badge-secondary">{{ __('Enrolled') }}</span>
+                                            @break
+                                          @case(\App\Models\MembroBanca::STATUS_APPROVED)
+                                            <span class="badge badge-success">{{ __('Approved') }}</span>
+                                            @break
+                                          @case(\App\Models\MembroBanca::STATUS_DISAPPROVED)
+                                            <span class="badge badge-danger">{{ __('Disapproved') }}</span>
+                                            @break
+                                          @case(\App\Models\MembroBanca::STATUS_EXAM)
+                                            <span class="badge badge-warning">{{ __('Exam') }}</span>
+                                            @break
+                                          @case(\App\Models\MembroBanca::STATUS_WAIVER)
+                                            <span class="badge badge-warning">{{ __('Waiver') }}</span>
+                                            @break
+                                          @default
+                                            -
+                                        @endswitch
+                                      </td>
+                                      <td class="text-center">{{ $member->creditos }}</td>
+                                    @endif
                                   </tr>
                                 @endforeach
                               @endif
@@ -162,8 +171,8 @@
                           <table class="table table-hover table-head-fixed text-nowrap m-0">
                             <thead>
                               <tr>
-                                <th class="text-center"></th>
-                                <th class="text-center">{{ __('Date') }}</th>
+                                <th class="text-center" style="width:40px"></th>
+                                <th class="text-center" style="width:120px">{{ __('Date') }}</th>
                                 <th>{{ __('Class Summary') }}</th>
                               </tr>
                             </thead>
@@ -341,6 +350,7 @@
 @include('scripts.moment')
 @include('scripts.bs-custom-file-input')
 
+@include('partials.professor.class_description')
 @include('partials.professor.frequency')
 @include('partials.professor.tasks')
 @include('partials.professor.documents')

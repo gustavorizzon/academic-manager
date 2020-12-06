@@ -38,4 +38,30 @@ class BoardsController extends Controller
 
     return view('professor.boards.show', ['board' => $board]);
   }
+
+  /**
+   * Updates the board description using request data
+   *
+   * @param Request $request The request
+   *
+   * @return mixed
+   */
+  public function updateDescription(Request $request) {
+    $jsonPayload = $request->json();
+
+    $board = Banca::find($jsonPayload->get('board_id'));
+    if (Gate::denies('manage-board-as-professor', $board)) {
+      return response()->json([
+        'errors' => [
+          'notAProfessor' => __('messages.permission.boards.not-a-professor')
+        ],
+      ], 403);
+    }
+
+    $board->update([
+      'descricao' => $jsonPayload->get('description')
+    ]);
+
+    return response()->json();
+  }
 }

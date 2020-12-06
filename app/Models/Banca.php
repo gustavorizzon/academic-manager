@@ -57,22 +57,13 @@ class Banca extends Model
   }
 
   public function getNextClasses() {
-    if (empty($this->nextClasses)) {
-      $this->nextClasses =  $this->frequencies()
-        ->whereDate('data', '>=', Carbon::now()->toDateString())
-        ->orderBy('data')
-      ->get();
-    }
-
-    return $this->nextClasses;
+    return $this->frequencies()
+      ->whereDate('data', '>=', Carbon::now()->toDateString())
+    ->get();
   }
 
   public function getNextClass() {
-    if (empty($this->nextClass)) {
-      $this->nextClass = $this->getNextClasses()->first();
-    }
-
-    return $this->nextClass;
+    return $this->getNextClasses()->first();
   }
 
   public function hasNextClass() {
@@ -100,14 +91,10 @@ class Banca extends Model
   }
 
   public function getStudents() {
-    if (empty($this->students)) {
-      $this->students = $this->members()
-          ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
-        ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
-      ->get('mi.*');
-    }
-
-    return $this->students;
+    return $this->members()
+        ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
+      ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
+    ->get('mi.*');
   }
 
   public function hasStudent(MembroInstituicao $student) {
@@ -121,14 +108,10 @@ class Banca extends Model
   }
 
   public function getProfessors() {
-    if (empty($this->professors)) {
-      $this->professors = $this->members()
-          ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
-        ->where('mi.tipo_membro', MembroInstituicao::PROFESSOR)
-      ->get('mi.*');
-    }
-
-    return $this->professors;
+    return $this->members()
+        ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
+      ->where('mi.tipo_membro', MembroInstituicao::PROFESSOR)
+    ->get('mi.*');
   }
 
   public function hasProfessor(MembroInstituicao $professor) {

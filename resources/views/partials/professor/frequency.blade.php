@@ -85,7 +85,7 @@
             frequency_id: frequencyId
           })
           .then(function (response) {
-            $('[data-frequency-id=' + frequencyId + '] td:nth-child(2)')
+            $('[data-frequency-id=' + frequencyId + '] td:nth-child(3)')
               .first()
               .text(
                 summary.substr(0, 67)

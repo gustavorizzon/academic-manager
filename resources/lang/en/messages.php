@@ -21,6 +21,9 @@ return [
     'documents' => [
       'not-a-professor' => 'You must be a board professor to be able to manage its documents.'
     ],
+    'boards' => [
+      'not-a-professor' => 'You must be a board professor to be able to manage it.'
+    ],
   ],
   'data' => [
     'frequencies' => [
@@ -48,6 +51,7 @@ return [
     ],
     'boards' => [
       'classroom-updated' => 'The classroom for this board was updated successfully.',
+      'description-updated' => 'The description for this board was updated successfully.',
       'professors' => [
         'added-successfully' => 'The professor was added successfully.',
         'professor-twice' => 'You cannot add the same professor twice.',
