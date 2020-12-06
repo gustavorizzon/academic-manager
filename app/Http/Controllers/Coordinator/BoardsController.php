@@ -27,15 +27,15 @@ class BoardsController extends Controller
    *
    * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
    */
-  public function index(Request $request) {
+  public function index() {
     $data = [];
 
     $paginatedBoards = Banca::where('status', Banca::STATUS_PENDING)->paginate(7);
     $data['boards'] = $paginatedBoards;
 
-    if ($request->session()->has('boardsGenerated')) {
-      $data['generated'] = $request->session()->get('boardsGenerated');
-      $request->session()->forget('boardsGenerated');
+    if (Session::has('boardsGenerated')) {
+      $data['generated'] = Session::get('boardsGenerated');
+      Session::forget('boardsGenerated');
     }
 
     return view('coordinator.boards.index', $data);
@@ -57,8 +57,15 @@ class BoardsController extends Controller
     ]);
   }
 
-  public function show() {
+  /**
+   * Returns the professor visualization of the board
+   *
+   * @param mixed $id
+   */
+  public function show($id) {
+    $board = Banca::find($id);
 
+    return view('coordinator.boards.show', ['board' => $board]);
   }
 
   /**
@@ -80,7 +87,7 @@ class BoardsController extends Controller
    * @param int $courseId The course id to generate the boards
    */
   public function generate($courseId) {
-    $generated = false;
+    Session::put('boardsGenerated', false);
 
     try {
       // Using transactions to maintain consistency
@@ -140,16 +147,114 @@ class BoardsController extends Controller
 
         DB::commit();
 
-        $generated = true;
+        Session::put('boardsGenerated', true);
       }
     } catch (\Exception $e) {
       DB::rollBack();
     }
 
-    return redirect()
-      ->route('coordinator.boards.generation.index')
-      ->with([
-        'boardsGenerated' => $generated
-      ]);
+    return redirect()->route('coordinator.boards.generation.index');
+  }
+
+  /**
+   * Updates the board class using request data
+   *
+   * @param Request $request The request
+   *
+   * @return mixed
+   */
+  public function updateClassroom(Request $request) {
+    $jsonPayload = $request->json();
+
+    Banca::find($jsonPayload->get('board_id'))->update([
+      'sala' => $jsonPayload->get('classroom')
+    ]);
+
+    return response()->json();
+  }
+
+  /**
+   * Adds a professor to a board
+   *
+   * @param int $boardId
+   * @param Request $request
+   *
+   * @return mixed
+   */
+  public function addProfessor($boardId, Request $request) {
+    $board = Banca::find($boardId);
+    $professor = MembroInstituicao::find($request->json()->get('professor_id'));
+
+    if ($board->hasProfessor($professor)) {
+      return response()->json([
+        'errors' => [
+          'professorAlreadyAdded' => __('messages.data.boards.professors.professor-twice')
+        ]
+      ], 400);
+    }
+
+    $boardMember = MembroBanca::create([
+      'membro_instituicao_id' => $professor->id,
+      'banca_id' => $board->id,
+      'creditos' => 0,
+      'status' => MembroBanca::STATUS_ENROLLED
+    ]);
+
+    return response()->json([
+      'member_id' => $boardMember->id,
+      'professor_name' => $professor->nome
+    ]);
+  }
+
+  /**
+   * Removes a professor from the board
+   *
+   * @param int $boardId
+   * @param int $memberId
+   *
+   * @return mixed
+   */
+  public function removeProfessor($boardId, $memberId) {
+    $board = Banca::find($boardId);
+    $member = MembroBanca::find($memberId);
+    $professor = MembroInstituicao::find($member->membro_instituicao_id);
+
+    if (!$board->hasProfessor($professor)) {
+      return response()->json([
+        'errors' => [
+          'notABoardProfessor' => __('messages.data.boards.professors.not-in-board')
+        ]
+      ], 400);
+    }
+
+    try {
+      $member->delete();
+    } catch (\Exception $e) {
+      return response()->json([
+        'errors' => [
+          'unexpected' => __('messages.errors.unexpected')
+        ]
+      ], 500);
+    }
+
+    return response()->json();
+  }
+
+  public function studentWaiver($boardId, $memberId) {
+    $board = Banca::find($boardId);
+    $member = MembroBanca::find($memberId);
+    $student = MembroInstituicao::find($member->membro_instituicao_id);
+
+    if (!$board->hasStudent($student)) {
+      return response()->json([
+        'errors' => [
+          'notABoardStudent' => __('messages.data.boards.students.not-in-board')
+        ]
+      ], 400);
+    }
+
+    $member->update([ 'status' => MembroBanca::STATUS_WAIVER ]);
+
+    return response()->json();
   }
 }

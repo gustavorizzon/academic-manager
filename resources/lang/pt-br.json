@@ -134,6 +134,7 @@
   "Status": "Status",
   "Short Description": "Breve Descrição",
   "Enrolled": "Matriculado(a)",
+  "Waiver": "Desistência",
   "Locked": "Trancado(a)",
   "Concluded": "Concluído(a)",
   "In progress": "Em progresso",
@@ -183,6 +184,7 @@
   "Not now.": "Agora não.",
   "Deleted!": "Deletado!",
   "Deletion performed successfully.": "Exclusão realizada com sucesso.",
+  "Action performed successfully.": "Ação realizada com sucesso.",
   "Error!": "Erro!",
   "Success!": "Sucesso!",
   "Important!": "Importante!",
@@ -224,6 +226,13 @@
   "Download": "Baixar",
   "File": "Arquivo",
   "Choose file": "Escolher arquivo",
+  "Please, inform a classroom": "Por favor, informe uma sala de aula",
+  "Please, select a professor": "Por favor, selecione um professor",
   "Graduated Students": "Estudantes Graduados",
-  "Pendencies": "Pendências"
+  "Pendencies": "Pendências",
+  "Add a Professor": "Adicionar um Professor",
+  "Remove Professor": "Remover Professor",
+  "Search for a professor": "Procure por um professor",
+  "Confirm removal of professor": "Confirma a remoção do professor",
+  "Set waiver status to the student": "Definir o status de desistência para o aluno"
 }

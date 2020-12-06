@@ -56,6 +56,18 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
     Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'index'])->name('index');
     Route::get('/{boardId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'show'])->name('show');
     Route::get('/pendencies', [App\Http\Controllers\Coordinator\BoardsController::class, 'pendencies'])->name('pendencies');
+    Route::put('/classroom', [App\Http\Controllers\Coordinator\BoardsController::class, 'updateClassroom'])->name('updateClassroom');
+
+    // Board student routes
+    Route::prefix('/{boardId}/students')->as('students')->where(['memberId' => '[0-9]+'])->group(function () {
+      Route::put('/{memberId}/waiver', [App\Http\Controllers\Coordinator\BoardsController::class, 'studentWaiver'])->name('studentWaiver');
+    });
+
+    // Board professors routes
+    Route::prefix('/{boardId}/professors')->as('professors')->where(['memberId' => '[0-9]+'])->group(function () {
+      Route::post('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'addProfessor'])->name('addProfessor');
+      Route::delete('/{memberId}', [App\Http\Controllers\Coordinator\BoardsController::class, 'removeProfessor'])->name('removeProfessor');
+    });
 
     // Boards Generation Routes
     Route::prefix('generation')->as('generation.')->where(['courseId' => '[0-9]+'])->group(function () {

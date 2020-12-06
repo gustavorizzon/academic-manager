@@ -42,6 +42,17 @@ return [
       'updated-successfully' => 'Document records were updated successfully.',
       'saved-successfully' => 'The document was saved successfully.',
     ],
+    'boards' => [
+      'classroom-updated' => 'The classroom for this board was updated successfully.',
+      'professors' => [
+        'added-successfully' => 'The professor was added successfully.',
+        'professor-twice' => 'You cannot add the same professor twice.',
+        'not-in-board' => 'The professor isn\'t in the board.'
+      ],
+      'students' => [
+        'not-in-board' => 'The student isn\'t in the board.'
+      ]
+    ],
   ],
   'errors' => [
     'unexpected' => 'There was an unexpected error. Please try again in a few moments.',

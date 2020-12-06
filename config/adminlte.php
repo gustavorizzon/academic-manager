@@ -301,17 +301,13 @@ return [
         'text' => 'Boards_With_Pendencies',
         'icon' => 'fas fa-fw fa-exclamation-circle',
         'route' => 'coordinator.boards.pendencies',
-        'can' => 'list-boards-with-pendencies',
-        // 'label' => 1,
-        // 'label_color' => 'warning'
+        'can' => 'list-boards-with-pendencies'
       ],
       [
         'text' => 'Boards_Generation',
         'icon' => 'fas fa-fw fa-clipboard-check',
         'route' => 'coordinator.boards.generation.index',
-        'can' => 'generate-boards',
-        // 'label' => \App\Models\Matricula::withoutABoard(false)->count(),
-        // 'label_color' => 'warning'
+        'can' => 'generate-boards'
       ],
 
       // Professors

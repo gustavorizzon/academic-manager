@@ -42,6 +42,17 @@ return [
       'updated-successfully' => 'Os registros de documentos foram atualizados com sucesso.',
       'saved-successfully' => 'O documento foi salvo com sucesso.',
     ],
+    'boards' => [
+      'classroom-updated' => 'A sala de aula para esta banca foi atualizada com sucesso.',
+      'professors' => [
+        'added-successfully' => 'O professor foi adicionado com sucesso.',
+        'professor-twice' => 'Você não pode adicionar o mesmo professor duas vezes.',
+        'not-in-board' => 'O professor não está na banca.'
+      ],
+      'students' => [
+        'not-in-board' => 'O aluno não está na banca.'
+      ]
+    ],
   ],
   'errors' => [
     'unexpected' => 'Houve um erro inesperado. Por favor, tente novamente em alguns instantes.',

@@ -110,6 +110,16 @@ class Banca extends Model
     return $this->students;
   }
 
+  public function hasStudent(MembroInstituicao $student) {
+    foreach ($this->getStudents() as $s) {
+      if ($s->id === $student->id) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public function getProfessors() {
     if (empty($this->professors)) {
       $this->professors = $this->members()

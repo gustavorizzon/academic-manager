@@ -83,4 +83,8 @@ class MembroInstituicao extends Authenticatable
   public function getUserBoards() {
     return $this->hasMany('App\Models\MembroBanca', 'membro_instituicao_id');
   }
+
+  public static function allProfessors() {
+    return self::where('tipo_membro', self::PROFESSOR)->get();
+  }
 }
