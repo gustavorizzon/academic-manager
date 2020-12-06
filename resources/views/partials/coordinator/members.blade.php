@@ -136,7 +136,7 @@
               $(
                 '<tr>'
                   + '<td class="text-center">'
-                    + '<button data-professor-id="' + memberId + '" type="button" class="btn btn-sm btn-link text-danger" title="{{ __('Remove Professor') }}">'
+                    + '<button data-remove-professor="true" data-member-id="' + memberId + '" data-member-name="' + professorName + '" type="button" class="btn btn-sm btn-link text-danger" title="{{ __('Remove Professor') }}">'
                       + '<i class="fas fa-trash fa-fw"></i>'
                     + '</button>'
                   + '</td>'
