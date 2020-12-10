@@ -176,6 +176,16 @@ Route::middleware(['auth', App\Http\Middleware\Student::class])->prefix('student
 
 // Standalone routes
 Route::middleware(['auth'])->group(function () {
+  // Reports
+  Route::prefix('reports')->as('reports.')->group(function () {
+    // Boards reports
+    Route::prefix('boards')->as('boards.')->where(['id' => '[0-9]+'])->group(function () {
+      Route::get('/concluded', [App\Http\Controllers\Reports\BoardSummaryReportController::class, 'concluded'])->name('concluded');
+      Route::get('/{id}/summary', [App\Http\Controllers\Reports\BoardSummaryReportController::class, 'summary'])->name('summary');
+    });
+  });
+
+  // Faculty Report
   Route::prefix('faculty')->as('faculty.')->group(function () {
     Route::get('/', [App\Http\Controllers\Reports\FacultyReportController::class, 'view'])->name('view');
   });

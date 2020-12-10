@@ -322,7 +322,19 @@ return [
         'icon' => 'fas fa-fw fa-file-alt',
         'route' => 'professor.documents.index',
         'can' => 'list-professor-documents'
-      ]
+      ],
+
+      // Reports
+      [
+        'header' => 'Reports',
+        'can' => ['boards-summary-report']
+      ],
+      [
+        'text' => 'Board_Summary',
+        'icon' => 'fas fa-fw fa-clipboard-list',
+        'route' => 'reports.boards.concluded',
+        'can' => 'boards-summary-report',
+      ],
     ],
 
     /*

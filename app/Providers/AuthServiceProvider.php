@@ -95,5 +95,10 @@ class AuthServiceProvider extends ServiceProvider
     Gate::define('list-boards-with-pendencies', function ($user) {
       return $user->tipo_membro == MembroInstituicao::COORDINATOR;
     });
+
+    Gate::define('boards-summary-report', function ($user) {
+      return $user->tipo_membro == MembroInstituicao::PROFESSOR
+          || $user->tipo_membro == MembroInstituicao::COORDINATOR;
+    });
   }
 }

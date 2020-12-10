@@ -239,5 +239,14 @@
   "To be defined.": "A ser definido(a).",
   "Class Date": "Data da Aula",
   "Change class date": "Mudar data da aula",
-  "Please, pick a date": "Por favor, escolha uma data"
+  "Please, pick a date": "Por favor, escolha uma data",
+  "Board Summary": "Resumo da Banca",
+  "Workload": "Carga Horária",
+  "Professors linked to the board": "Professores vinculados à banca",
+  "Students linked to the board": "Alunos vinculados à banca",
+  "Frequency of the board": "Frequência da banca",
+  "Credits": "Créditos",
+  "Average": "Média",
+  "Concluded boards": "Bancas concluídas",
+  "Concluded boards list": "Lista de bancas concluídas"
 }

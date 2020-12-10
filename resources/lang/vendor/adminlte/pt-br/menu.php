@@ -31,4 +31,6 @@ return [
     'Boards_Listing'                => 'Listagem de Bancas',
     'Boards_With_Pendencies'        => 'Bancas com Pendências',
     'Holidays'                      => 'Feriados',
+    'Reports'                       => 'Relatórios',
+    'Board_Summary'                 => 'Resumo de Banca',
 ];

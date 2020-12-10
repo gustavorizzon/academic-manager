@@ -30,4 +30,6 @@ return [
     'Boards_Listing'                => 'Boards Listing',
     'Boards_With_Pendencies'        => 'Boards with Pendencies',
     'Holidays'                      => 'Holidays',
+    'Reports'                       => 'Reports',
+    'Board_Summary'                 => 'Board_Summary',
 ];
