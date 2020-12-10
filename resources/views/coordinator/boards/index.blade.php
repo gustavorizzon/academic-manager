@@ -51,8 +51,8 @@
                     <br>
                     <span class="text-muted">{{ $board->courseDiscipline->course->nome }}</span>
                   </td>
-                  <td class="text-center">{{ $board->getStudents()->count() }}</td>
-                  <td class="text-center">{{ $board->getProfessors()->count() }}</td>
+                  <td class="text-center">{{ $board->students->count() }}</td>
+                  <td class="text-center">{{ $board->professors->count() }}</td>
                   <td class="text-center">{{ $board->documents->count() }}</td>
                   <td class="text-center">{{ $board->tests()->count() }}</td>
                   <td class="text-center">{{ $board->works()->count() }}</td>

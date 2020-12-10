@@ -25,7 +25,8 @@ class DisciplinaFactory extends Factory
     return [
       'nome' => $this->faker->unique()->word,
       'total_creditos' => $this->faker->numberBetween(15, 30),
-      'minimo_creditos_necessarios' => $this->faker->numberBetween(7, 25)
+      'minimo_creditos_necessarios' => $this->faker->numberBetween(7, 25),
+      'media' => $this->faker->numberBetween(5, 7)
     ];
   }
 }

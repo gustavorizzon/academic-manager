@@ -56,6 +56,20 @@ class Banca extends Model
     return $this->hasMany('App\Models\Documento', 'banca_id');
   }
 
+  public function getNextTasks() {
+    return $this->tasks()
+      ->whereDate('data', '>=', Carbon::now()->toDateString())
+    ->get();
+  }
+
+  public function getNextTask() {
+    return $this->getNextTasks()->first();
+  }
+
+  public function hasNextTask() {
+    return !is_null($this->getNextTask());
+  }
+
   public function getNextClasses() {
     return $this->frequencies()
       ->whereDate('data', '>=', Carbon::now()->toDateString())
@@ -90,16 +104,16 @@ class Banca extends Model
     return $this->documents()->where('id', $id)->first();
   }
 
-  public function getStudents() {
+  public function students() {
     return $this->members()
+      ->select('membros_banca.*')
         ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
-      ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
-    ->get('mi.*');
+      ->where('mi.tipo_membro', MembroInstituicao::STUDENT);
   }
 
   public function hasStudent(MembroInstituicao $student) {
-    foreach ($this->getStudents() as $s) {
-      if ($s->id === $student->id) {
+    foreach ($this->students as $s) {
+      if ($s->institutionMember->id === $student->id) {
         return true;
       }
     }
@@ -107,16 +121,16 @@ class Banca extends Model
     return false;
   }
 
-  public function getProfessors() {
+  public function professors() {
     return $this->members()
+      ->select('membros_banca.*')
         ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
-      ->where('mi.tipo_membro', MembroInstituicao::PROFESSOR)
-    ->get('mi.*');
+      ->where('mi.tipo_membro', MembroInstituicao::PROFESSOR);
   }
 
   public function hasProfessor(MembroInstituicao $professor) {
-    foreach ($this->getProfessors() as $p) {
-      if ($p->id === $professor->id) {
+    foreach ($this->professors as $p) {
+      if ($p->institutionMember->id === $professor->id) {
         return true;
       }
     }

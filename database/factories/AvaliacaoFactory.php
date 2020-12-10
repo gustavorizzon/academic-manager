@@ -27,7 +27,11 @@ class AvaliacaoFactory extends Factory
       'conteudo' => $this->faker->sentence(),
       'peso' => $this->faker->randomFloat(2, 3, 5),
       'data' => $this->faker->date(),
-      'tipo' => $this->faker->randomElement(['T', 'P']),
+      'tipo' => $this->faker->randomElement([
+        Avaliacao::TYPE_TEST,
+        Avaliacao::TYPE_WORK,
+        Avaliacao::TYPE_EXAM
+      ]),
 
       'banca_id' => $this->faker->randomElement(
         Banca::all()->pluck('id')->toArray()

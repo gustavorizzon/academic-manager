@@ -24,4 +24,8 @@ class AvaliacaoMembroBanca extends Model
   protected $fillable = [
     'nota', 'avaliacao_id', 'membro_banca_id'
   ];
+
+  public function task() {
+    return $this->belongsTo('App\Models\Avaliacao', 'avaliacao_id');
+  }
 }

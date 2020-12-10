@@ -42,7 +42,7 @@
                     <br>
                     <span class="text-muted">{{ $board->courseDiscipline->course->nome }}</span>
                   </td>
-                  <td class="text-center">{{ $board->getStudents()->count() }}</td>
+                  <td class="text-center">{{ $board->students->count() }}</td>
                   <td class="text-center">
                     @if ($board->hasNextClass())
                       @if ($board->getNextClass()->data === \Carbon\Carbon::now()->toDateString())
@@ -56,7 +56,7 @@
                   </td>
                   <td class="text-center">
                     <p class="text-bold">
-                      @if (!$board->getProfessors()->count())
+                      @if (!$board->professors->count())
                         <span class="text-danger">@lang('messages.info.boards.pendencies.doesnt-have-professors')</span>
                       @endif
                       @if (empty($board->sala))

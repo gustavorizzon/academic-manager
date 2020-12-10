@@ -15,6 +15,6 @@ class Disciplina extends Model
    * @var array
    */
   protected $fillable = [
-    'nome', 'total_creditos', 'minimo_creditos_necessarios'
+    'nome', 'total_creditos', 'minimo_creditos_necessarios', 'media'
   ];
 }

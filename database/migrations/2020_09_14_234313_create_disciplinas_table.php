@@ -19,6 +19,7 @@ class CreateDisciplinasTable extends Migration
             $table->string('nome');
             $table->smallInteger('total_creditos');
             $table->smallInteger('minimo_creditos_necessarios');
+            $table->smallInteger('media')->default(7);
 
             $table->timestamps();
         });

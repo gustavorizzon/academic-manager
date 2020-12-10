@@ -11,6 +11,7 @@ class Avaliacao extends Model
 
   const TYPE_TEST = 'P';
   const TYPE_WORK = 'T';
+  const TYPE_EXAM = 'E';
 
   /**
    * The table associated with the model.
