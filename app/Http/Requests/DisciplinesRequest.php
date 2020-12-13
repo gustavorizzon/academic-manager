@@ -24,7 +24,7 @@ class DisciplinesRequest extends FormRequest
     $rules = [
       'nome' => 'required|unique:disciplinas,nome',
       'total_creditos' => 'required|numeric|min:0',
-      'minimo_creditos_necessarios' => 'required|numeric|min:0'
+      'minimo_creditos_necessarios' => 'required|numeric|min:0|lte:total_creditos'
     ];
 
     // Ignores current record on update
