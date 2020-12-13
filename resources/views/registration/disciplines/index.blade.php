@@ -30,23 +30,25 @@
           <tr>
             <th class="text-center">{{ __('Id') }}</th>
             <th>{{ __('Name') }}</th>
-            <th>{{ __('Total credits') }}</th>
-            <th>{{ __('Required') }}</th>
+            <th class="text-right">{{ __('Total credits') }}</th>
+            <th class="text-right">{{ __('Required') }}</th>
+            <th class="text-right">{{ __('Average') }}</th>
             <th class="text-center">{{ __('Actions') }}</th>
           </tr>
         </thead>
         <tbody>
           @if($disciplines->isEmpty())
             <tr>
-              <td colspan="5" class="text-center">@lang('messages.table.empty')</td>
+              <td colspan="6" class="text-center">@lang('messages.table.empty')</td>
             </tr>
           @else
             @foreach ($disciplines as $discipline)
               <tr>
                 <td class="text-center">{{ $discipline->id }}</td>
                 <td>{{ $discipline->nome }}</td>
-                <td>{{ $discipline->total_creditos }}</td>
-                <td>{{ $discipline->minimo_creditos_necessarios }}</td>
+                <td class="text-right">{{ $discipline->total_creditos }}</td>
+                <td class="text-right">{{ $discipline->minimo_creditos_necessarios }}</td>
+                <td class="text-right">{{ $discipline->media }}</td>
                 <td class="text-center">
                   <a href="{{ route('registration.disciplines.edit', ['id' => $discipline->id]) }}" class="btn-sm btn-info fas fa-edit" title="{{ __('Edit') }}"></a>
                   <a href="#" class="btn-sm btn-danger btn-flat fas fa-trash" onclick="return confirmDeletion({{ $discipline->id }}, '{{ $discipline->nome }}');" title="{{ __('Delete') }}"></a>

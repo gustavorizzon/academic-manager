@@ -25,7 +25,7 @@
           {!! $errors->first('nome', '<span class="error invalid-feedback">* :message</span>') !!}
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div class="form-group">
           {!! Form::label('total_creditos', __('Total credits')) !!}
           {!! Form::number('total_creditos', null, [
@@ -35,7 +35,7 @@
           {!! $errors->first('total_creditos', '<span class="error invalid-feedback">* :message</span>') !!}
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div class="form-group">
           {!! Form::label('minimo_creditos_necessarios', __('Required')) !!}
           {!! Form::number('minimo_creditos_necessarios', null, [
@@ -43,6 +43,15 @@
             'min' => '1'
           ]) !!}
           {!! $errors->first('minimo_creditos_necessarios', '<span class="error invalid-feedback">* :message</span>') !!}
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          {!! Form::label('media', __('Average')) !!}
+          {!! Form::number('media', null, [
+            'class' => 'form-control' . ($errors->has('media') ? ' is-invalid' : '')
+          ]) !!}
+          {!! $errors->first('media', '<span class="error invalid-feedback">* :message</span>') !!}
         </div>
       </div>
     </div>
