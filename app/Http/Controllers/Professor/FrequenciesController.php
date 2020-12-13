@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banca;
 use App\Models\Frequencia;
 use App\Models\FrequenciaMembroBanca;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -78,6 +79,15 @@ class FrequenciesController extends Controller
           'frequencyNotFound' => __('messages.data.frequencies.not-found')
         ],
       ], 404);
+    }
+
+    // Deny update frequencies data after the class
+    if (DateTime::createFromFormat('Y-m-d', $class->data) < (new DateTime)) {
+      return response()->json([
+        'errors' => [
+          'alreadyTaught' => __('messages.data.frequencies.already-taught')
+        ],
+      ], 401);
     }
 
     $requestPayload = $request->json();
