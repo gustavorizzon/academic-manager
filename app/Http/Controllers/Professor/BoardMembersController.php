@@ -32,6 +32,10 @@ class BoardMembersController extends Controller
     $members = $board->members()
       ->join('membros_instituicao as mi', 'membros_banca.membro_instituicao_id', '=', 'mi.id')
       ->where('mi.tipo_membro', MembroInstituicao::STUDENT)
+      ->whereNotIn('membros_banca.status', [
+        MembroBanca::STATUS_WAIVER,
+        MembroBanca::STATUS_DISAPPROVED
+      ])
     ->get(['membros_banca.*', 'mi.nome']);
 
     return response()->json([
