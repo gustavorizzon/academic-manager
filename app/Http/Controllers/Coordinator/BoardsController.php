@@ -18,7 +18,6 @@ use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 class BoardsController extends Controller
 {
@@ -28,17 +27,9 @@ class BoardsController extends Controller
    * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
    */
   public function index() {
-    $data = [];
-
     $paginatedBoards = Banca::where('status', Banca::STATUS_PENDING)->paginate(7);
-    $data['boards'] = $paginatedBoards;
 
-    if (Session::has('boardsGenerated')) {
-      $data['generated'] = Session::get('boardsGenerated');
-      Session::forget('boardsGenerated');
-    }
-
-    return view('coordinator.boards.index', $data);
+    return view('coordinator.boards.index', [ 'boards' => $paginatedBoards ]);
   }
 
   /**
@@ -87,7 +78,7 @@ class BoardsController extends Controller
    * @param int $courseId The course id to generate the boards
    */
   public function generate($courseId) {
-    Session::put('boardsGenerated', false);
+    $boardsGenerated = false;
 
     try {
       // Using transactions to maintain consistency
@@ -147,13 +138,20 @@ class BoardsController extends Controller
 
         DB::commit();
 
-        Session::put('boardsGenerated', true);
+        $boardsGenerated = true;
       }
     } catch (\Exception $e) {
+      $boardsGenerated = false;
+
       DB::rollBack();
     }
 
-    return redirect()->route('coordinator.boards.generation.index');
+    $paginatedBoards = Banca::where('status', Banca::STATUS_PENDING)->paginate(7);
+
+    return view('coordinator.boards.index', [
+      'boards' => $paginatedBoards,
+      'boardGenerated' => $boardsGenerated
+    ]);
   }
 
   /**

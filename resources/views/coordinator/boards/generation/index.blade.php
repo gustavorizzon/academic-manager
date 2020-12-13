@@ -74,17 +74,30 @@
 </div>
 @endsection
 
-@if ($generated ?? false)
+@if (isset($boardGenerated))
   @include('scripts.sweetalert2')
-  @section('js')
-    <script>
-      Swal.fire(
-        '{{ __("Success!") }}',
-        '{{ __("The boards were successfully generated.") }}',
-        'success'
-      );
-    </script>
-    @parent
-  @endsection
+  @if ($boardGenerated)
+    @section('js')
+      <script>
+        Swal.fire(
+          '{{ __("Success!") }}',
+          '{{ __("The boards were successfully generated.") }}',
+          'success'
+        );
+      </script>
+      @parent
+    @endsection
+  @else
+    @section('js')
+      <script>
+        Swal.fire(
+          '{{ __("Error!") }}',
+          '{{ __("There was an error during boards generation.") }} {{ __("Please, try again!") }}',
+          'error'
+        );
+      </script>
+      @parent
+    @endsection
+  @endif
 @endif
 

@@ -255,5 +255,8 @@
   "LGW": "PMN",
   "Lowest grade weight": "Peso da menor nota",
   "Board completed!": "Banca completada!",
-  "This board has been completed!": "Esta banca foi completada!"
+  "This board has been completed!": "Esta banca foi completada!",
+  "The boards were successfully generated.": "As bancas foram geradas com sucesso",
+  "There was an error during boards generation.": "Ocorreu um erro durante a geração de bancas.",
+  "Please, try again!": "Por favor, tente novamente!"
 }
