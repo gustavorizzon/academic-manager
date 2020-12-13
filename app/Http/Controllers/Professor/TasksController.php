@@ -9,6 +9,7 @@ use App\Models\Avaliacao;
 use App\Models\Banca;
 use App\Models\AvaliacaoMembroBanca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
@@ -85,6 +86,8 @@ class TasksController extends Controller
     ];
 
     try {
+      DB::beginTransaction();
+
       // Board task creation
       $tasksValidationRules = (new TasksRequest)->rules();
       $validator = Validator::make($taskData, $tasksValidationRules);
@@ -118,7 +121,11 @@ class TasksController extends Controller
 
         AvaliacaoMembroBanca::create($bmtData);
       }
+
+      DB::commit();
     } catch (\Exception $e) {
+      DB::rollBack();
+
       if ($e->getCode() === 400) {
         return response()->json([
           'errors' => [
@@ -129,7 +136,7 @@ class TasksController extends Controller
 
       return response()->json([
         'errors' => [
-          'unexpected' => __('messages.errors.unexpected'),
+          'unexpected' => $e->getMessage(), //__('messages.errors.unexpected'),
         ]
       ], 500);
     }

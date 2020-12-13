@@ -26,7 +26,7 @@ class TasksRequest extends FormRequest
     return  [
       'data' => 'required|date',
       'peso' => 'required|numeric|min:0|max:10',
-      'tipo' => 'required|in:P,T',
+      'tipo' => 'required|in:P,T,E',
       'conteudo' => 'required|min:10'
     ];
   }

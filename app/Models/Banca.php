@@ -52,6 +52,11 @@ class Banca extends Model
     ->get();
   }
 
+  public function exams() {
+    return $this->tasks()
+      ->where('tipo', Avaliacao::TYPE_EXAM);
+  }
+
   public function documents() {
     return $this->hasMany('App\Models\Documento', 'banca_id');
   }
@@ -111,6 +116,23 @@ class Banca extends Model
       ->where('mi.tipo_membro', MembroInstituicao::STUDENT);
   }
 
+  /**
+   * Filtering only students that are not already disapproved by fouls
+   * nor students that are with waiver status
+   */
+  public function currentStudents() {
+    return $this->students()
+      ->whereNotIn('membros_banca.status', [
+        MembroBanca::STATUS_WAIVER,
+        MembroBanca::STATUS_DISAPPROVED
+      ]);
+  }
+
+  public function studentsInExam() {
+    return $this->students()
+      ->where('membros_banca.status', MembroBanca::STATUS_EXAM);
+  }
+
   public function hasStudent(MembroInstituicao $student) {
     foreach ($this->students as $s) {
       if ($s->institutionMember->id === $student->id) {
@@ -119,6 +141,32 @@ class Banca extends Model
     }
 
     return false;
+  }
+
+  public function studentsBelowAverage() {
+    $minAverage = $this->courseDiscipline->discipline->media;
+    $students = collect();
+
+    foreach ($this->currentStudents as $s) {
+      if ($s->getWeightedAverage() < $minAverage) {
+        $students->add($s);
+      }
+    }
+
+    return $students;
+  }
+
+  public function studentsOnAverageAndAbove() {
+    $minAverage = $this->courseDiscipline->discipline->media;
+    $students = collect();
+
+    foreach ($this->currentStudents as $s) {
+      if ($s->getWeightedAverage() >= $minAverage) {
+        $students->add($s);
+      }
+    }
+
+    return $students;
   }
 
   public function professors() {

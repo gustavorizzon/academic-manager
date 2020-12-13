@@ -40,6 +40,22 @@ class MembroBanca extends Model
     return $this->hasMany('App\Models\AvaliacaoMembroBanca', 'membro_banca_id');
   }
 
+  public function lowestGrade() {
+    $lowestGrade = null;
+
+    foreach ($this->boardMemberTasks as $grade) {
+      if (is_null($lowestGrade)) {
+        $lowestGrade = $grade;
+      } else {
+        if ($lowestGrade->nota > $grade->nota) {
+          $lowestGrade = $grade;
+        }
+      }
+    }
+
+    return $lowestGrade;
+  }
+
   public function exam() {
     return $this->boardMemberTasks()
       ->join('avaliacoes as a', 'a.id', '=', 'avaliacoes_membro_banca.avaliacao_id')
@@ -47,16 +63,28 @@ class MembroBanca extends Model
   }
 
   public function hasExam() {
-    return !is_null($this->exam->first());
+    return $this->exam->isNotEmpty();
   }
 
   public function getWeightedAverage() {
     $weightsSum = 0;
     $sumOfGradesWithWeight = 0;
+    $lowestGrade = $this->lowestGrade();
+    $hasExam = $this->hasExam();
 
-    foreach ($this->boardMemberTasks()->get() as $grade) {
-      $weight = $grade->task()->first()->peso;
+    foreach ($this->boardMemberTasks as $grade) {
+      // We ignore the lowest grade in average if the student has an exam
+      if ($hasExam && $lowestGrade->id === $grade->id) continue;
 
+      // and we use the lowest grade weight in the exam
+      $gradeTask = $grade->task()->first();
+      if ($hasExam && $gradeTask->tipo === Avaliacao::TYPE_EXAM) {
+        $weight = $lowestGrade->task()->first()->peso;
+      } else {
+        $weight = $gradeTask->peso;
+      }
+
+      // Sum everything
       $weightsSum += $weight;
       $sumOfGradesWithWeight += ($weight * $grade->nota);
     }

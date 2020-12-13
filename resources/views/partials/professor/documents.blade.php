@@ -126,7 +126,7 @@
                 $(
                   '<tr data-document-id="' + newDocumentId + '">'
                     + '<td class="text-center">'
-                      + '<i class="far fa-hand-pointer text-primary"></i>'
+                      + '<i class="far fa-hand-pointer text-success"></i>'
                     + '</td>'
                     + '<td></td>'
                     + '<td></td>'

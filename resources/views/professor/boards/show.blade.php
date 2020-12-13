@@ -51,17 +51,22 @@
           <div class="col-12 col-xl-8">
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="board-tab" data-toggle="pill" href="#board-data" role="tab" aria-controls="board-data" aria-selected="true">{{ __('Board')}}</a>
+                <a class="nav-link text-bold text-info active" id="board-tab" data-toggle="pill" href="#board-data" role="tab" aria-controls="board-data" aria-selected="true">{{ __('Board')}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="frequency-tab" data-toggle="pill" href="#frequency-data" role="tab" aria-controls="frequency-data" aria-selected="false">{{ __('Frequency') }}</a>
+                <a class="nav-link text-bold text-danger" id="frequency-tab" data-toggle="pill" href="#frequency-data" role="tab" aria-controls="frequency-data" aria-selected="false">{{ __('Frequency') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="tasks-tab" data-toggle="pill" href="#tasks-data" role="tab" aria-controls="tasks-data" aria-selected="false">{{ __('Tasks') }}</a>
+                <a class="nav-link text-bold text-primary" id="tasks-tab" data-toggle="pill" href="#tasks-data" role="tab" aria-controls="tasks-data" aria-selected="false">{{ __('Tasks') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="documents-tab" data-toggle="pill" href="#documents-data" role="tab" aria-controls="documents-data" aria-selected="false">{{ __('Documents') }}</a>
+                <a class="nav-link text-bold text-success" id="documents-tab" data-toggle="pill" href="#documents-data" role="tab" aria-controls="documents-data" aria-selected="false">{{ __('Documents') }}</a>
               </li>
+              @if ($board->studentsInExam()->count())
+                <li class="nav-item">
+                  <a class="nav-link text-bold text-warning" id="exams-tab" data-toggle="pill" href="#exams-data" role="tab" aria-controls="exams-data" aria-selected="false">{{ __('Exam') }}</a>
+                </li>
+              @endif
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade active show pt-3" id="board-data" role="tabpanel" aria-labelledby="board-tab">
@@ -253,12 +258,18 @@
                                 </tr>
                               @else
                                 @foreach ($board->tasks as $task)
-                                  <tr data-task-id="{{ $task->id }}">
+                                  @if($task->tipo === \App\Models\Avaliacao::TYPE_EXAM)
+                                    <tr data-view-exam-id="{{ $task->id }}">
+                                  @else
+                                    <tr data-task-id="{{ $task->id }}">
+                                  @endif
                                     <td class="text-center"></td>
                                     <td>{{ Str::limit($task->conteudo, 40) }}</td>
                                     <td class="text-center">
                                       @if ($task->data === \Carbon\Carbon::now()->toDateString())
                                         <span class="badge bg-success">{{ __('Today') }}</span>
+                                      @elseif (DateTime::createFromFormat('Y-m-d', $task->data) < (new DateTime))
+                                        <span class="badge bg-success">{{ DateTime::createFromFormat('Y-m-d', $task->data)->format('d/m/Y') }}</span>
                                       @else
                                         <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $task->data)->format('d/m/Y') }}</span>
                                       @endif
@@ -271,11 +282,20 @@
                                         @case(\App\Models\Avaliacao::TYPE_WORK)
                                           <span class="badge badge-success">{{ __('Work') }}</span>
                                           @break
+                                        @case(\App\Models\Avaliacao::TYPE_EXAM)
+                                          <span class="badge badge-warning">{{ __('Exam') }}</span>
+                                          @break
                                         @default
                                           -
                                       @endswitch
                                     </td>
-                                    <td class="text-right">{{ $task->peso }}</td>
+                                    <td class="text-right">
+                                      @if($task->tipo === \App\Models\Avaliacao::TYPE_EXAM)
+                                        {{ __('LGW') }}
+                                      @else
+                                        {{ $task->peso }}
+                                      @endif
+                                    </td>
                                   </tr>
                                 @endforeach
                               @endif
@@ -297,7 +317,7 @@
                             <thead>
                               <tr>
                                 <th class="text-center" style="width:40px;">
-                                  <button data-document-id="#" type="button" class="btn btn-sm btn-outline-primary" title="{{ __('New') }}">
+                                  <button data-document-id="#" type="button" class="btn btn-sm btn-outline-success" title="{{ __('New') }}">
                                     <i class="fas fa-plus fa-fw"></i>
                                   </button>
                                 </th>
@@ -316,7 +336,7 @@
                                 @foreach ($board->documents as $document)
                                   <tr data-document-id="{{ $document->id }}">
                                     <td class="text-center">
-                                      <i class="far fa-hand-pointer text-primary"></i>
+                                      <i class="far fa-hand-pointer text-success"></i>
                                     </td>
                                     <td>{{ $document->nome }}</td>
                                     <td>{{ DateTime::createFromFormat('Y-m-d', $document->data)->format('d/m/Y') }}</td>
@@ -333,9 +353,73 @@
                   </div>
                 </div>
               </div>
+              @if ($board->studentsInExam()->count())
+                <div class="tab-pane fade pt-3" id="exams-data" role="tabpanel" aria-labelledby="exams-tab">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card card-outline card-warning">
+                        <div class="card-body p-0">
+                          <div class="table-responsive" style="max-height: 58vh;">
+                            <table class="table table-hover table-head-fixed text-nowrap m-0">
+                              <thead>
+                                <tr>
+                                  <th class="text-center" style="width:40px;">
+                                    <button data-exam-id="#" type="button" class="btn btn-sm btn-outline-warning" title="{{ __('New') }}">
+                                      <i class="fas fa-plus fa-fw"></i>
+                                    </button>
+                                  </th>
+                                  <th>{{ __('Content') }}</th>
+                                  <th class="text-center">{{ __('Date') }}</th>
+                                  <th class="text-center">{{ __('Weight') }}</th>
+                                </tr>
+                              </thead>
+                              <tbody id="board-exams-list">
+                                @if($board->exams->isEmpty())
+                                  <tr>
+                                    <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
+                                  </tr>
+                                @else
+                                  @foreach ($board->exams as $exam)
+                                    <tr data-exam-id="{{ $exam->id }}">
+                                      <td class="text-center"></td>
+                                      <td>{{ Str::limit($exam->conteudo, 40) }}</td>
+                                      <td class="text-center">
+                                        @if ($exam->data === \Carbon\Carbon::now()->toDateString())
+                                          <span class="badge bg-success">{{ __('Today') }}</span>
+                                        @elseif (DateTime::createFromFormat('Y-m-d', $exam->data) < (new DateTime))
+                                          <span class="badge bg-success">{{ DateTime::createFromFormat('Y-m-d', $exam->data)->format('d/m/Y') }}</span>
+                                        @else
+                                          <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $exam->data)->format('d/m/Y') }}</span>
+                                        @endif
+                                      </td>
+                                      <td class="text-center">{{ __('Lowest grade weight') }}</td>
+                                    </tr>
+                                  @endforeach
+                                @endif
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endif
             </div>
           </div>
         </div>
+      </div>
+      <div class="card-footer clearfix">
+        @if (!$board->hasNextClass() && !$board->hasNextTask() && ($board->status === \App\Models\Banca::STATUS_PENDING))
+          <a href="{{ route('professor.boards.finish', $board->id) }}" class="btn btn-outline-success">
+            <i class="fas fa-fw fa-clipboard-check"></i> {{ __('Finish Board') }}!
+          </a>
+        @endif
+        @if ($board->status === \App\Models\Banca::STATUS_FINISHED)
+          <a href="{{ route('reports.boards.summary', $board->id) }}" class="btn btn-outline-primary">
+            <i class="fas fa-fw fa-file"></i> {{ __('Board Summary') }}!
+          </a>
+        @endif
       </div>
     </div>
   </div>
@@ -354,3 +438,30 @@
 @include('partials.professor.frequency')
 @include('partials.professor.tasks')
 @include('partials.professor.documents')
+@if ($board->studentsInExam()->count())
+  @include('partials.professor.exams')
+@endif
+
+{{-- Application of an exam is needed --}}
+@if ($examApplicationNeeded ?? false)
+  @section('js')
+    <script>
+      $(document).ready(function () {
+        Swal.fire('{{ __("Exam needed!") }}', '{{ __("Some students are taking the exam.") }}', 'warning');
+      });
+    </script>
+    @parent
+  @endsection
+@endif
+
+{{-- Application of an exam is needed --}}
+@if ($boardCompleted ?? false)
+  @section('js')
+    <script>
+      $(document).ready(function () {
+        Swal.fire('{{ __("Board completed!") }}', '{{ __("This board has been completed!") }}', 'success');
+      });
+    </script>
+    @parent
+  @endsection
+@endif

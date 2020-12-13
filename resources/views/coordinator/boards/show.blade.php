@@ -59,16 +59,16 @@
           <div class="col-12 col-xl-8">
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="members-tab" data-toggle="pill" href="#members-data" role="tab" aria-controls="members-data" aria-selected="true">{{ __('Members')}}</a>
+                <a class="nav-link text-bold text-info active" id="members-tab" data-toggle="pill" href="#members-data" role="tab" aria-controls="members-data" aria-selected="true">{{ __('Members')}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="frequency-tab" data-toggle="pill" href="#frequency-data" role="tab" aria-controls="frequency-data" aria-selected="false">{{ __('Frequency') }}</a>
+                <a class="nav-link text-bold text-danger" id="frequency-tab" data-toggle="pill" href="#frequency-data" role="tab" aria-controls="frequency-data" aria-selected="false">{{ __('Frequency') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="tasks-tab" data-toggle="pill" href="#tasks-data" role="tab" aria-controls="tasks-data" aria-selected="false">{{ __('Tasks') }}</a>
+                <a class="nav-link text-bold text-primary" id="tasks-tab" data-toggle="pill" href="#tasks-data" role="tab" aria-controls="tasks-data" aria-selected="false">{{ __('Tasks') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="documents-tab" data-toggle="pill" href="#documents-data" role="tab" aria-controls="documents-data" aria-selected="false">{{ __('Documents') }}</a>
+                <a class="nav-link text-bold text-success" id="documents-tab" data-toggle="pill" href="#documents-data" role="tab" aria-controls="documents-data" aria-selected="false">{{ __('Documents') }}</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -249,6 +249,8 @@
                                     <td class="text-center">
                                       @if ($task->data === \Carbon\Carbon::now()->toDateString())
                                         <span class="badge bg-success">{{ __('Today') }}</span>
+                                      @elseif (DateTime::createFromFormat('Y-m-d', $task->data) < (new DateTime))
+                                        <span class="badge bg-success">{{ DateTime::createFromFormat('Y-m-d', $task->data)->format('d/m/Y') }}</span>
                                       @else
                                         <span class="badge bg-secondary">{{ DateTime::createFromFormat('Y-m-d', $task->data)->format('d/m/Y') }}</span>
                                       @endif
@@ -261,11 +263,20 @@
                                         @case(\App\Models\Avaliacao::TYPE_WORK)
                                           <span class="badge badge-success">{{ __('Work') }}</span>
                                           @break
+                                        @case(\App\Models\Avaliacao::TYPE_EXAM)
+                                          <span class="badge badge-warning">{{ __('Exam') }}</span>
+                                          @break
                                         @default
                                           -
                                       @endswitch
                                     </td>
-                                    <td class="text-right">{{ $task->peso }}</td>
+                                    <td class="text-right">
+                                      @if($task->tipo === \App\Models\Avaliacao::TYPE_EXAM)
+                                        {{ __('LGW') }}
+                                      @else
+                                        {{ $task->peso }}
+                                      @endif
+                                    </td>
                                   </tr>
                                 @endforeach
                               @endif

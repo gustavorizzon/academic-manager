@@ -99,6 +99,8 @@
         let dateSpan;
         if (data.date === moment().format('YYYY-MM-DD')) {
           dateSpan = '<span class="badge bg-success">{{ __('Today') }}</span>';
+        } else if (moment().isAfter(data.date)) {
+          dateSpan = '<span class="badge bg-success">' + moment(data.date).format('DD/MM/YYYY') + '</span>';
         } else {
           dateSpan = '<span class="badge bg-secondary">' + moment(data.date).format('DD/MM/YYYY') + '</span>';
         }
