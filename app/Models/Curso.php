@@ -37,4 +37,10 @@ class Curso extends Model
 
     return false;
   }
+
+  public function autoUpdateSemestersCount() {
+    $this->update([
+      'quantidade_semestres' => ceil($this->courseDisciplines()->count() / 5)
+    ]);
+  }
 }

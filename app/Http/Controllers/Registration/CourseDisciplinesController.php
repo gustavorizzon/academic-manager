@@ -83,7 +83,11 @@ class CourseDisciplinesController extends Controller
       ]);
     }
 
+    // Adds the discipline to the course
     DisciplinaCurso::create($requestData);
+
+    // Update semesters count based on its disciplines count divided by 5
+    $course->autoUpdateSemestersCount();
 
     return redirect()->route('registration.courses.disciplines.index', [
       'id' => $course_id
@@ -100,11 +104,16 @@ class CourseDisciplinesController extends Controller
 	 */
   public function destroy($course_id, $course_discipline_id) {
     try {
+      // Remove the discipline from course
       DisciplinaCurso::where('id', $course_discipline_id)
                      ->where('curso_id', $course_id)
                      ->get()
                      ->first()
                      ->delete();
+
+      // Update semesters count based on its disciplines count divided by 5
+      Curso::find($course_id)->autoUpdateSemestersCount();
+
 			return ['status' => 'success'];
 		} catch (\Illuminate\Database\QueryException $qe) {
 			return ['status' => 'error', 'message' => $qe->getMessage()];
@@ -153,7 +162,11 @@ class CourseDisciplinesController extends Controller
       ]);
     }
 
+    // Adds the discipline to the course
     DisciplinaCurso::find($course_discipline_id)->update($requestData);
+
+    // Update semesters count based on its disciplines count divided by 5
+    $course->autoUpdateSemestersCount();
 
     return redirect()->route('registration.courses.disciplines.index', ['id' => $course_id]);
   }
