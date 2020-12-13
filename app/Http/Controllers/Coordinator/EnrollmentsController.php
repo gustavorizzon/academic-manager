@@ -39,6 +39,7 @@ class EnrollmentsController extends Controller
   public function store(EnrollmentsRequest $request) {
     $requestData = $request->all();
 
+    // Check if a student has a enrollment active
     $alreadyEnrolled = (bool) Matricula::where('status', Matricula::ENROLLED)
       ->where('membro_instituicao_id', $requestData['membro_instituicao_id'])
     ->count();
@@ -46,6 +47,17 @@ class EnrollmentsController extends Controller
     if ($alreadyEnrolled) {
       return redirect()->back()->withErrors([
         'membro_instituicao_id' => __('messages.validation.enrollment-unique')
+      ]);
+    }
+
+    // Check if the student already has been enrolled for the course
+    $alreadyEnrolledInCourse = (bool) Matricula::where('membro_instituicao_id', $requestData['membro_instituicao_id'])
+      ->where('curso_id', $requestData['curso_id'])
+    ->count();
+
+    if ($alreadyEnrolledInCourse) {
+      return redirect()->back()->withErrors([
+        'membro_instituicao_id' => __('messages.validation.enrollment-same-course-twice')
       ]);
     }
 
@@ -96,6 +108,7 @@ class EnrollmentsController extends Controller
   public function update(EnrollmentsRequest $request, $id) {
     $requestData = $request->all();
 
+    // Check if a student has a enrollment active
     $alreadyEnrolled = (bool) Matricula::where('status', Matricula::ENROLLED)
       ->where('membro_instituicao_id', $requestData['membro_instituicao_id'])
       ->where('id', '<>', $id)
@@ -104,6 +117,18 @@ class EnrollmentsController extends Controller
     if ($alreadyEnrolled) {
       return redirect()->back()->withErrors([
         'membro_instituicao_id' => __('messages.validation.enrollment-unique')
+      ]);
+    }
+
+    // Check if the student already has been enrolled for the course
+    $alreadyEnrolledInCourse = (bool) Matricula::where('membro_instituicao_id', $requestData['membro_instituicao_id'])
+      ->where('curso_id', $requestData['curso_id'])
+      ->where('id', '<>', $id)
+    ->count();
+
+    if ($alreadyEnrolledInCourse) {
+      return redirect()->back()->withErrors([
+        'membro_instituicao_id' => __('messages.validation.enrollment-same-course-twice')
       ]);
     }
 

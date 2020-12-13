@@ -9,6 +9,7 @@ return [
   ],
   'validation' => [
     'enrollment-unique' => 'An institution member can only be enrolled in one course at a time.',
+    'enrollment-same-course-twice' => 'You cannot enroll a student into the same course twice.',
     'task-grade-invalid' => 'A task grade must be a value between 0 and 10',
     'unique-discipline-in-course' => 'A discipline can only be added to a course once.'
   ],
