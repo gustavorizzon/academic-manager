@@ -156,10 +156,12 @@ class CourseDisciplinesController extends Controller
 
     // Deny add the same discipline twice
     $course = Curso::find($course_id);
-    if ($course->hasDiscipline($requestData['disciplina_id'])) {
-      return redirect()->back()->withErrors([
-        'disciplina_id' => __('messages.validation.unique-discipline-in-course')
-      ]);
+    if ($requestData['disciplina_id'] !== $course_discipline_id) {
+      if ($course->hasDiscipline($requestData['disciplina_id'])) {
+        return redirect()->back()->withErrors([
+          'disciplina_id' => __('messages.validation.unique-discipline-in-course')
+        ]);
+      }
     }
 
     // Adds the discipline to the course
