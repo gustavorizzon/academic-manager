@@ -14,7 +14,12 @@
                 <img src="{{ asset('img/user.png') }}" class="img-circle elevation-1" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->nome }}</a>
+                <a href="#" class="d-block">
+                  @php
+                    $explodedAuthUserName = explode(' ', Auth::user()->nome);
+                    echo $explodedAuthUserName[0] . ' ' . $explodedAuthUserName[sizeof($explodedAuthUserName) - 1];
+                  @endphp
+                </a>
             </div>
         </div>
         <nav class="mt-2">
