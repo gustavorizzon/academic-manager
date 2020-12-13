@@ -27,4 +27,14 @@ class Curso extends Model
   public function courseDisciplines() {
     return $this->hasMany('App\Models\DisciplinaCurso', 'curso_id');
   }
+
+  public function hasDiscipline(int $disciplineId) {
+    foreach ($this->courseDisciplines as $cd) {
+      if ($cd->disciplina_id === $disciplineId) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

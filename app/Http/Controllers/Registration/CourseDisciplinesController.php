@@ -75,6 +75,14 @@ class CourseDisciplinesController extends Controller
       ]);
     }
 
+    // Deny add the same discipline twice
+    $course = Curso::find($course_id);
+    if ($course->hasDiscipline($requestData['disciplina_id'])) {
+      return redirect()->back()->withErrors([
+        'disciplina_id' => __('messages.validation.unique-discipline-in-course')
+      ]);
+    }
+
     DisciplinaCurso::create($requestData);
 
     return redirect()->route('registration.courses.disciplines.index', [
@@ -134,6 +142,14 @@ class CourseDisciplinesController extends Controller
     if ($course_id !== $requestData['curso_id']) {
       return redirect()->back()->withErrors([
         'parameters-violation' => __('messages.request.parameters-violation')
+      ]);
+    }
+
+    // Deny add the same discipline twice
+    $course = Curso::find($course_id);
+    if ($course->hasDiscipline($requestData['disciplina_id'])) {
+      return redirect()->back()->withErrors([
+        'disciplina_id' => __('messages.validation.unique-discipline-in-course')
       ]);
     }
 
