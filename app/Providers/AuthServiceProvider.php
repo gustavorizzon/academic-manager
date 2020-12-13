@@ -81,7 +81,11 @@ class AuthServiceProvider extends ServiceProvider
     });
 
     Gate::define('download-document', function ($user, $document) {
-      return in_array($document->banca_id, $user->getUserBoards()->pluck('banca_id')->toArray());
+      return $user->tipo_membro === MembroInstituicao::COORDINATOR
+        ||  in_array(
+              $document->banca_id,
+              $user->getUserBoards()->pluck('banca_id')->toArray()
+            );
     });
 
     Gate::define('generate-boards', function ($user) {
