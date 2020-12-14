@@ -72,6 +72,10 @@ class AuthServiceProvider extends ServiceProvider
       return $user->tipo_membro == MembroInstituicao::PROFESSOR;
     });
 
+    Gate::define('view-board-as-professor', function ($user, $board) {
+      return $board->hasProfessor($user);
+    });
+
     Gate::define('manage-board-as-professor', function ($user, $board) {
       return $board->status === Banca::STATUS_PENDING
           && $board->hasProfessor($user);
