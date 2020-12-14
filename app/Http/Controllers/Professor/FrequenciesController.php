@@ -112,6 +112,9 @@ class FrequenciesController extends Controller
       foreach ($boardMemberFrequencies as $bmf) {
         FrequenciaMembroBanca::find($bmf['id'])->update([ 'presente' => $bmf['checked'] ]);
       }
+
+      // Recalculate credits
+      $board->recalculateMembersCredits();
     } catch (\Exception $e) {
       return response()->json([
         'errors' => [

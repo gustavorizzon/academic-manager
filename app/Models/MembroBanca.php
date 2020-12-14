@@ -40,6 +40,10 @@ class MembroBanca extends Model
     return $this->hasMany('App\Models\AvaliacaoMembroBanca', 'membro_banca_id');
   }
 
+  public function frequencies() {
+    return $this->hasMany('App\Models\FrequenciaMembroBanca', 'membro_banca_id');
+  }
+
   public function lowestGrade() {
     $lowestGrade = null;
 

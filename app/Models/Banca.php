@@ -185,4 +185,20 @@ class Banca extends Model
 
     return false;
   }
+
+  public function recalculateMembersCredits() {
+    $creditsPerClass = $this->courseDiscipline->course->horas_turno;
+
+    foreach ($this->students as $student) {
+      $studentCredits = 0;
+
+      foreach ($student->frequencies as $frequency) {
+        if ($frequency->presente) {
+          $studentCredits += $creditsPerClass;
+        }
+      }
+
+      $student->update([ 'creditos' => $studentCredits ]);
+    }
+  }
 }
