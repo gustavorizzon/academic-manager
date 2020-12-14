@@ -12,7 +12,10 @@ return [
     'enrollment-same-course-twice' => 'You cannot enroll a student into the same course twice.',
     'enrollment-has-boards' => 'You cannot edit/remove a enrollment that already have boards.',
     'task-grade-invalid' => 'A task grade must be a value between 0 and 10',
-    'unique-discipline-in-course' => 'A discipline can only be added to a course once.'
+    'unique-discipline-in-course' => 'A discipline can only be added to a course once.',
+    'frequencies' => [
+      'empty-summary' => 'You must provide a brief summary for this class.'
+    ]
   ],
   'permission' => [
     'frequencies' => [

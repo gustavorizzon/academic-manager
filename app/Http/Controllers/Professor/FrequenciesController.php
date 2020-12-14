@@ -105,6 +105,14 @@ class FrequenciesController extends Controller
       ], 400);
     }
 
+    if (empty($summary)) {
+      return response()->json([
+        'errors' => [
+          'emptySummary' => __('messages.validation.frequencies.empty-summary')
+        ]
+      ], 400);
+    }
+
     try {
       // Update frequency summary
       $class->update([ 'resumo_aula' => $summary ]);

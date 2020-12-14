@@ -12,7 +12,10 @@ return [
     'enrollment-same-course-twice' => 'Você não pode matricular um aluno no mesmo curso duas vezes.',
     'enrollment-has-boards' => 'Você não pode remover/editar uma matrícula que já tem bancas.',
     'task-grade-invalid' => 'A nota de uma tarefa deve ser um valor entre 0 e 10.',
-    'unique-discipline-in-course' => 'Uma disciplina só pode ser adicionada à um curso uma vez.'
+    'unique-discipline-in-course' => 'Uma disciplina só pode ser adicionada à um curso uma vez.',
+    'frequencies' => [
+      'empty-summary' => 'Você deve informar um breve resumo para esta aula.'
+    ]
   ],
   'permission' => [
     'frequencies' => [
