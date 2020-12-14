@@ -336,6 +336,13 @@
           </div>
         </div>
       </div>
+      <div class="card-footer clearfix">
+        @if ($board->status === \App\Models\Banca::STATUS_FINISHED)
+          <a href="{{ route('reports.boards.summary', $board->id) }}" class="btn btn-outline-primary">
+            <i class="fas fa-fw fa-file"></i> {{ __('Board Summary') }}!
+          </a>
+        @endif
+      </div>
     </div>
   </div>
 </div>
