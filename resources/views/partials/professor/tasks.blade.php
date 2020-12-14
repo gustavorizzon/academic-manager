@@ -196,7 +196,7 @@
               // Then we add an empty row
               $('#board-tasks-list').append(
                 $(
-                  '<tr data-task-id="' + newTaskId + '">'
+                  '<tr data-task-id="' + newTaskId + '" data-task-type="' + taskType + '">'
                     + '<td></td>'
                     + '<td></td>'
                     + '<td class="text-center"></td>'
@@ -227,39 +227,9 @@
 
       $('#tasks-data').on('click', '[data-task-id]', function() {
         let taskId = $(this).data('taskId');
+        let taskType = $(this).data('taskType');
 
-        if (taskId === '#') {
-          $('input#task-id').val('#');
-          $('input#task-date').val('');
-          $('input#task-weight').val('');
-          $('input#task-content').val('');
-          $('button#delete-task').hide();
-
-          axios.get('/professor/boards/{{ $boardId ?? $board->id ?? '' }}/members')
-            .then(function (response) {
-              if (!response.data.members) return;
-
-              $('tbody#tasks-table').empty();
-
-              for (let i = 0; i < response.data.members.length; i++) {
-                let member = response.data.members[i];
-
-                $('#tasks-table').append(
-                  '<tr>'
-                    + '<td>'
-                      + '<label for="bm' + member.id + '">' + member.nome + '</label>'
-                    + '</td>'
-                    + '<td class="text-center">'
-                      + '<input class="form-control" type="number" data-member-grade="true" data-member-id="' + member.id + '" id="bm' + member.id + '" value="0">'
-                    + '</td>'
-                  + '</tr>'
-                );
-              }
-
-              $('#tasks-modal').modal();
-            })
-            .catch(errorHandler);
-        } else {
+        if (taskType == '{{ \App\Models\Avaliacao::TYPE_EXAM }}') {
           axios.get('/professor/boards/{{ $boardId ?? $board->id ?? '' }}/tasks/' + taskId)
             .then(function (response) {
               if (!response.data) return;
@@ -267,10 +237,11 @@
               $('tbody#tasks-table').empty();
               $('input#task-id').val(taskId);
               $('input#task-date').val(response.data.date);
-              $('input#task-weight').val(response.data.weight);
+              $('input#task-weight').val('{{ __("LGW") }}');
               $('select#task-type').val(response.data.type);
               $('input#task-content').val(response.data.content);
-              $('button#delete-task').show();
+              $('button#delete-task').hide();
+              $('button#save-task').hide();
 
               for (let i = 0; i < response.data.members.length; i++) {
                 let boardMemberTask = response.data.members[i];
@@ -287,11 +258,94 @@
                 );
               }
 
+              // disabling fields
+              $('#tasks-modal input').prop('disabled', true);
+              $('input#task-weight, label[for=task-weight]').hide();
+              $('#tasks-modal select#task-type, #tasks-modal label[for=task-type]').hide();
+
               $('#tasks-modal').modal();
             })
             .catch(errorHandler);
+        } else {
+          if (taskId === '#') {
+            $('input#task-id').val('#');
+            $('input#task-date').val('');
+            $('input#task-weight').val('');
+            $('input#task-content').val('');
+            $('button#delete-task').hide();
+            $('button#save-task').show();
+
+            axios.get('/professor/boards/{{ $boardId ?? $board->id ?? '' }}/members')
+              .then(function (response) {
+                if (!response.data.members) return;
+
+                $('tbody#tasks-table').empty();
+
+                for (let i = 0; i < response.data.members.length; i++) {
+                  let member = response.data.members[i];
+
+                  $('#tasks-table').append(
+                    '<tr>'
+                      + '<td>'
+                        + '<label for="bm' + member.id + '">' + member.nome + '</label>'
+                      + '</td>'
+                      + '<td class="text-center">'
+                        + '<input class="form-control" type="number" data-member-grade="true" data-member-id="' + member.id + '" id="bm' + member.id + '" value="0">'
+                      + '</td>'
+                    + '</tr>'
+                  );
+                }
+
+                // enabling fields
+                $('#tasks-modal input').prop('disabled', false);
+                $('input#task-weight, label[for=task-weight]').show();
+                $('#tasks-modal select#task-type, #tasks-modal label[for=task-type]').show();
+
+                $('#tasks-modal').modal();
+              })
+              .catch(errorHandler);
+          } else {
+            axios.get('/professor/boards/{{ $boardId ?? $board->id ?? '' }}/tasks/' + taskId)
+              .then(function (response) {
+                if (!response.data) return;
+
+                $('tbody#tasks-table').empty();
+                $('input#task-id').val(taskId);
+                $('input#task-date').val(response.data.date);
+                $('input#task-weight').val(response.data.weight);
+                $('select#task-type').val(response.data.type);
+                $('input#task-content').val(response.data.content);
+                $('button#delete-task').show();
+                $('button#save-task').show();
+
+                for (let i = 0; i < response.data.members.length; i++) {
+                  let boardMemberTask = response.data.members[i];
+
+                  $('#tasks-table').append(
+                    '<tr>'
+                      + '<td>'
+                        + '<label for="bmt' + boardMemberTask.id + '">' + boardMemberTask.nome + '</label>'
+                      + '</td>'
+                      + '<td class="text-center">'
+                        + '<input class="form-control" type="number" data-member-grade="true" data-board-member-task-id="' + boardMemberTask.id + '" id="bmt' + boardMemberTask.id + '" value="' + boardMemberTask.nota + '">'
+                      + '</td>'
+                    + '</tr>'
+                  );
+                }
+
+                // enabling fields
+                $('#tasks-modal input').prop('disabled', false);
+                $('input#task-weight, label[for=task-weight]').show();
+                $('#tasks-modal select#task-type, #tasks-modal label[for=task-type]').show();
+
+                $('#tasks-modal').modal();
+              })
+              .catch(errorHandler);
+          }
         }
       });
+
+
     });
   </script>
 

@@ -260,11 +260,7 @@
                                 </tr>
                               @else
                                 @foreach ($board->tasks as $task)
-                                  @if($task->tipo === \App\Models\Avaliacao::TYPE_EXAM)
-                                    <tr data-view-exam-id="{{ $task->id }}">
-                                  @else
-                                    <tr data-task-id="{{ $task->id }}">
-                                  @endif
+                                  <tr data-task-id="{{ $task->id }}" data-task-type="{{ $task->tipo }}">
                                     <td class="text-center"></td>
                                     <td>{{ Str::limit($task->conteudo, 40) }}</td>
                                     <td class="text-center">
