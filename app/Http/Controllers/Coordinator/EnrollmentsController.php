@@ -75,8 +75,18 @@ class EnrollmentsController extends Controller
 	 */
   public function destroy($id) {
     try {
-			Matricula::find($id)->delete();
-			return ['status' => 'success'];
+      $enrollment = Matricula::find($id);
+
+      if (!$enrollment->canBeEditedOrRemoved()) {
+        return [
+          'status' => 'error',
+          'message' => __('messages.validation.enrollment-has-boards')
+        ];
+      }
+
+      $enrollment->delete();
+
+      return ['status' => 'success'];
 		} catch (\Illuminate\Database\QueryException $qe) {
 			return ['status' => 'error', 'message' => $qe->getMessage()];
 		} catch (\PDOException $pdoe) {
@@ -107,32 +117,38 @@ class EnrollmentsController extends Controller
 	 */
   public function update(EnrollmentsRequest $request, $id) {
     $requestData = $request->all();
+    $enrollment = Matricula::find($id);
 
-    // Check if a student has a enrollment active
-    $alreadyEnrolled = (bool) Matricula::where('status', Matricula::ENROLLED)
-      ->where('membro_instituicao_id', $requestData['membro_instituicao_id'])
-      ->where('id', '<>', $id)
-    ->count();
+    if ($enrollment->canBeEditedOrRemoved()) {
+      // Check if a student has a enrollment active
+      $alreadyEnrolled = (bool) Matricula::where('status', Matricula::ENROLLED)
+        ->where('membro_instituicao_id', $requestData['membro_instituicao_id'])
+        ->where('id', '<>', $id)
+      ->count();
 
-    if ($alreadyEnrolled) {
-      return redirect()->back()->withErrors([
-        'membro_instituicao_id' => __('messages.validation.enrollment-unique')
-      ]);
+      if ($alreadyEnrolled) {
+        return redirect()->back()->withErrors([
+          'membro_instituicao_id' => __('messages.validation.enrollment-unique')
+        ]);
+      }
+
+      // Check if the student already has been enrolled for the course
+      $alreadyEnrolledInCourse = (bool) Matricula::where('membro_instituicao_id', $requestData['membro_instituicao_id'])
+        ->where('curso_id', $requestData['curso_id'])
+        ->where('id', '<>', $id)
+      ->count();
+
+      if ($alreadyEnrolledInCourse) {
+        return redirect()->back()->withErrors([
+          'membro_instituicao_id' => __('messages.validation.enrollment-same-course-twice')
+        ]);
+      }
+
+      $enrollment->update($requestData);
+    } else {
+      // if cant be edited or removed, just update the status
+      $enrollment->update([ 'status' => $requestData['status'] ]);
     }
-
-    // Check if the student already has been enrolled for the course
-    $alreadyEnrolledInCourse = (bool) Matricula::where('membro_instituicao_id', $requestData['membro_instituicao_id'])
-      ->where('curso_id', $requestData['curso_id'])
-      ->where('id', '<>', $id)
-    ->count();
-
-    if ($alreadyEnrolledInCourse) {
-      return redirect()->back()->withErrors([
-        'membro_instituicao_id' => __('messages.validation.enrollment-same-course-twice')
-      ]);
-    }
-
-    Matricula::find($id)->update($requestData);
 
     return redirect()->route('coordinator.enrollments.index');
   }

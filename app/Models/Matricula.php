@@ -58,4 +58,15 @@ class Matricula extends Model
       ->where('curso_id', $id)
     ->get();
   }
+
+  public function canBeEditedOrRemoved() {
+    $hasBoards = self::join('membros_banca as mb', 'mb.membro_instituicao_id', '=', 'matriculas.membro_instituicao_id')
+        ->join('bancas as b', 'b.id', '=', 'mb.banca_id')
+        ->join('disciplinas_curso as dc', 'dc.id', '=', 'b.disciplina_curso_id')
+      ->whereColumn('matriculas.curso_id', 'dc.curso_id')
+      ->where('matriculas.id', $this->id)
+    ->count();
+
+    return !$hasBoards;
+  }
 }
