@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -188,17 +189,35 @@ class Banca extends Model
 
   public function recalculateMembersCredits() {
     $creditsPerClass = $this->courseDiscipline->course->horas_turno;
+    $discipline = $this->courseDiscipline->discipline;
+    $foulsThreshold = $discipline->total_creditos - $discipline->minimo_creditos_necessarios;
+    $today = new DateTime;
 
-    foreach ($this->students as $student) {
+    foreach ($this->currentStudents as $student) {
       $studentCredits = 0;
+      $fouls = 0;
 
       foreach ($student->frequencies as $frequency) {
+        // Calculate Credits
         if ($frequency->presente) {
           $studentCredits += $creditsPerClass;
         }
+
+        // Calculate Fouls
+        if (DateTime::createFromFormat('Y-m-d', $frequency->frequency->data) <= $today) {
+          if (!$frequency->presente) {
+            $fouls += $creditsPerClass;
+          }
+        }
       }
 
+      // Update student credits
       $student->update([ 'creditos' => $studentCredits ]);
+
+      // Disapprove student if fouls count exceeds the threshold
+      if ($fouls > $foulsThreshold) {
+        $student->update([ 'status' => MembroBanca::STATUS_DISAPPROVED ]);
+      }
     }
   }
 

@@ -83,7 +83,7 @@ class FrequenciesController extends Controller
     }
 
     // Deny update frequencies data after the class
-    if (DateTime::createFromFormat('Y-m-d', $class->data) < (new DateTime)) {
+    if (DateTime::createFromFormat('Y-m-d', $class->data) < (DateTime::createFromFormat('Y-m-d', date('Y-m-d')))) {
       return response()->json([
         'errors' => [
           'alreadyTaught' => __('messages.data.frequencies.already-taught')
@@ -129,7 +129,7 @@ class FrequenciesController extends Controller
         FrequenciaMembroBanca::find($bmf['id'])->update([ 'presente' => $bmf['checked'] ]);
       }
 
-      // Recalculate credits
+      // Recalculate credits and Disapprove students with too much fouls
       $board->recalculateMembersCredits();
     } catch (\Exception $e) {
       return response()->json([

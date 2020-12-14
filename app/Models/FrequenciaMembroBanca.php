@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class FrequenciaMembroBanca extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * Tabela associada ao Model
-     *
-     * @var string
-     */
-    protected $table = 'frequencias_membro_banca';
+  /**
+   * Tabela associada ao Model
+   *
+   * @var string
+   */
+  protected $table = 'frequencias_membro_banca';
 
-    /**
+  /**
    * The attributes that are mass assignable.
    *
    * @var array
@@ -26,4 +26,8 @@ class FrequenciaMembroBanca extends Model
     'membro_banca_id',
     'frequencia_id'
   ];
+
+  public function frequency() {
+    return $this->belongsTo('App\Models\Frequencia', 'frequencia_id');
+  }
 }
