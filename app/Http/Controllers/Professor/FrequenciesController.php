@@ -8,6 +8,7 @@ use App\Models\Frequencia;
 use App\Models\FrequenciaMembroBanca;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class FrequenciesController extends Controller
@@ -106,7 +107,14 @@ class FrequenciesController extends Controller
 
     try {
       // Update frequency summary
-      Frequencia::find($frequencyId)->update([ 'resumo_aula' => $summary ]);
+      $class->update([ 'resumo_aula' => $summary ]);
+
+      // if there is no professor defined, then define the authenticated
+      // user (professor) as the one who lectured the class.
+      if (empty($class->membro_banca_id)) {
+        $professor = $board->getBoardMemberByInstitutionMemberId(Auth::id());
+        $class->update([ 'membro_banca_id' =>  $professor->id ]);
+      }
 
       // Update all members frequency status
       foreach ($boardMemberFrequencies as $bmf) {

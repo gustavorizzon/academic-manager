@@ -178,13 +178,14 @@
                               <tr>
                                 <th class="text-center" style="width:40px"></th>
                                 <th class="text-center" style="width:120px">{{ __('Date') }}</th>
+                                <th>{{ __('Professor') }}</th>
                                 <th>{{ __('Class Summary') }}</th>
                               </tr>
                             </thead>
                             <tbody>
                               @if($board->frequencies->isEmpty())
                                 <tr>
-                                  <td colspan="3" class="text-center">@lang('messages.table.empty')</td>
+                                  <td colspan="4" class="text-center">@lang('messages.table.empty')</td>
                                 </tr>
                               @else
                                 @foreach ($board->frequencies as $frequency)
@@ -219,6 +220,7 @@
                                         </td>
                                       @endif
                                     @endif
+                                    <td>{{ empty($frequency->membro_banca_id) ? '' : $frequency->professor->institutionMember->getFirstAndLastLastname() }}</td>
                                     <td>{{ empty($frequency->resumo_aula) ? __('To be defined') : Str::limit($frequency->resumo_aula, 70) }}</td>
                                   </tr>
                                 @endforeach

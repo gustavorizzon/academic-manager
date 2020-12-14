@@ -85,12 +85,19 @@
             frequency_id: frequencyId
           })
           .then(function (response) {
-            $('[data-frequency-id=' + frequencyId + '] td:nth-child(3)')
-              .first()
-              .text(
-                summary.substr(0, 67)
-                + (summary.length > 67 ? '...' : '')
-              );
+            let $row = $('[data-frequency-id=' + frequencyId + ']').first();
+
+            // Update class professor
+            let $professorColumn = $row.find('td:nth-child(3)').first();
+            if ($professorColumn.text().length === 0) {
+              $professorColumn.text('{{ Auth::user()->getFirstAndLastLastname() }}');
+            }
+
+            // Update class summary
+            $row.find('td:nth-child(4)').first().text(
+              summary.substr(0, 67)
+              + (summary.length > 67 ? '...' : '')
+            );
             $('#frequencies-modal').modal('hide');
             Swal.fire( '{{ __('Success!') }}', '{{ __('messages.data.frequencies.updated-successfully') }}', 'success' );
           })

@@ -201,4 +201,14 @@ class Banca extends Model
       $student->update([ 'creditos' => $studentCredits ]);
     }
   }
+
+  public function getBoardMemberByInstitutionMemberId(int $institutionMemberId) {
+    foreach ($this->members as $member) {
+      if ($member->membro_instituicao_id === $institutionMemberId) {
+        return $member;
+      }
+    }
+
+    return false;
+  }
 }

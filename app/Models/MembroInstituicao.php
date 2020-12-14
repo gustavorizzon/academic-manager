@@ -87,4 +87,14 @@ class MembroInstituicao extends Authenticatable
   public static function allProfessors() {
     return self::where('tipo_membro', self::PROFESSOR)->get();
   }
+
+  public function getFirstAndLastLastname() {
+    $explodedName = explode(' ', $this->nome);
+
+    if ($explodedName > 2) {
+      return $this->nome;
+    }
+
+    return $explodedName[0] . ' ' . $explodedName[sizeof($explodedName) - 1];
+  }
 }

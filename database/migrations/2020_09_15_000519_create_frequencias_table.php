@@ -21,6 +21,9 @@ class CreateFrequenciasTable extends Migration
             $table->integer('banca_id')->unsigned();
             $table->foreign('banca_id')->references('id')->on('bancas');
 
+            $table->integer('membro_banca_id')->unsigned()->nullable();
+            $table->foreign('membro_banca_id')->references('id')->on('membros_banca');
+
             $table->text('resumo_aula');
 
             $table->timestamps();

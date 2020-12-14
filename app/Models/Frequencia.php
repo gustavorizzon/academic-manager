@@ -15,11 +15,15 @@ class Frequencia extends Model
    * @var array
    */
   protected $fillable = [
-    'resumo_aula', 'banca_id', 'data'
+    'resumo_aula', 'membro_banca_id', 'banca_id', 'data'
   ];
 
   public function board() {
     return $this->belongsTo('App\Models\Banca', 'banca_id');
+  }
+
+  public function professor() {
+    return $this->belongsTo('App\Models\MembroBanca', 'membro_banca_id');
   }
 
   public function boardMembersFrequency() {
