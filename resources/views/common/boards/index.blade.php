@@ -1,4 +1,4 @@
-@extends('professor.layout')
+@extends('layout.dynamic')
 
 @section('title_prefix', __($pageTitle) . ' | ')
 
