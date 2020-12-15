@@ -146,10 +146,10 @@ class BoardsController extends Controller
       DB::rollBack();
     }
 
-    $paginatedBoards = Banca::where('status', Banca::STATUS_PENDING)->paginate(7);
+    $enrollments = Matricula::withoutABoardGroupedByCourse();
 
-    return view('coordinator.boards.index', [
-      'boards' => $paginatedBoards,
+    return view('coordinator.boards.generation.index', [
+      'enrollments' => $enrollments,
       'boardGenerated' => $boardsGenerated
     ]);
   }
