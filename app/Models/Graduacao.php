@@ -22,10 +22,14 @@ class Graduacao extends Model
    * @var array
    */
   protected $fillable = [
-    'titulo', 'numero_titulo', 'membro_instituicao_id'
+    'curso_id', 'numero_titulo', 'membro_instituicao_id'
   ];
 
   public function institution_member() {
     return $this->belongsTo('App\Models\MembroInstituicao', 'membro_instituicao_id');
+  }
+
+  public function course() {
+    return $this->belongsTo('App\Models\Curso', 'curso_id');
   }
 }

@@ -17,11 +17,13 @@
     <div class="row">
       <div class="col-sm">
         <div class="form-group">
-          {!! Form::label('titulo', __('Title')) !!}
-          {!! Form::text('titulo', $graduation->titulo, [
-            'class' => 'form-control' . ($errors->has('titulo') ? ' is-invalid' : '')
-          ]) !!}
-          {!! $errors->first('titulo', '<span class="error invalid-feedback">* :message</span>') !!}
+          {!! Form::label('curso_id', __('Course')) !!}
+          {!! Form::select('curso_id',
+            \App\Models\Curso::orderBy('nome')->pluck('nome', 'id')->toArray(),
+            $graduation->curso_id,
+            ['class' => 'form-control' . ($errors->has('curso_id') ? ' is-invalid' : '')]
+          ) !!}
+          {!! $errors->first('curso_id', '<span class="error invalid-feedback">* :message</span>') !!}
         </div>
       </div>
       <div class="col-sm-3">

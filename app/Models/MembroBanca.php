@@ -32,6 +32,10 @@ class MembroBanca extends Model
     'creditos', 'status'
   ];
 
+  public function board() {
+    return $this->belongsTo('App\Models\Banca', 'banca_id');
+  }
+
   public function institutionMember() {
     return $this->belongsTo('App\Models\MembroInstituicao', 'membro_instituicao_id');
   }

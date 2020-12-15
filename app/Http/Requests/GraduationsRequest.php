@@ -22,8 +22,8 @@ class GraduationsRequest extends FormRequest
    */
   public function rules() {
     $rules = [
-      'titulo' => 'required|max:64',
-      'numero_titulo' => 'required|numeric|unique:graduacoes,numero_titulo',
+      'curso_id' => 'required|exists:cursos,id',
+      'numero_titulo' => 'required|unique:graduacoes,numero_titulo',
       'membro_instituicao_id' => 'required|exists:membros_instituicao,id'
     ];
 

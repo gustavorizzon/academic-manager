@@ -258,5 +258,10 @@
   "This board has been completed!": "Esta banca foi completada!",
   "The boards were successfully generated.": "As bancas foram geradas com sucesso",
   "There was an error during boards generation.": "Ocorreu um erro durante a geração de bancas.",
-  "Please, try again!": "Por favor, tente novamente!"
+  "Please, try again!": "Por favor, tente novamente!",
+  "Graduate Students": "Graduar Estudantes",
+  "Students Graduation": "Graduação de Estudantes",
+  "Students to be graduated": "Estudantes a serem graduados",
+  "Graduate": "Graduar",
+  "Reload": "Recarregar"
 }

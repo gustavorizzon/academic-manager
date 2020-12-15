@@ -15,6 +15,10 @@ return [
     'unique-discipline-in-course' => 'Uma disciplina só pode ser adicionada à um curso uma vez.',
     'frequencies' => [
       'empty-summary' => 'Você deve informar um breve resumo para esta aula.'
+    ],
+    'graduation' => [
+      'not-yet' => 'Esta matrícula ainda não pode ser graduada.',
+      'graduated' => 'Estudante graduado com sucesso!'
     ]
   ],
   'permission' => [

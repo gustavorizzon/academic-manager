@@ -15,6 +15,10 @@ return [
     'unique-discipline-in-course' => 'A discipline can only be added to a course once.',
     'frequencies' => [
       'empty-summary' => 'You must provide a brief summary for this class.'
+    ],
+    'graduation' => [
+      'not-yet' => 'This enrollment cannot be graduated yet.',
+      'graduated' => 'Student successfully graduated!'
     ]
   ],
   'permission' => [

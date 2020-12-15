@@ -17,6 +17,12 @@
   <div class="card-header">
     <h3 class="card-title">{{ __('Graduations List') }}</h3>
     <div class="card-tools">
+      @if(Auth::user()->tipo_membro === \App\Models\MembroInstituicao::COORDINATOR)
+        <a href="{{ route('coordinator.graduations.index') }}" class="btn btn-outline-primary btn-tool">
+          <i class="fas fa-user-graduate fa-fw"></i>
+          {{ __('Graduate Students') }}
+        </a>
+      @endif
       <a href="{{ route('registration.graduations.create') }}" class="btn btn-tool">
         <i class="fas fa-plus fa-fw"></i>
         {{ __('New') }}
@@ -29,7 +35,7 @@
         <thead class="bg-default">
           <tr>
             <th class="text-center">{{ __('Id') }}</th>
-            <th>{{ __('Title') }}</th>
+            <th>{{ __('Course') }}</th>
             <th>{{ __('Title number') }}</th>
             <th>{{ __('Institution Member') }}</th>
             <th class="text-center">{{ __('Actions') }}</th>
@@ -44,7 +50,7 @@
             @foreach ($graduations as $graduation)
               <tr>
                 <td class="text-center">{{ $graduation->id }}</td>
-                <td>{{ $graduation->titulo }}</td>
+                <td>{{ $graduation->course->nome }}</td>
                 <td>{{ $graduation->numero_titulo }}</td>
                 <td>{{ $graduation->institution_member->nome }}</td>
                 <td class="text-center">

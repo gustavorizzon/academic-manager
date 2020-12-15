@@ -51,6 +51,12 @@ Route::middleware(['auth', App\Http\Middleware\Coordinator::class])->prefix('coo
     Route::put('/{id}/update',  [App\Http\Controllers\Coordinator\HolidaysController::class, 'update'])->name('update');
   });
 
+  // Graduation
+  Route::prefix('graduations')->as('graduations.')->where(['id' => '[0-9]+'])->group(function () {
+    Route::get('/', [App\Http\Controllers\Coordinator\GraduationsController::class, 'index'])->name('index');
+    Route::get('/{id}/graduate', [App\Http\Controllers\Coordinator\GraduationsController::class, 'graduate'])->name('graduate');
+  });
+
   // Boards
   Route::prefix('boards')->as('boards.')->where(['boardId' => '[0-9]+'])->group(function () {
     Route::get('/', [App\Http\Controllers\Coordinator\BoardsController::class, 'index'])->name('index');
