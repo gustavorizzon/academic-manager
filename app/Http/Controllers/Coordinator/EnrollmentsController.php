@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Coordinator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EnrollmentsRequest;
+use App\Models\Banca;
 use App\Models\Matricula;
+use App\Models\MembroBanca;
 use Illuminate\Http\Request;
 
 class EnrollmentsController extends Controller
@@ -146,6 +148,31 @@ class EnrollmentsController extends Controller
 
       $enrollment->update($requestData);
     } else {
+      if (in_array($requestData['status'], [ Matricula::LOCKED, Matricula::ENROLLED ])) {
+        if ($requestData['status'] == Matricula::LOCKED) {
+          // If we want to lock a enrollment
+          // then we need to set waiver status for all remaining boards
+          $newStatus = MembroBanca::STATUS_WAIVER;
+        } else {
+          // If we want to unlock a enrollment
+          // then we need to set waiver status back to enrolled for all remaning boards
+          $newStatus = MembroBanca::STATUS_ENROLLED;
+        }
+
+        $boardsMember = $enrollment->boardsMember()
+          ->where('b.status', Banca::STATUS_PENDING)
+        ->get();
+
+        foreach ($boardsMember as $boardMember) {
+          if (!in_array(
+            $boardMember->status,
+            [ MembroBanca::STATUS_DISAPPROVED, MembroBanca::STATUS_APPROVED ]
+          )) {
+            $boardMember->update([ 'status' => $newStatus ]);
+          }
+        }
+      }
+
       // if cant be edited or removed, just update the status
       $enrollment->update([ 'status' => $requestData['status'] ]);
     }

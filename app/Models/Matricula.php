@@ -69,4 +69,13 @@ class Matricula extends Model
 
     return !$hasBoards;
   }
+
+  public function boardsMember() {
+    return MembroBanca::select('membros_banca.*')
+        ->join('matriculas as m', 'membros_banca.membro_instituicao_id', '=', 'm.membro_instituicao_id')
+        ->join('bancas as b', 'b.id', '=', 'membros_banca.banca_id')
+        ->join('disciplinas_curso as dc', 'dc.id', '=', 'b.disciplina_curso_id')
+      ->whereColumn('m.curso_id', 'dc.curso_id')
+      ->where('m.id', $this->id);
+  }
 }
