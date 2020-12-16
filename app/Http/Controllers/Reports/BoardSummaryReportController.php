@@ -59,7 +59,7 @@ class BoardSummaryReportController extends Controller
     $board = Banca::find($id);
 
     if (Auth::user()->tipo_membro === MembroInstituicao::PROFESSOR) {
-      if (Gate::denies('manage-board-as-professor', $board)) {
+      if (Gate::denies('view-board-as-professor', $board)) {
         return redirect()->back();
       }
     }
