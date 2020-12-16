@@ -204,7 +204,9 @@ class Banca extends Model
         }
 
         // Calculate Fouls
-        if (DateTime::createFromFormat('Y-m-d', $frequency->frequency->data) <= $today) {
+        $frequencyDate = DateTime::createFromFormat('Y-m-d', $frequency->frequency->data);
+        $diffInDays = $today->diff($frequencyDate)->format('%R%a');
+        if ($diffInDays <= 0) {
           if (!$frequency->presente) {
             $fouls += $creditsPerClass;
           }
