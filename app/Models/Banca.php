@@ -198,16 +198,15 @@ class Banca extends Model
       $fouls = 0;
 
       foreach ($student->frequencies as $frequency) {
-        // Calculate Credits
-        if ($frequency->presente) {
-          $studentCredits += $creditsPerClass;
-        }
-
-        // Calculate Fouls
         $frequencyDate = DateTime::createFromFormat('Y-m-d', $frequency->frequency->data);
         $diffInDays = $today->diff($frequencyDate)->format('%R%a');
+
+        // Only recalculate if the frequency date is today or in the past
         if ($diffInDays <= 0) {
-          if (!$frequency->presente) {
+          // Calculate Credits and Fouls
+          if ($frequency->presente) {
+            $studentCredits += $creditsPerClass;
+          } else {
             $fouls += $creditsPerClass;
           }
         }

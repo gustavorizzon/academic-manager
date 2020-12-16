@@ -82,11 +82,29 @@ class FrequenciesController extends Controller
       ], 404);
     }
 
+    // Today's date
+    $today = new DateTime;
+
+    // Class date
+    $classDate = DateTime::createFromFormat('Y-m-d', $class->data);
+
+    // Date Diff
+    $classDateDiffInDays = (int) $today->diff($classDate)->format('%R%a');
+
     // Deny update frequencies data after the class
-    if (DateTime::createFromFormat('Y-m-d', $class->data) < (DateTime::createFromFormat('Y-m-d', date('Y-m-d')))) {
+    if ($classDateDiffInDays < 0) {
       return response()->json([
         'errors' => [
           'alreadyTaught' => __('messages.data.frequencies.already-taught')
+        ],
+      ], 401);
+    }
+
+    // Deny update frequencies data before the class
+    if ($classDateDiffInDays > 0) {
+      return response()->json([
+        'errors' => [
+          'alreadyTaught' => __('messages.data.frequencies.not-on-class-date')
         ],
       ], 401);
     }

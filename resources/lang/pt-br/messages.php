@@ -43,6 +43,7 @@ return [
       'updated-successfully' => 'Os registros de frequência foram atualizados com sucesso.',
       'date-updated-successfully' => 'A data da frequência foi atualizada com sucesso.',
       'already-taught' => 'Esta aula já foi ministrada, portanto não é possível fazer alterações.',
+      'not-on-class-date' => 'Muito cedo! Você só pode alterar a frequência no dia da aula!',
       'only-dates-in-the-future' => 'Você só pode definir datas futuras para a aula.',
       'date-already-taken' => 'Já existe uma aula definida com esta data.',
     ],

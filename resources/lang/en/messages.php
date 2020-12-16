@@ -43,6 +43,7 @@ return [
       'updated-successfully' => 'Frequency records were updated successfully.',
       'date-updated-successfully' => 'Frequency date was updated successfully.',
       'already-taught' => 'This class has already been taught, so it is not possible to make changes.',
+      'not-on-class-date' => 'Too early! You can only change the frequency on the day of the class!',
       'only-dates-in-the-future' => 'You can only set dates in the future for the class.',
       'date-already-taken' => 'There is already a class defined with this date.',
     ],
