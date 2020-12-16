@@ -15,10 +15,7 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                  @php
-                    $explodedAuthUserName = explode(' ', Auth::user()->nome);
-                    echo $explodedAuthUserName[0] . ' ' . $explodedAuthUserName[sizeof($explodedAuthUserName) - 1];
-                  @endphp
+                  {{ Auth::user()->getFirstAndLastLastname() }}
                 </a>
             </div>
         </div>
